@@ -19,15 +19,22 @@
                     <h1 class="text-3xl font-bold text-[#121212] mb-2">BeatWave</h1>
                     <p class="text-gray-500"> you are new here <a href="#" class="text-[#E7826B] font-medium hover:underline">Register</a></p>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{route('login')}}" method="POST">
+                    @csrf
                     <div class="mt-3">
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-1 rounded-lg">Email</label>
-                        <input type="email" id="email" name="email" placeholder="you@example.com" class="w-full px-4 py-3 rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
+                        <input type="email" id="email" name="email" value="{{old('email')}}" placeholder="you@example.com" class="w-full px-4 py-3 bg-white rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
+                        @error('email')
+                        <p>{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="mt-3">
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-1 rounded-lg">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Create a strong password" class="w-full px-4 py-3 rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
-                        <p class="mt-1 text-xs text-gray-500">Must be at least 8 characters</p>
+                        <input type="password" id="password" name="password" placeholder="Create a strong password" class="w-full px-4 py-3 bg-white rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
+                        <p class="mt-1 text-xs text-gray-500 @error('password') hidden @enderror">Must be at least 8 characters</p>
+                        @error('password')
+                        <p>{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="mt-3">
                         <button type="submit" class="w-full bg-[#E7826B] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#d6715b] transition duration-200 shadow-md">

@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return "hello world";
+Route::get('/Home', function () {
+    return view('Home');
 });
 
 Route::get('/Events',function(){
@@ -32,6 +32,7 @@ Route::post('/register',[UserController::class,'register'])->name('register');
 Route::get('/login',function(){
     return view('login');
 })->name('login');
+Route::post('/login',[UserController::class,'login']);
 
 Route::get('/wait',function(){
     return view('waitingPage');
