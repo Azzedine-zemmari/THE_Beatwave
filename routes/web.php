@@ -25,14 +25,14 @@ Route::get('/Events',function(){
 Route::get('/Artist',function(){
     return view('Artists');
 });
-
+// register
 Route::get('/register',[UserController::class,'showRegistrationForm']);
 Route::post('/register',[UserController::class,'register'])->name('register');
-
-Route::get('/login',function(){
-    return view('login');
-})->name('login');
+// login
+Route::get('/login',[UserController::class,'showLoginForm'])->name('login');
 Route::post('/login',[UserController::class,'login']);
+//logout
+Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
 Route::get('/wait',function(){
     return view('waitingPage');

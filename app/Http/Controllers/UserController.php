@@ -32,6 +32,9 @@ class UserController extends Controller
         $this->userRepository->create($fields);
         return redirect('/login');
     }
+    public function showLoginForm(){
+        return view('login');
+    }
     public function login(Request $request){
         $data = $request->validate([
             'email' => 'required',
@@ -40,12 +43,22 @@ class UserController extends Controller
 
         $user = $this->userRepository->findByEmail($data['email']);
 
-        if($user && Hash::check($user->password,$data['password'])){
+        if($user && Hash::check($data['password'],$user->password)){
             Auth::login($user);
             return redirect('/Home');
         }
         else{
             return back()->withErrors(['email'=>'The given credentials does not math our records']);
         }
+    }
+    public function logout(Request $request){
+        // drop the user from the session
+        Auth::logout();
+        // invalidate the session
+        $request->session()->invalidate();
+        // regenerate the csrf token
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

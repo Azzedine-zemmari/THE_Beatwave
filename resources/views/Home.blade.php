@@ -64,9 +64,19 @@
             </div>
 
             <!-- Join Us Button -->
+             @guest
             <div>
-                <button class="hidden md:flex bg-transparent text-white px-6 py-2 rounded-full border-white border-2">Join us</button>
+                <a href="{{route('/register')}}" class="hidden md:flex bg-transparent text-white px-6 py-2 rounded-full border-white border-2 hover:cursor-pointer">Join us</a>
             </div>
+            @endguest
+            @auth
+            <div>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button class="hidden md:flex bg-transparent text-white px-6 py-2 rounded-full border-white border-2 hover:cursor-pointer">Log out</button>
+                </form>
+            </div>
+            @endauth
             <div id="menu" class="md:hidden">
                 <img src="{{asset('/images/icons/ep_menu.svg')}}" alt="">
             </div>
@@ -78,7 +88,16 @@
                 <p class="cursor-pointer hover:text-gray-300">Home</p>
                 <p class="cursor-pointer hover:text-gray-300">Events</p>
                 <p class="cursor-pointer hover:text-gray-300">Artists</p>
-                <button class=" bg-transparent px-6 py-2 rounded-full border-black border-2">Join us</button>
+                @guest
+                <a href="{{route('/register')}}" class=" bg-transparent px-6 py-2 rounded-full border-black border-2 hover:cursor-pointer">Join us</a>
+                @endguest 
+                @auth
+                <form action="{{route('register')}}">
+                @csrf
+                <button class="bg-transparent px-6 py-2 rounded-full border-black border-2 hover:cursor-pointer">Log out</button>
+                </form>    
+                @endauth    
+
             </div>
         </nav>
         <div class="absolute top-52 right-0 left-0 flex flex-col items-center space-y-3">
