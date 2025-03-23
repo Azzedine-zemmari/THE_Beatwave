@@ -25,7 +25,7 @@
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-1 rounded-lg">Email</label>
                         <input type="email" id="email" name="email" value="{{old('email')}}" placeholder="you@example.com" class="w-full px-4 py-3 bg-white rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
                         @error('email')
-                        <p>{{$message}}</p>
+                        <p class="text-sm text-[#E7826B] font-semibold">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mt-3">
@@ -33,7 +33,7 @@
                         <input type="password" id="password" name="password" placeholder="Create a strong password" class="w-full px-4 py-3 bg-white rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
                         <p class="mt-1 text-xs text-gray-500 @error('password') hidden @enderror">Must be at least 8 characters</p>
                         @error('password')
-                        <p>{{$message}}</p>
+                        <p class="text-sm text-[#E7826B] font-semibold">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mt-3">
