@@ -26,13 +26,12 @@ Route::get('/Artist',function(){
     return view('Artists');
 });
 
-Route::get('/register',function(){
-    return view('register');
-});
+Route::get('/register',[UserController::class,'showRegistrationForm']);
+Route::post('/register',[UserController::class,'register'])->name('register');
 
 Route::get('/login',function(){
     return view('login');
-});
+})->name('login');
 
 Route::get('/wait',function(){
     return view('waitingPage');

@@ -19,25 +19,38 @@
                     <h1 class="text-3xl font-bold text-[#121212] mb-2">Create an account</h1>
                     <p class="text-gray-500">already have an account <a href="#" class="text-[#E7826B] font-medium hover:underline">Log in</a></p>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{route('register')}}" method="POST">
+                    @csrf
                     <div class="flex flex-col md:flex-row gap-4">
                         <div>
                             <label for="firstname" class="block text-sm font-medium text-gray-700 mb-1 rounded-lg">First name</label>
-                            <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" class="w-full px-4 py-3 rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
+                            <input type="text" id="firstname" name="Firstname"  placeholder="Enter your first name" class="w-full px-4 py-3 bg-white rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
+                            @error('Firstname')
+                            <p class=" text-sm text-[#E7826B] font-semibold">{{$message}}</p>
+                            @enderror
                         </div>
                         <div>
                             <label for="lastname" class="block text-sm font-medium text-gray-700 mb-1 rounded-lg">Last name</label>
-                            <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" class="w-full px-4 py-3 rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
+                            <input type="text" id="lastname" name="LastName" placeholder="Enter your last name" class="w-full px-4 py-3  bg-white rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
+                            @error('LastName')
+                            <p class=" text-sm text-[#E7826B] font-semibold">{{$message}}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="mt-3">
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-1 rounded-lg">Email</label>
-                        <input type="email" id="email" name="email" placeholder="you@example.com" class="w-full px-4 py-3 rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
+                        <input type="email" id="email" name="email" placeholder="you@example.com" class="w-full px-4 py-3 rounded border bg-white border-gray-300 focus:border-[#E7826B] outline-none transition">
+                        @error('email')
+                        <p class=" text-sm text-[#E7826B] font-semibold">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="mt-3">
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-1 rounded-lg">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Create a strong password" class="w-full px-4 py-3 rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
-                        <p class="mt-1 text-xs text-gray-500">Must be at least 8 characters</p>
+                        <input type="password" id="password" name="password" placeholder="Create a strong password" class="w-full px-4 py-3 bg-white rounded border border-gray-300 focus:border-[#E7826B] outline-none transition">
+                        <p class="mt-1 text-xs text-gray-500 @error('password') hidden @enderror">Must be at least 8 characters</p>
+                        @error('password')
+                        <p class=" text-sm text-[#E7826B] font-semibold">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="mt-3">
                         <button type="submit" class="w-full bg-[#E7826B] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#d6715b] transition duration-200 shadow-md">
