@@ -66,7 +66,7 @@
             <!-- Join Us Button -->
              @guest
             <div>
-                <a href="{{route('/register')}}" class="hidden md:flex bg-transparent text-white px-6 py-2 rounded-full border-white border-2 hover:cursor-pointer">Join us</a>
+                <a href="{{route('register')}}" class="hidden md:flex bg-transparent text-white px-6 py-2 rounded-full border-white border-2 hover:cursor-pointer">Join us</a>
             </div>
             @endguest
             @auth
@@ -89,7 +89,7 @@
                 <p class="cursor-pointer hover:text-gray-300">Events</p>
                 <p class="cursor-pointer hover:text-gray-300">Artists</p>
                 @guest
-                <a href="{{route('/register')}}" class=" bg-transparent px-6 py-2 rounded-full border-black border-2 hover:cursor-pointer">Join us</a>
+                <a href="{{route('register')}}" class=" bg-transparent px-6 py-2 rounded-full border-black border-2 hover:cursor-pointer">Join us</a>
                 @endguest 
                 @auth
                 <form action="{{route('register')}}">

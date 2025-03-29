@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/Home', function () {
+Route::get('/', function () {
     return view('Home');
 });
 
@@ -26,13 +27,13 @@ Route::get('/Artist',function(){
     return view('Artists');
 });
 // register
-Route::get('/register',[UserController::class,'showRegistrationForm']);
-Route::post('/register',[UserController::class,'register'])->name('register');
+Route::get('/register',[AuthController::class,'showRegistrationForm']);
+Route::post('/register',[AuthController::class,'register'])->name('register');
 // login
-Route::get('/login',[UserController::class,'showLoginForm'])->name('login');
-Route::post('/login',[UserController::class,'login']);
+Route::get('/login',[AuthController::class,'showLoginForm'])->name('login');
+Route::post('/login',[AuthController::class,'login']);
 //logout
-Route::post('/logout',[UserController::class,'logout'])->name('logout');
+Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::get('/wait',function(){
     return view('waitingPage');
@@ -47,4 +48,6 @@ Route::get('/details',function(){
     return view('EventDetails');
 });
 
-Route::get('/users',[UserController::class,'index']);
+Route::get('/users',[AuthController::class,'index']);
+Route::get('/auth/google',[GoogleAuthController::class,'redirectToGoogle'])->name("redirect.google");
+Route::get('/auth/google/callback',[GoogleAuthController::class,'handleGoogleCallback']);

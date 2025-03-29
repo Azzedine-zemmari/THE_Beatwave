@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use PDO;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
     private $userRepository;
 
