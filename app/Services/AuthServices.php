@@ -6,7 +6,7 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 
 class AuthServices{
-    protected $userRepository;
+    private $userRepository;
 
     public function __construct(UserRepositoryInterface $userRepository)
     {

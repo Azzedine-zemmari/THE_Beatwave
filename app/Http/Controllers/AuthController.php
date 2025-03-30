@@ -45,7 +45,7 @@ class AuthController extends Controller
 
         if($user && Hash::check($data['password'],$user->password)){
             Auth::login($user);
-            return redirect('/Home');
+            return redirect('/');
         }
         else{
             return back()->withErrors(['email'=>'The given credentials does not math our records']);

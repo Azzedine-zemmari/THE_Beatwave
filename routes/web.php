@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\RoleChangeRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,10 @@ Route::get('/login',[AuthController::class,'showLoginForm'])->name('login');
 Route::post('/login',[AuthController::class,'login']);
 //logout
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+
+// Change user Role
+
+Route::post('/changeRole',[RoleChangeRequestController::class,'changeUserRole'])->name('changeRole');
 
 Route::get('/wait',function(){
     return view('waitingPage');
