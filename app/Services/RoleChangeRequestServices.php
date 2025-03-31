@@ -13,4 +13,7 @@ class RoleChangeRequestServices{
     public function changeRole(array $data){
         return $this->rolechangerequestRepository->create($data);
     }
+    public function getAllRequest(){
+        return $this->rolechangerequestRepository->getAll();
+    }
 }

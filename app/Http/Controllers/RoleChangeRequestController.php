@@ -20,4 +20,8 @@ class RoleChangeRequestController extends Controller
         $this->rolechangeservice->changeRole($data);
         return redirect()->back()->with('success', 'Role change request submitted.');
     }
+    public function show(){
+        $data = $this->rolechangeservice->getAllRequest();
+        return view('admin.changeRoleTable',['data'=>$data]);
+    }
 }

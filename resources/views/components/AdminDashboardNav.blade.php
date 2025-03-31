@@ -12,7 +12,6 @@
             burgerMenu.addEventListener('click',()=>{
                 sidebar.classList.toggle('hidden');
             })
-            console.log('hello world')
         })
     </script>
 </head>

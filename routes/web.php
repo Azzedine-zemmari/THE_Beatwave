@@ -40,9 +40,7 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 Route::post('/changeRole',[RoleChangeRequestController::class,'changeUserRole'])->name('changeRole');
 
 //admin dashboard 
-Route::get('/dashboard',function(){
-    return view('admin.changeRoleTable');
-});
+Route::get('/dashboard',[RoleChangeRequestController::class,'show']);
 Route::get('/wait',function(){
     return view('waitingPage');
 });
