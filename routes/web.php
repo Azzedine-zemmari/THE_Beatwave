@@ -37,9 +37,12 @@ Route::post('/login',[AuthController::class,'login']);
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 // Change user Role
-
 Route::post('/changeRole',[RoleChangeRequestController::class,'changeUserRole'])->name('changeRole');
 
+//admin dashboard 
+Route::get('/dashboard',function(){
+    return view('admin.changeRoleTable');
+});
 Route::get('/wait',function(){
     return view('waitingPage');
 });

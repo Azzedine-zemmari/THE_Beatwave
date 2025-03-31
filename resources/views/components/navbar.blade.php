@@ -38,7 +38,7 @@
         <!-- Burger Menu (Mobile) -->
         <button
             id="burgerMenu"
-            class="md:hidden w-8 h-8 p-1 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            class="md:hidden w-8 h-8 p-1"
         >
             <img src="{{ asset('/images/icons/ep_menu.svg') }}" alt="Menu" class="w-full h-full">
         </button>
