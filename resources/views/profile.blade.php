@@ -24,8 +24,8 @@
     <main class="mt-20 md:mt-24 ml-4 md:ml-10">
         <!-- name and edit profile -->
         <section>
-            <h1 class="font-bold text-xl">Alexendar</h1>
-            <p>DJ</p>
+            <h1 class="font-bold text-xl">{{Auth::user()->Firstname}} {{Auth::user()->LastName}}</h1>
+            <p>{{Auth::user()->role}}</p>
             <div class="flex items-center gap-5 mt-6">
                 <button class="bg-[#2C2C2C] text-white px-3 py-2 rounded-lg">Edit profile</button>
                 <button class="bg-[#EBEBEB] p-2 rounded-lg flex items-end justify-center">
@@ -33,6 +33,7 @@
                 </button>
                 
                 <!-- Role Change Request Dropdown -->
+                @if(Auth::user()->role === 'user')
                 <div class="relative group">
                     <button type="button" class="bg-[#EBEBEB] hover:bg-gray-200 text-gray-800 px-3 py-2 rounded-lg flex items-center transition-all duration-300">
                         <span>Change Role</span>
@@ -58,31 +59,34 @@
                         </div>
                     </div>
                 </div>
+                @else
+                <a href="" class="bg-gradient-to-r from-[#43CBFF] to-[#9708CC] p-2 rounded-lg">{{Auth::user()->role}} Dashboard</a>
+                @endif
             </div>
         </section>
         
         <!-- about user -->
         <section class="mt-6">
             <h2 class="font-bold">About : </h2>
-            <p class="font-medium text-[#8A8A8A] max-w-[550px]">Product designer passionate about creating intuitive user experiences. Currently working on design systems and accessibility improvements.</p>
+            <p class="font-medium text-[#8A8A8A] max-w-[550px]">{{Auth::user()->bio}}</p>
             <div class="flex flex-col space-y-5 mt-4">
                 <div class="flex items-center">
                     <div class="w-5 h-5 flex justify-center items-center mr-3">
                         <img src="{{asset('/images/icons/mail.svg')}}" alt="">
                     </div>
-                    <p>alex.chen@example.com</p>
+                    <p>{{Auth::user()->email}}</p>
                 </div>
                 <div class="flex items-center">
                     <div class="w-5 h-5 flex justify-center items-center mr-3">
                         <img src="{{asset('/images/icons/link-2.svg')}}" alt="">
                     </div>
-                    <p>www.alex.me</p>
+                    <p>{{Auth::user()->websiteLink ?? 'no website'}}</p>
                 </div>
                 <div class="flex items-center">
                     <div class="w-5 h-5 flex justify-center items-center mr-3">
                         <img src="{{asset('/images/icons/calendar.svg')}}" alt="">
                     </div>
-                    <p>Joined: 22-02-2024</p>
+                    <p>Joined: {{Auth::user()->created_at->format('d-m-Y')}}</p>
                 </div>
             </div>
         </section>
