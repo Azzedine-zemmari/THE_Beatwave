@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 @else
-                <a href="" class="bg-gradient-to-r from-[#43CBFF] to-[#9708CC] p-2 rounded-lg">{{Auth::user()->role}} Dashboard</a>
+                <a href="{{Auth::user()->role == 'artist' ? '/artist/Invitation' : '/'}}" class="bg-gradient-to-r from-[#43CBFF] to-[#9708CC] p-2 rounded-lg">{{Auth::user()->role}} Dashboard</a>
                 @endif
             </div>
         </section>

@@ -107,7 +107,7 @@
     <!-- Main Content -->
     <main class="flex-1">
         <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
-            <h2 class="text-lg font-medium">Welcome x</h2>
+            <h2 class="text-lg font-medium">Welcome {{Auth::user()->Firstname}}</h2>
             <div>
                 <!-- You could add profile/logout buttons here -->
             </div>
