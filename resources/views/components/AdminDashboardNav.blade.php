@@ -108,8 +108,24 @@
     <main class="flex-1">
         <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
             <h2 class="text-lg font-medium">Welcome {{Auth::user()->Firstname}}</h2>
-            <div>
-                <!-- You could add profile/logout buttons here -->
+            
+            <!-- Simplified Profile & Logout UI -->
+            <div class="flex items-center space-x-4">
+                <!-- Profile Circle with Initial -->
+                <a href="{{route('profile')}}" class="w-10 h-10 rounded-full bg-[#7A38FC] flex items-center justify-center text-white font-medium text-lg hover:bg-[#6429e5] transition-colors duration-200">
+                    {{ substr(Auth::user()->Firstname, 0, 1) }}
+                </a>
+                
+                <!-- Logout Button -->
+                <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                    <button type="submit" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        Logout
+                    </button>
+                </form>
             </div>
         </header>
 

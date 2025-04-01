@@ -46,13 +46,16 @@ Route::get('/dashboard',[RoleChangeRequestController::class,'show'])->middleware
 // approve changing user role by admin 
 Route::post('/role-change/approve/{id}',[RoleChangeRequestController::class,'approve'])->name('role-change.approve');
 Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'rejected'])->name('role-change.rejected');
-// Route::get('/wait',function(){
-//     return view('waitingPage');
-// });
 
+// invitation to events for the artist
 Route::get('/artist/Invitation',function(){
     return view('artist.invitations');
 });
+// Add Event by organisateur
+Route::get('/organisateur/AddEvent',function(){
+    return view('organisateur.addEvent');
+})->name('AddEvent');
+
 Route::get('/profile',function(){
     return view('profile');
 })->name('profile');
