@@ -42,7 +42,7 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 Route::post('/changeRole',[RoleChangeRequestController::class,'changeUserRole'])->name('changeRole');
 
 //admin dashboard 
-Route::get('/dashboard',[RoleChangeRequestController::class,'show']);
+Route::get('/dashboard',[RoleChangeRequestController::class,'show'])->middleware('role:admin');
 // approve changing user role by admin 
 Route::post('/role-change/approve/{id}',[RoleChangeRequestController::class,'approve'])->name('role-change.approve');
 Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'rejected'])->name('role-change.rejected');
