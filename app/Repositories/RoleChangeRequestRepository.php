@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\User;
 use App\Models\RoleChangeRequest;
 use App\Repositories\Contracts\RoleChangeRequestInterface;
 use Illuminate\Support\Facades\Auth;
@@ -21,5 +22,26 @@ class RoleChangeRequestRepository implements RoleChangeRequestInterface{
         ->join('users','users.id','=','role_change_requests.userId')
         ->select('users.Firstname','users.LastName','role_change_requests.*')
         ->get();
+    }
+    public function approved($requestId)
+    {
+        $request = RoleChangeRequest::findOrFail($requestId);
+        $user = User::findOrFail($request->userId);
+
+        $user->role = $request->requested_role;
+        $user->save();
+
+        $request->status = 'approved';
+        $request->save();
+
+        return $request;
+        
+    }
+    public function rejected($requestId)
+    {
+        $request = RoleChangeRequest::findOrFail($requestId);
+        $request->status  = 'rejected';
+        $request->save();
+        return $request;
     }
 }

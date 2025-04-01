@@ -24,4 +24,12 @@ class RoleChangeRequestController extends Controller
         $data = $this->rolechangeservice->getAllRequest();
         return view('admin.changeRoleTable',['data'=>$data]);
     }
+    public function approve($id){
+        $this->rolechangeservice->approveRequest($id);
+        return redirect()->back()->with('success','Role approved successfully');
+    }
+    public function rejected($id){
+        $this->rolechangeservice->rejectRequest($id);
+        return redirect()->back()->with('success','Role rejected successfully');
+    }
 }

@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\RoleChangeRequestController;
+use App\Mail\RoleChangeApproved;
+use App\Repositories\RoleChangeRequestRepository;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +43,9 @@ Route::post('/changeRole',[RoleChangeRequestController::class,'changeUserRole'])
 
 //admin dashboard 
 Route::get('/dashboard',[RoleChangeRequestController::class,'show']);
+// approve changing user role by admin 
+Route::post('/role-change/approve/{id}',[RoleChangeRequestController::class,'approve'])->name('role-change.approve');
+Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'rejected'])->name('role-change.rejected');
 Route::get('/wait',function(){
     return view('waitingPage');
 });

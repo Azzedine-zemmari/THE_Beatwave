@@ -38,13 +38,19 @@
                                 <div class="text-sm text-gray-900">{{$item->requested_role}}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full @if($item->status == 'pending') bg-yellow-100 text-yellow-800 @elseif($item->status == approved) bg-green-100 text-green-800 @else bg-red-100 text-red-800 @endif">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full @if($item->status == 'pending') bg-yellow-100 text-yellow-800 @elseif($item->status == 'approved') bg-green-100 text-green-800 @else bg-red-100 text-red-800 @endif">
                                     {{$item->status}}
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
-                                <a href="#" class="text-red-600 hover:text-red-900 mr-2">Reject</a>
-                                <a href="#" class="text-green-600 hover:text-green-900">Approve</a>
+                                <form action="{{route('role-change.approve',$item->id)}}" method="POST">
+                                    @csrf
+                                    <button class="text-green-600 hover:text-green-900 mr-2">Approve</button>
+                                </form>
+                                <form action="{{route('role-change.rejected',$item->id)}}" method="POST">
+                                    @csrf
+                                    <button class="text-red-600 hover:text-red-900">Reject</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
