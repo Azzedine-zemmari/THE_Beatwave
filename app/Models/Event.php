@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Event extends Model
+{
+    use HasFactory;   
+    protected $table = 'events'; 
+    protected $primaryKey = 'eventId';
+    public $incrementing = true; 
+    protected $keyType = 'int'; 
+
+    protected $fillable = [
+        'nom',
+        'description',
+        'date',
+        'taketPrice',
+        'stockeTicket',
+        'numberOfPlace',
+        'image',
+        'artistId',
+        'categorieId',
+        'place'
+    ];
+}

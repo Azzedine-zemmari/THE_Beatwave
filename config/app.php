@@ -169,7 +169,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
-        App\Providers\RoleChaneProvider::class
+        App\Providers\RoleChaneProvider::class,
+        App\Providers\CategorieProvider::class,
+        App\Providers\eventProvider::class
     ])->toArray(),
 
     /*

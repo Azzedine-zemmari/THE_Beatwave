@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\RoleChangeRequestController;
 use App\Mail\RoleChangeApproved;
@@ -52,9 +53,9 @@ Route::get('/artist/Invitation',function(){
     return view('artist.invitations');
 });
 // Add Event by organisateur
-Route::get('/organisateur/AddEvent',function(){
-    return view('organisateur.addEvent');
-})->name('AddEvent');
+Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
+
+Route::post('/organisateur/registerEvent',[EventController::class,'store'])->name('registerEvent');
 
 Route::get('/profile',function(){
     return view('profile');

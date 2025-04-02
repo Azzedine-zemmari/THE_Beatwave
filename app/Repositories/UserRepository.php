@@ -23,4 +23,8 @@ class UserRepository implements UserRepositoryInterface{
     {
         return User::find($id);
     }
+    public function findByRole(string $role)
+    {
+        return User::where('role',$role)->get();
+    }
 }
