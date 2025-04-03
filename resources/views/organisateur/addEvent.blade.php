@@ -1,4 +1,14 @@
 <x-organizateurDashboardNav>
+@if(session('success'))
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+        <strong class="font-bold">Success!</strong>
+        <span class="">{{ session('success') }}</span>
+        <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
+            ✖
+        </button>
+    </div>
+@endif
+
     <div class="p-6">
         <h1 class="text-xl font-semibold mb-6">Event Registration Form</h1>
 
