@@ -51,6 +51,10 @@ Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'reje
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
+// accept invitation for event
+Route::post('/artist/Invitation/accept/{id}',[ArtistInvitationController::class,'accepte'])->name('accept');
+// accept invitation for event
+Route::post('/artist/Invitation/refuse/{id}',[ArtistInvitationController::class,'refuse'])->name('refuse');
 // Add Event by organisateur
 Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
 

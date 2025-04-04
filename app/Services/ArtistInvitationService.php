@@ -15,4 +15,10 @@ class ArtistInvitationService{
     public function showInvitation(){
         return $this->artistrepository->getAll();
     }
+    public function acceptInvitation(int $invitationId){
+        return $this->artistrepository->updateStatus($invitationId,'accept');
+    }
+    public function refuseInvitation(int $invitationId){
+        return $this->artistrepository->updateStatus($invitationId,'refuse');
+    }
 }

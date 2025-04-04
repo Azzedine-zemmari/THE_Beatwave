@@ -21,8 +21,14 @@ class ArtistInvitationRepository implements ArtistInvitationInterface{
         ->join('users','users.id','=','artist_invitations.organizerId')
         ->join('events','events.eventId','=','artist_invitations.eventsId')
         ->join('categories','categories.id','=','events.categorieId')
-        ->select('events.nom as Event','events.description','events.place','events.date','categories.nom as EventCategorie','events.taketPrice','users.Firstname as organizer','artist_invitations.status')
+        ->select('events.nom as Event','events.description','events.place','events.date','categories.nom as EventCategorie','events.taketPrice','users.Firstname as organizer','artist_invitations.status','artist_invitations.id as ID')
         ->get();    
         ;
+    }
+    public function updateStatus(int $invitationId, string $status)
+    {
+        return artistInvitation::where('id',$invitationId)->update([
+            'status' => $status
+        ]);
     }
 }

@@ -16,4 +16,12 @@ class ArtistInvitationController extends Controller
         $data = $this->artistInvitationService->showInvitation();
         return view('artist.invitations',compact('data'));
     }
+    public function accepte(int $id){
+        $this->artistInvitationService->acceptInvitation($id);
+        return redirect()->back()->with('success','invitation accepted successfully');
+    }
+    public function refuse(int $id){
+        $this->artistInvitationService->refuseInvitation($id);
+        return redirect()->back()->with('success','invitation refused');
+    }
 }
