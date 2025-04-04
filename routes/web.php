@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistInvitationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GoogleAuthController;
@@ -49,9 +50,7 @@ Route::post('/role-change/approve/{id}',[RoleChangeRequestController::class,'app
 Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'rejected'])->name('role-change.rejected');
 
 // invitation to events for the artist
-Route::get('/artist/Invitation',function(){
-    return view('artist.invitations');
-});
+Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
 // Add Event by organisateur
 Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
 
