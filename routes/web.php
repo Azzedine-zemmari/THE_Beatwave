@@ -55,6 +55,10 @@ Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
 Route::post('/artist/Invitation/accept/{id}',[ArtistInvitationController::class,'accepte'])->name('accept');
 // accept invitation for event
 Route::post('/artist/Invitation/refuse/{id}',[ArtistInvitationController::class,'refuse'])->name('refuse');
+// Artist schedule for the events
+Route::get('/artist/Myschedule',function(){
+    return view('artist.Myschedule');
+});
 // Add Event by organisateur
 Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
 

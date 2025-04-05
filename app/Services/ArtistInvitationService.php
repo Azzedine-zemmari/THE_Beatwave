@@ -21,4 +21,7 @@ class ArtistInvitationService{
     public function refuseInvitation(int $invitationId){
         return $this->artistrepository->updateStatus($invitationId,'refuse');
     }
+    public function availlability(){
+        return $this->artistrepository->availability();
+    }
 }

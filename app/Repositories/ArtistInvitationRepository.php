@@ -31,4 +31,11 @@ class ArtistInvitationRepository implements ArtistInvitationInterface{
             'status' => $status
         ]);
     }
+    public function availability(){
+        return DB::table('artist_invitations')
+        ->join('events','events.eventId','=','artist_invitations.eventsId')
+        ->select('events.nom as Event','events.date')
+        ->where('artist_invitations.status','accept')
+        ->get();
+    }
 }
