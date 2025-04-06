@@ -14,4 +14,10 @@ class EventSubmissionService{
     public function showEvents(){
         return $this->eventsubmissionRepository->getAll();
     }
+    public function acceptEvent(int $id){
+        return $this->eventsubmissionRepository->updateSatatus($id,'accept');
+    }
+    public function refuseEvent(int $id){
+        return $this->eventsubmissionRepository->updateSatatus($id,'refuse');
+    }
 }

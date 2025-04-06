@@ -52,6 +52,10 @@ Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'reje
 
 // admin Event submission
 Route::get('/admin/EventSubmission',[EventsSubmissionController::class,'show'])->middleware('role:admin');
+// admin accept event to be published
+Route::post('/admin/EventSubmission/accept/{id}',[EventsSubmissionController::class,'accept'])->name('acceptEvent')->middleware('role:admin');
+// admin refuse event to be published
+Route::post('/admin/EventSubmission/refuse/{id}',[EventsSubmissionController::class,'refuse'])->name('refuseEvent')->middleware('role:admin');
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
