@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArtistInvitationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventsSubmissionController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\RoleChangeRequestController;
 use App\Mail\RoleChangeApproved;
@@ -48,6 +49,9 @@ Route::get('/dashboard',[RoleChangeRequestController::class,'show'])->middleware
 // approve changing user role by admin 
 Route::post('/role-change/approve/{id}',[RoleChangeRequestController::class,'approve'])->name('role-change.approve');
 Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'rejected'])->name('role-change.rejected');
+
+// admin Event submission
+Route::get('/admin/EventSubmission',[EventsSubmissionController::class,'show'])->middleware('role:admin');
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);

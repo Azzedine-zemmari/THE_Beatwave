@@ -23,7 +23,7 @@ class ArtistInvitationService{
     public function acceptInvitation(int $invitationId){
         $this->artistrepository->acceptInvitation($invitationId);
         $data = $this->artistrepository->getById($invitationId);
-        $submission = $this->eventSubmission->create([
+        $this->eventSubmission->create([
             'organizerId' => $data->organizerId,
             'artistId' => $data->artistId,
             'eventId' => $data->eventsId
