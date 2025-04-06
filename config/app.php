@@ -172,7 +172,8 @@ return [
         App\Providers\RoleChaneProvider::class,
         App\Providers\CategorieProvider::class,
         App\Providers\eventProvider::class,
-        App\Providers\ArtistInvitationProvider::class
+        App\Providers\ArtistInvitationProvider::class,
+        App\Providers\EventSubmissionProvider::class
     ])->toArray(),
 
     /*

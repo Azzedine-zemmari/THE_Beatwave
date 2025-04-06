@@ -18,18 +18,34 @@ class ArtistInvitationRepository implements ArtistInvitationInterface{
     public function getAll()
     {
         return DB::table('artist_invitations')
-        ->join('users','users.id','=','artist_invitations.organizerId')
+        ->join('users as organizer','organizer.id','=','artist_invitations.organizerId')
+        ->join('users as artist','artist.id','=','artist_invitations.artistId')
         ->join('events','events.eventId','=','artist_invitations.eventsId')
         ->join('categories','categories.id','=','events.categorieId')
-        ->select('events.nom as Event','events.description','events.place','events.date','categories.nom as EventCategorie','events.taketPrice','users.Firstname as organizer','artist_invitations.status','artist_invitations.id as ID')
+        ->select('events.nom as Event','events.description',
+        'events.place','events.date',
+        'categories.nom as EventCategorie',
+        'events.taketPrice',
+        'organizer.Firstname as organizer',
+        'artist_invitations.status',
+        'artist_invitations.id as ID')
+        ->where('artist_invitations.artistId',auth()->id())
         ->get();    
-        ;
+        
     }
-    public function updateStatus(int $invitationId, string $status)
+    // public function updateStatus(int $invitationId, string $status)
+    // {
+    //     return artistInvitation::where('id',$invitationId)->update([
+    //         'status' => $status
+    //     ]);
+    // }
+    public function acceptInvitation(int $id)
     {
-        return artistInvitation::where('id',$invitationId)->update([
-            'status' => $status
-        ]);
+        return artistInvitation::where('id',$id)->update(['status'=>'accept']);
+    }
+    public function refuseInvitation(int $id)
+    {
+        return artistInvitation::where('id',$id)->update(['status'=>'refuse']);
     }
     public function availability(){
         return DB::table('artist_invitations')
@@ -37,5 +53,9 @@ class ArtistInvitationRepository implements ArtistInvitationInterface{
         ->select('events.nom as Event','events.date')
         ->where('artist_invitations.status','accept')
         ->get();
+    }
+    public function getById(int $id)
+    {
+        return artistInvitation::where('id',$id)->first();
     }
 }
