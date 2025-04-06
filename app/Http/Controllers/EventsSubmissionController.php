@@ -24,4 +24,8 @@ class EventsSubmissionController extends Controller
         $this->eventSubmissionService->refuseEvent($id);
         return redirect()->back()->with('success','event canceled successfully');
     }
+    public function events(){
+        $data = $this->eventSubmissionService->showSubmitedEvents();
+        return view('Events',compact('data'));
+    }
 }

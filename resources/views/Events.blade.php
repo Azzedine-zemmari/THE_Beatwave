@@ -21,50 +21,20 @@
 </div>
 <!-- all events -->
 <section class="max-w-6xl mx-auto mt-10">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div class="bg-white shadow-md rounded-lg ">
-            <img src="{{ asset('/images/PartyE.jpeg') }}" class="w-full h-64 object-cover" alt="">
-            <div class="p-4 flex justify-between items-center">
-                <p class="text-sm">Electric night</p>
-                <img src="{{ asset('/images/icons/memory_arrow-up.svg') }}" class="w-6 h-6" alt="">
-            </div>
-        </div>
-        <div class="bg-white shadow-md rounded-lg ">
-            <img src="{{ asset('/images/PartyE.jpeg') }}" class="w-full h-64 object-cover" alt="">
-            <div class="p-4 flex justify-between items-center">
-                <p class="text-sm">Electric night</p>
-                <img src="{{ asset('/images/icons/memory_arrow-up.svg') }}" class="w-6 h-6" alt="">
-            </div>
-        </div>
-        <div class="bg-white shadow-md rounded-lg ">
-            <img src="{{ asset('/images/PartyE.jpeg') }}" class="w-full h-64 object-cover" alt="">
-            <div class="p-4 flex justify-between items-center">
-                <p class="text-sm">Electric night</p>
-                <img src="{{ asset('/images/icons/memory_arrow-up.svg') }}" class="w-6 h-6" alt="">
-            </div>
-        </div>
-        <div class="bg-white shadow-md rounded-lg ">
-            <img src="{{ asset('/images/PartyE.jpeg') }}" class="w-full h-64 object-cover" alt="">
-            <div class="p-4 flex justify-between items-center">
-                <p class="text-sm">Electric night</p>
-                <img src="{{ asset('/images/icons/memory_arrow-up.svg') }}" class="w-6 h-6" alt="">
-            </div>
-        </div>
-        <div class="bg-white shadow-md rounded-lg ">
-            <img src="{{ asset('/images/PartyE.jpeg') }}" class="w-full h-64 object-cover" alt="">
-            <div class="p-4 flex justify-between items-center">
-                <p class="text-sm">Electric night</p>
-                <img src="{{ asset('/images/icons/memory_arrow-up.svg') }}" class="w-6 h-6" alt="">
-            </div>
-        </div>
-        <div class="bg-white shadow-md rounded-lg ">
-            <img src="{{ asset('/images/PartyE.jpeg') }}" class="w-full h-64 object-cover" alt="">
-            <div class="p-4 flex justify-between items-center">
-                <p class="text-sm">Electric night</p>
-                <img src="{{ asset('/images/icons/memory_arrow-up.svg') }}" class="w-6 h-6" alt="">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    @foreach($data as $event)
+    <div class="bg-white shadow-md rounded-lg">
+        <img src="{{ asset($event->image) }}" class="w-full h-64 object-cover" alt="">
+        <div class="p-4">
+            <h3 class="text-sm font-semibold md:text-lg">{{$event->nom}}</h3>
+            <p class="text-xs md:text-sm mb-4">{{$event->description}}</p>
+            <div class="flex justify-end">
+                <a href="" class="bg-[#7A38FC] text-white text-sm px-3 py-2">Buy</a>
             </div>
         </div>
     </div>
+    @endforeach
+</div>
 </section>
      <!-- footer -->
 </x-app>

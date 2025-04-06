@@ -25,9 +25,7 @@ Route::get('/', function () {
     return view('Home');
 });
 
-Route::get('/Events',function(){
-    return view('Events');
-});
+Route::get('/Events',[EventsSubmissionController::class,'events']);
 
 Route::get('/Artist',function(){
     return view('Artists');

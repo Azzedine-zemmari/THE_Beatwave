@@ -7,6 +7,7 @@ use App\Repositories\Contracts\EventSubmissionInterface;
 use Illuminate\Support\Facades\DB;
 
 class EventSubmissionRepository implements EventSubmissionInterface{
+    // to show all the event to the admin
     public function getAll()
     {
         return DB::table('events_submissions')
@@ -42,4 +43,14 @@ class EventSubmissionRepository implements EventSubmissionInterface{
         return Events_submission::where('id',$id)->update(['status'=>$status]);
     }
 
+    public function getSubmitedEvents()
+    {
+        return DB::table('events_submissions')
+        ->join('events','events.eventId','=','events_submissions.eventId')
+        ->join('categories','categories.id','=','events.categorieId')
+        ->select('events.nom','events.description','events.image','categories.nom as Category')
+        ->where('events_submissions.status','accept')
+        ->get();
+    }
+    
 }
