@@ -7,4 +7,5 @@ interface EventSubmissionInterface{
     public function create(array $data);
     public function updateSatatus(int $id,string $status);
     public function getSubmitedEvents();
+    public function getSubmitedEvent(int $id);
 }

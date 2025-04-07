@@ -10,7 +10,7 @@ class EventSubmissionService{
     {
         $this->eventsubmissionRepository = $eventsubmissionRepository;
     }
-    
+
     // to show event for the admin
     public function showEvents(){
         return $this->eventsubmissionRepository->getAll();
@@ -24,5 +24,9 @@ class EventSubmissionService{
     // to show for the final user
     public function showSubmitedEvents(){
         return $this->eventsubmissionRepository->getSubmitedEvents();
+    }
+    // to show the event details
+    public function showSubmitedEvent(int $id){
+        return $this->eventsubmissionRepository->getSubmitedEvent($id);
     }
 }

@@ -26,7 +26,7 @@
     <div class="bg-white shadow-md rounded-lg">
         <img src="{{ asset($event->image) }}" class="w-full h-64 object-cover" alt="">
         <div class="p-4">
-            <h3 class="text-sm font-semibold md:text-lg">{{$event->nom}}</h3>
+            <a href="{{route('eventDetails',$event->ID)}}" class="text-sm font-semibold md:text-lg">{{$event->nom}}</a>
             <p class="text-xs md:text-sm mb-4">{{$event->description}}</p>
             <div class="flex justify-end">
                 <a href="" class="bg-[#7A38FC] text-white text-sm px-3 py-2">Buy</a>
@@ -36,5 +36,4 @@
     @endforeach
 </div>
 </section>
-     <!-- footer -->
 </x-app>

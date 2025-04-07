@@ -8,6 +8,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\RoleChangeRequestController;
 use App\Mail\RoleChangeApproved;
 use App\Repositories\RoleChangeRequestRepository;
+use App\Services\EventSubmissionService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,9 +77,7 @@ Route::get('/profile',function(){
 Route::get('/EditProfile',function(){
     return view('EditProfile');
 });
-Route::get('/details',function(){
-    return view('EventDetails');
-});
+Route::get('/EventDetail/{id}',[EventsSubmissionController::class,'eventDetails'])->name('eventDetails');
 
 Route::get('/users',[AuthController::class,'index']);
 Route::get('/auth/google',[GoogleAuthController::class,'redirectToGoogle'])->name("redirect.google");

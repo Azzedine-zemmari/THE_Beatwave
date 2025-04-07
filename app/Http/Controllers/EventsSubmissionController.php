@@ -28,4 +28,8 @@ class EventsSubmissionController extends Controller
         $data = $this->eventSubmissionService->showSubmitedEvents();
         return view('Events',compact('data'));
     }
+    public function eventDetails(int $id){
+        $data = $this->eventSubmissionService->showSubmitedEvent($id);
+        return view('EventDetails',compact('data'));
+    }
 }
