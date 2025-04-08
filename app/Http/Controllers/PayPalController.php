@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Services\EventPurchaseService;
 use App\Services\EventSubmissionService;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -8,9 +9,11 @@ use Illuminate\Support\Facades\Log;
 class PayPalController extends Controller
 {
     private $eventservice;
-    public function __construct(EventSubmissionService $eventservice)
+    private $eventPurchaservice;
+    public function __construct(EventSubmissionService $eventservice,EventPurchaseService $eventPurchaservice)
     {
         $this->eventservice = $eventservice;
+        $this->eventPurchaservice = $eventPurchaservice;
     }
     /**
      * process transaction.
@@ -19,6 +22,7 @@ class PayPalController extends Controller
      */
     public function processTransaction(Request $request,int $id)
     {
+        session(['event_id'=>$id]);
         $price = $this->eventservice->getEventPrice($id)->taketPrice; 
         // add taketPrice because getEventPrice return stdObject and i cant converte object to string that s why 
         $provider = new PayPalClient;
@@ -51,8 +55,7 @@ class PayPalController extends Controller
                 ]
             ]
         ]);
-        // dd($response);
-        // Log::info('PayPal response:', $response);
+
         if (isset($response['id']) && $response['id'] != null) {
             // redirect to approve href
             foreach ($response['links'] as $links) {
@@ -93,6 +96,11 @@ class PayPalController extends Controller
         $response = $provider->capturePaymentOrder($request['token']);
         Log::info('Paypal:',$response);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            $this->eventPurchaservice->storePurchase([
+                'userId' => auth()->id(),
+                'eventId' => session('event_id'),
+                'transactionId' => $response['id']
+            ]);
             return redirect()
                 ->route('events')
                 ->with('success', 'Transaction complete.');
@@ -110,7 +118,7 @@ class PayPalController extends Controller
     public function cancelTransaction(Request $request)
     {
         return redirect()
-            ->route('createTransaction')
+            ->route('events')
             ->with('error', $response['message'] ?? 'You have canceled the transaction.');
     }
 }
