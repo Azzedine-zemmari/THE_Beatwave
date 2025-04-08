@@ -29,4 +29,7 @@ class EventSubmissionService{
     public function showSubmitedEvent(int $id){
         return $this->eventsubmissionRepository->getSubmitedEvent($id);
     }
+    public function getEventPrice(int $id){
+        return $this->eventsubmissionRepository->getEventPrice($id);
+    }
 }

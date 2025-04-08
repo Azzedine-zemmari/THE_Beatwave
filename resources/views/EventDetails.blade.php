@@ -40,7 +40,10 @@
             <h4 class="text-lg font-semibold">Get Ticket</h4>
             <p class="text-md font-semibold">{{$data->taketPrice}} dh</p>
             <div class="flex  text-center my-2">
-                <a href="" class="bg-black w-full text-white py-2 rounded">Purchase</a>
+                <form action="{{route('processTransaction',$data->id)}}" method="post">
+                    @csrf
+                    <button class="bg-black w-full text-white py-2 rounded">Purchase</button>
+                </form>
             </div>
         </section>
     </main>

@@ -8,4 +8,5 @@ interface EventSubmissionInterface{
     public function updateSatatus(int $id,string $status);
     public function getSubmitedEvents();
     public function getSubmitedEvent(int $id);
+    public function getEventPrice(int $id);
 }

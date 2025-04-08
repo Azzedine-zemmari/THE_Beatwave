@@ -1,4 +1,14 @@
 <x-app>
+    @if(session('success'))
+    <div id="alert" class="mb-4 p-4 text-green-800 bg-green-100 border border-green-300 rounded-lg">
+        {{ session('success') }}
+    </div>
+    @endif
+    @if(session('error'))
+    <div id="alert" class="mb-4 p-4 text-red-800 bg-red-100 border border-red-300 rounded-lg">
+        {{ session('error') }}
+    </div>
+    @endif
 <!-- filter -->
 <section class="mt-10 relative">
     <h1 class=" font-Kadwa text-4xl font-bold text-center">All Events</h1>
@@ -36,4 +46,12 @@
     @endforeach
 </div>
 </section>
+<script>
+    const alert = document.getElementById('alert');
+    if(alert){
+        setTimeout(()=>{
+            alert.style.display = 'none';
+        },3000);
+    }
+</script>
 </x-app>

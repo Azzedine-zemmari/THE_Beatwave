@@ -71,10 +71,18 @@ class EventSubmissionRepository implements EventSubmissionInterface{
         'artist.Firstname as artistF',
         'artist.LastName as artistL',
         'events_submissions.status',
+        'events_submissions.id'
         )
         ->where('events_submissions.status','accept')
         ->where('events_submissions.id',$id)
         ->first();
     }
-    
+    public function getEventPrice(int $id)
+    {
+        return DB::table('events_submissions')
+        ->join('events','events.eventId','=','events_submissions.eventId')
+        ->select('events.taketPrice')
+        ->where('events_submissions.id',$id)
+        ->first();
+    }
 }

@@ -173,7 +173,8 @@ return [
         App\Providers\CategorieProvider::class,
         App\Providers\eventProvider::class,
         App\Providers\ArtistInvitationProvider::class,
-        App\Providers\EventSubmissionProvider::class
+        App\Providers\EventSubmissionProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -189,6 +190,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
     ])->toArray(),
 
 ];
