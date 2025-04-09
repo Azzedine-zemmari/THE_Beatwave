@@ -13,4 +13,8 @@ class EventPurchase extends Model
         'eventId',
         'transactionId'
     ];
+    public function event(){
+        // (2nd params foreign key in purchaseTable, 3d params the id in event table)
+        return $this->belongsTo(Event::class,'eventId','eventId');
+    }
 }

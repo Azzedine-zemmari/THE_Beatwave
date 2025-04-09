@@ -16,4 +16,7 @@ class EventPurchaseService{
         return $this->eventPurchaseRepository->create($data);
     }
 
+    public function findPurchaseWithEvent(int $id){
+        return $this->eventPurchaseRepository->getPurchaseWithEvent($id);
+    }
 }

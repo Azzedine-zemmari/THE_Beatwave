@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Mail\TicketEmail;
 use App\Services\EventPurchaseService;
 use App\Services\EventSubmissionService;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 class PayPalController extends Controller
 {
     private $eventservice;
@@ -58,6 +60,7 @@ class PayPalController extends Controller
 
         if (isset($response['id']) && $response['id'] != null) {
             // redirect to approve href
+            // dd($response);
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
                     return redirect()->away($links['href']);
@@ -80,8 +83,10 @@ class PayPalController extends Controller
     public function successTransaction(Request $request)
     {
         $provider = new PayPalClient;
+        
         $provider->setApiCredentials(config('paypal'));
           // Create a Guzzle client with SSL disabled
+          
           $guzzleClient = new \GuzzleHttp\Client([
             'verify' => false, // Disables SSL verification
             'curl'   => [
@@ -92,15 +97,24 @@ class PayPalController extends Controller
 
         // Inject the custom client into PayPal 
         $provider->setClient($guzzleClient);
+        
         $provider->getAccessToken();
-        $response = $provider->capturePaymentOrder($request['token']);
+        
+        $response = $provider->capturePaymentOrder($request['token']); 
+        
         Log::info('Paypal:',$response);
+        
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-            $this->eventPurchaservice->storePurchase([
+            $eventPurchase =  $this->eventPurchaservice->storePurchase([
                 'userId' => auth()->id(),
                 'eventId' => session('event_id'),
                 'transactionId' => $response['id']
             ]);
+            // Load the related event
+            $eventPurchase = $this->eventPurchaservice->findPurchaseWithEvent($eventPurchase->id);
+
+            Mail::to(auth()->user()->email)->send(new TicketEmail($eventPurchase));
+            
             return redirect()
                 ->route('events')
                 ->with('success', 'Transaction complete.');

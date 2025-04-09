@@ -13,4 +13,7 @@ class EventPurchaseRepository implements EventPurchaseInterface{
             'transactionId' => $data['transactionId']
         ]);
     }
+    public function getPurchaseWithEvent(int $id){
+        return EventPurchase::with('event.artist')->find($id);
+    }
 }

@@ -25,4 +25,10 @@ class Event extends Model
         'categorieId',
         'place'
     ];
+    public function purchase(){
+        return $this->hasMany(EventPurchase::class);
+    }
+    public function artist(){
+        return $this->belongsTo(User::class,'artistId','id');
+    }
 }
