@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArtistInvitationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventPurchaseController;
 use App\Http\Controllers\EventsSubmissionController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PayPalController;
@@ -84,8 +85,14 @@ Route::get('/EventDetail/{id}',[EventsSubmissionController::class,'eventDetails'
 Route::get('/auth/google',[GoogleAuthController::class,'redirectToGoogle'])->name("redirect.google");
 Route::get('/auth/google/callback',[GoogleAuthController::class,'handleGoogleCallback']);
 
-
+// paypal routes
 Route::get('create-transaction', [PayPalController::class, 'createTransaction'])->name('createTransaction');
 Route::post('/process-transaction/{id}', [PayPalController::class, 'processTransaction'])->name('processTransaction');
 Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
 Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
+
+// tiket preview
+Route::view('/ticketPreview','Tiket')->name('tiketPreview');
+
+// preview ticket after buy in it 
+Route::get('/TiketShow/{eventId}',[EventPurchaseController::class,'purchaseTicket'])->name('ticketShow');

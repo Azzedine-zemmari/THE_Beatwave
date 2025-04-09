@@ -16,4 +16,13 @@ class EventPurchaseRepository implements EventPurchaseInterface{
     public function getPurchaseWithEvent(int $id){
         return EventPurchase::with('event.artist')->find($id);
     }
+    public function getUserPurchase(int $userId,int $eventId){
+        return EventPurchase::with('event.artist')
+        ->where('userId',$userId)
+        ->where('eventId',$eventId)
+        ->first();
+    }
+    public function checkTicket(int $userId,int $eventId){
+        return EventPurchase::where('userId',$userId)->where('eventId',$eventId)->first();
+    }
 }

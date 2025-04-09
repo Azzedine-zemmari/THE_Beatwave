@@ -39,12 +39,18 @@
         <section class="p-5 border border-gray-200 rounded-xl shadow-sm">
             <h4 class="text-lg font-semibold">Get Ticket</h4>
             <p class="text-md font-semibold">{{$data->taketPrice}} dh</p>
+            @if(!$eventPurchase)
             <div class="flex  text-center my-2">
                 <form action="{{route('processTransaction',$data->id)}}" method="post">
                     @csrf
                     <button class="bg-black w-full text-white py-2 rounded">Purchase</button>
                 </form>
             </div>
+            @else
+            <div class="flex  text-center my-2">
+                    <a href="{{route('ticketShow',$data->id)}}" class="bg-[#7A38FC] w-full text-white py-2 rounded">Preview ticket</a>
+            </div>
+            @endif
         </section>
     </main>
 </x-app>
