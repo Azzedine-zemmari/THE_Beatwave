@@ -6,8 +6,8 @@
     <title>Ticket</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 p-4 flex justify-center items-center min-h-screen">
-    <div class="">
+<body class="bg-gray-100 ">
+    <div class="p-4 flex flex-col justify-center items-center min-h-screen">
         @if(session('tiket'))
         <div class="w-full max-w-4xl rounded-xl shadow-2xl">
             <div class="flex flex-col md:flex-row">
@@ -79,7 +79,10 @@
             </div>
         </div>
         @endif
+        <div class="flex justify-center items-center mt-4 gap-4 ">
+            <a href="{{route('downloadTicket',$eventPurchase->event->eventId)}}" class="bg-[#7A38FC] text-white font-semibold px-4 py-2 rounded ">Download</a>
+            <a href="{{route('eventDetails',$eventPurchase->event->eventId)}}" class="bg-[#EBEBEB] text-[#7A38FC] font-semibold px-4 py-2 rounded ">Cancel</a>
+        </div>
     </div>
-    <a href="{{route('downloadTicket',$eventPurchase->event->eventId)}}">Download</a>
 </body>
 </html>
