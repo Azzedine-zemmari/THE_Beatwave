@@ -9,6 +9,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\RoleChangeRequestController;
 use App\Mail\RoleChangeApproved;
+use App\Models\EventPurchase;
 use App\Repositories\RoleChangeRequestRepository;
 use App\Services\EventSubmissionService;
 use Illuminate\Support\Facades\Route;
@@ -96,3 +97,6 @@ Route::view('/ticketPreview','Tiket')->name('tiketPreview');
 
 // preview ticket after buy in it 
 Route::get('/TiketShow/{eventId}',[EventPurchaseController::class,'purchaseTicket'])->name('ticketShow');
+
+// download ticket
+Route::get('/DownloadTicket/{eventId}',[EventPurchaseController::class,'downloadTicket'])->name('downloadTicket');

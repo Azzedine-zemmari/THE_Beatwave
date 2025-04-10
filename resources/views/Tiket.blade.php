@@ -80,5 +80,6 @@
         </div>
         @endif
     </div>
+    <a href="{{route('downloadTicket',$eventPurchase->event->eventId)}}">Download</a>
 </body>
 </html>
