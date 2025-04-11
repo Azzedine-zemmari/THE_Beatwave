@@ -25,21 +25,21 @@
         <!-- Full Name Field -->
         <div class="mb-6">
             <p class="text-sm mb-2">Full name</p>
-            <input type="text" placeholder="Enter full name" class="w-full p-2 border border-gray-300 rounded-md">
+            <input type="text" value="{{$data->Firstname}} {{$data->LastName}}" placeholder="Enter full name" class="w-full p-2 border border-gray-300 rounded-md">
         </div>
         
         <!-- Bio Field -->
         <div class="my-6">
             <p class="text-sm mb-2">Bio</p>
-            <textarea rows="5" placeholder="Enter bio" class="w-full p-2 border border-gray-300 rounded-md"></textarea>
+            <textarea rows="5" placeholder="Enter bio" value="{{$data->bio}}" class="w-full p-2 border border-gray-300 rounded-md"></textarea>
         </div>
         
         <!-- Contact Information Section -->
         <div class="my-6">
             <p class="text-sm font-medium mb-2">Contact Information</p>
             <div class="space-y-4">
-                <input type="email" placeholder="Enter business email" class="w-full p-2 border border-gray-300 rounded-md">
-                <input type="url" placeholder="Website URL" class="w-full p-2 border border-gray-300 rounded-md">
+                <input type="email" placeholder="Enter business email" value="{{$data->businessMail}}" class="w-full p-2 border border-gray-300 rounded-md">
+                <input type="url" placeholder="Website URL" value="{{$data->websiteLink}}" class="w-full p-2 border border-gray-300 rounded-md">
             </div>
         </div>
         
@@ -47,11 +47,12 @@
         <div class="my-6">
             <p class="text-sm font-medium mb-2">Social Media</p>
             <div class="space-y-4">
-                <input type="url" placeholder="Instagram profile URL" class="w-full p-2 border border-gray-300 rounded-md">
-                <input type="url" placeholder="Facebook profile URL" class="w-full p-2 border border-gray-300 rounded-md">
+                <input type="url" placeholder="Instagram profile URL" value="{{$data->instagramLink}}" class="w-full p-2 border border-gray-300 rounded-md">
+                <input type="url" placeholder="Facebook profile URL" value="{{$data->facebookLink}}" class="w-full p-2 border border-gray-300 rounded-md">
             </div>
         </div>
         
+        @if($data->role == 'artist')
        <!-- Performance Section -->
 <div class="my-8">
     <p class="text-sm font-medium mb-4">Performance</p>
@@ -78,6 +79,7 @@
         </div>
     </div>
 </div>
+@endif
 
 <!-- Save Button -->
 <div class="flex justify-end">

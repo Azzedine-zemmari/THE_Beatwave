@@ -7,6 +7,7 @@ use App\Http\Controllers\EventPurchaseController;
 use App\Http\Controllers\EventsSubmissionController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleChangeRequestController;
 use App\Mail\RoleChangeApproved;
 use App\Models\EventPurchase;
@@ -75,12 +76,8 @@ Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
 
 Route::post('/organisateur/registerEvent',[EventController::class,'store'])->name('registerEvent');
 
-Route::get('/profile',function(){
-    return view('profile');
-})->name('profile');
-Route::get('/EditProfile',function(){
-    return view('EditProfile');
-});
+Route::get('/profile',[ProfileController::class,'index'])->name('profile');
+Route::get('/EditProfile/{userId}',[ProfileController::class,'editProfile']);
 Route::get('/EventDetail/{id}',[EventsSubmissionController::class,'eventDetails'])->name('eventDetails');
 
 Route::get('/auth/google',[GoogleAuthController::class,'redirectToGoogle'])->name("redirect.google");

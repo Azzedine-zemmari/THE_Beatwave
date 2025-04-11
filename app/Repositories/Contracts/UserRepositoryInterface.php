@@ -7,4 +7,5 @@ interface UserRepositoryInterface{
     public function findByEmail(string $email);
     public function findById(int $id);
     public function findByRole(string $role);
+    public function update(int $id,array $data);
 }
