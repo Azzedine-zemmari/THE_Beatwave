@@ -9,6 +9,7 @@ use App\Repositories\Contracts\ArtistInvitationInterface;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
 
 class EventService {
     private $eventrepository;
@@ -29,6 +30,7 @@ class EventService {
     }
 
     public function createEvent(array $data){
+
         $validator = Validator::make($data,[
             'nom' => 'required|string|max:255',
             'description' => 'required|string',
@@ -39,10 +41,11 @@ class EventService {
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'artistId' => ['required',Rule::exists('users','id')->where('role','artist')],
             'categorieId' => 'required|exists:categories,id',
-            'place' => 'required|string'
+            'place' => 'required|string',
         ]);
 
         if($validator->fails()){
+            Log::error('Validation failed', $validator->errors()->toArray());
             throw new ValidationException($validator);
         }
 
@@ -53,6 +56,7 @@ class EventService {
             $data['image'] = "storage/uploads/$imageName"; // store it in db;
         }
 
+        $data['organizerId'] = auth()->id();
 
         $event = $this->eventrepository->create($data);
 
@@ -64,7 +68,6 @@ class EventService {
         ]);
 
         return $event;
-
 
     }
     public function getCategories(){

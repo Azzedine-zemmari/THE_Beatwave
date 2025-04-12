@@ -23,7 +23,8 @@ class Event extends Model
         'image',
         'artistId',
         'categorieId',
-        'place'
+        'place',
+        'organizerId'
     ];
     public function purchase(){
         return $this->hasMany(EventPurchase::class);

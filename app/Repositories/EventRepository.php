@@ -18,7 +18,8 @@ class EventRepository implements EventInterface{
             'image' => $data['image'],
             'artistId' => $data['artistId'],
             'categorieId' => $data['categorieId'],
-            'place' => $data['place']
+            'place' => $data['place'],
+            'organizerId'=> $data['organizerId']
         ]);
     }
     public function findById(int $id)

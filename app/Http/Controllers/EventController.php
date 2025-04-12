@@ -20,7 +20,7 @@ class EventController extends Controller
     }
     public function store(Request $request){
         $data = $request->all();
-        $this->eventService->createEvent($data);
+        $event= $this->eventService->createEvent($data);
         return redirect()->back()->with('success','event created successfully');
     }
     public function findEvent(int $id){
