@@ -115,10 +115,11 @@ class PayPalController extends Controller
 
             Mail::to(auth()->user()->email)->send(new TicketEmail($eventPurchase));
             
+            session()->put('tiket', $eventPurchase);
+
             return redirect()
                 ->route('tiketPreview')
-                ->with('success', 'Transaction complete.')
-                ->with('tiket',$eventPurchase);
+                ->with('success', 'Transaction complete.');
         } else {
             return redirect()
                 ->route('events')

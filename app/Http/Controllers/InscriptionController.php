@@ -14,7 +14,6 @@ class InscriptionController extends Controller
     }
     public function index(){
         $data = $this->inscriptionService->show();
-        dd($data);
         return view('organisateur.Inscription',compact('data'));
     }
 }
