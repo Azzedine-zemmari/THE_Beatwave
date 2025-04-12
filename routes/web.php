@@ -73,8 +73,11 @@ Route::get('/artist/Myschedule',function(){
 });
 // Add Event by organisateur
 Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
-
 Route::post('/organisateur/registerEvent',[EventController::class,'store'])->name('registerEvent');
+// Update Event by organisateur
+Route::get('/organisateur/edit/{id}',[EventController::class,'edit']);
+
+
 // profile routes
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');
 Route::get('/EditProfile/{userId}',[ProfileController::class,'editProfile'])->name('editProfile');

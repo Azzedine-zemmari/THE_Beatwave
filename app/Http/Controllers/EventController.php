@@ -23,8 +23,15 @@ class EventController extends Controller
         $event= $this->eventService->createEvent($data);
         return redirect()->back()->with('success','event created successfully');
     }
-    public function findEvent(int $id){
-        $data = $this->eventService->findById($id);
-        dd($data);
+    public function edit(int $id){
+        $category = $this->eventService->getCategories();
+        $artists = $this->eventService->getArtists();
+        $data = $this->eventService->findEvent($id);
+        return view('organisateur.EditEvent',compact('data','category','artists'));
+    }
+    public function update(int $id,Request $request){
+        $data = $request->all();
+        $this->eventService->update($id,$data);
+        return "traara";
     }
 }

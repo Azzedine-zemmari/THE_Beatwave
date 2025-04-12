@@ -76,7 +76,39 @@ class EventService {
     public function getArtists(){
         return $this->userRepository->findByRole('artist');
     }
-    public function findById(int $id){
+    public function findEvent(int $id){
         return $this->eventrepository->findById($id);
+    }
+    public function update(int $id,array $data){
+        $validate = Validator::make($data,[
+            'nom' => 'required|string|max:255',
+            'description' => 'required|string',
+            'date' => 'required|date',
+            'taketPrice' => 'required|numeric|min:0',
+            'stockeTicket' => 'required|integer|min:1',
+            'numberOfPlace' => 'required|integer|min:1',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'artistId' => ['required',Rule::exists('users','id')->where('role','artist')],
+            'categorieId' => 'required|exists:categories,id',
+            'place' => 'required|string',
+        ]);
+
+        if(!$validate){
+            throw new ValidationException($validate);
+        }
+
+        if(isset($data['image'])){
+            $image = $data['image'];
+            $imageName = time(). "-".$image->getClientOriginalExtension();
+            $image->storeAs('public/uploads',$imageName);
+        
+            $data['image'] = "storage/uploads/$imageName";
+        }
+
+        $data['organizerId'] = auth()->id();
+
+        $event = $this->eventrepository->update($id,$data);
+
+        return $event;
     }
 }

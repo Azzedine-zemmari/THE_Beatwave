@@ -28,6 +28,10 @@ class EventRepository implements EventInterface{
     }
     public function update(int $id, array $data)
     {
-        
+        $event = $this->findById($id);
+        if(!$event){
+            return false;
+        }
+        return $event->update($data);
     }
 }
