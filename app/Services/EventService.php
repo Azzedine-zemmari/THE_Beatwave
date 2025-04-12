@@ -29,6 +29,9 @@ class EventService {
         $this->artistInvitationRepository = $artistInvitationRepository;
     }
 
+    public function all(){
+        return $this->eventrepository->all();
+    }
     public function createEvent(array $data){
 
         $validator = Validator::make($data,[
@@ -111,4 +114,6 @@ class EventService {
 
         return $event;
     }
+
+    
 }

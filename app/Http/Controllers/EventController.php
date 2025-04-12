@@ -12,6 +12,10 @@ class EventController extends Controller
     {
         $this->eventService = $eventService;
     }
+    public function index(){
+        $data = $this->eventService->all();
+        return view('organisateur.Events',compact('data'));
+    }
     public function showform(){
         $category = $this->eventService->getCategories();
         $artists = $this->eventService->getArtists();
