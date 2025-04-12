@@ -29,7 +29,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $event->place }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                 <!-- Add buttons for Edit/Delete/View -->
-                                <a href="" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a href="{{route('editEvent',$event->eventId)}}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                 |
                                 <form action="" method="POST" >
                                     @csrf

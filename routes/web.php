@@ -75,7 +75,7 @@ Route::get('/artist/Myschedule',function(){
 Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
 Route::post('/organisateur/registerEvent',[EventController::class,'store'])->name('registerEvent');
 // Update Event by organisateur
-Route::get('/organisateur/edit/{id}',[EventController::class,'edit']);
+Route::get('/organisateur/edit/{id}',[EventController::class,'edit'])->name('editEvent');
 // Events table for organisateur 
 Route::get('/organisateur/Events',[EventController::class
 ,'index'])->name('showAllEvent');

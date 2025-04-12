@@ -41,7 +41,7 @@ class EventRepository implements EventInterface{
         ->join('categories','categories.id','=','events.categorieId')
         ->where('events.organizerId',auth()->id())
         ->select('categories.nom as Category',
-        'users.Firstname','users.LastName','events.nom','events.description','events.place','events.taketPrice','events.date','events.numberOfPlace')
+        'users.Firstname','users.LastName','events.nom','events.description','events.place','events.taketPrice','events.date','events.numberOfPlace','events.eventId')
         ->get();
     }
 }
