@@ -40,8 +40,19 @@ class EventRepository implements EventInterface{
         ->join('users','users.id','=','events.artistId')
         ->join('categories','categories.id','=','events.categorieId')
         ->where('events.organizerId',auth()->id())
+        ->whereNull('events.deleted_at')
         ->select('categories.nom as Category',
         'users.Firstname','users.LastName','events.nom','events.description','events.place','events.taketPrice','events.date','events.numberOfPlace','events.eventId')
         ->get();
+    }
+    public function destroy(int $id)
+    {
+        $event = $this->findById($id);
+        if($event){
+            return $event->delete();
+        }
+        else{
+            return false;
+        }
     }
 }

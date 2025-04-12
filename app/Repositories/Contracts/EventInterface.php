@@ -7,4 +7,5 @@ interface EventInterface{
     public function update(int $id,array $data);
     public function findById(int $id);
     public function all();
+    public function destroy(int $id);
 }

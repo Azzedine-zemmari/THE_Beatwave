@@ -38,4 +38,8 @@ class EventController extends Controller
         $this->eventService->update($data);
         return redirect()->route('showAllEvent')->with('success','event update successfully');
     }
+    public function delete(int $id){
+        $this->eventService->destroy($id);
+        return redirect()->route('showAllEvent')->with('success','event deleted successfully');
+    }
 }

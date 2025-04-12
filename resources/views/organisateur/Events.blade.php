@@ -40,7 +40,7 @@
                                 <!-- Add buttons for Edit/Delete/View -->
                                 <a href="{{route('editEvent',$event->eventId)}}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                 |
-                                <form action="" method="POST" >
+                                <form action="{{route('destory',$event->eventId)}}" method="POST">
                                     @csrf
                                     <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>

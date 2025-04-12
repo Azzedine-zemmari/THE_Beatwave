@@ -10,6 +10,7 @@ use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleChangeRequestController;
 use App\Mail\RoleChangeApproved;
+use App\Models\Event;
 use App\Models\EventPurchase;
 use App\Repositories\RoleChangeRequestRepository;
 use App\Services\EventSubmissionService;
@@ -80,6 +81,8 @@ Route::post('/organisateur/update',[EventController::class,'update'])->name('upd
 // Events table for organisateur 
 Route::get('/organisateur/Events',[EventController::class
 ,'index'])->name('showAllEvent');
+// delte event by organisateur
+Route::post('/organisateur/destroy/{id}',[EventController::class,'delete'])->name('destory');
 
 // profile routes
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');
