@@ -16,9 +16,9 @@ class ProfileService{
     public function updateProfile(array $data){
         $userId = auth()->id();
         $validator = Validator::make($data,[
-            'firstname'=> 'required',
+            'Firstname'=> 'required',
             'LastName' => 'required',
-            'avatar'=>'nullable',
+            'avatar'=>'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'bio' => 'nullable',
             'facebookLink' => 'nullable',
             'instagramLink' => 'nullable',
@@ -28,6 +28,14 @@ class ProfileService{
 
         if($validator->fails()){
             throw new ValidationException($validator);
+        }
+
+        if($data['avatar'] && $data['avatar']->isValid()){
+            $path = $data['avatar']->store('avatars','public');
+            $data['avatar'] = $path;
+        }
+        else{
+            unset($data['avatar']);
         }
 
         return $this->userRepository->update($userId,$data);

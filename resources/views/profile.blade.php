@@ -10,9 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="font-sans">
+@if(session('success'))
+    <div id="alert" class="mb-4 p-4 text-green-800 bg-green-100 border border-green-300 rounded-lg">
+        {{ session('success') }}
+    </div>
+    @endif
     <header class="w-full h-24 bg-gradient-to-r from-[#43CBFF] to-[#9708CC] relative">
         <div class="w-28 h-28 md:w-36 md:h-36 rounded-full border bg-gray-300 absolute top-10 left-2 md:left-7 flex justify-center items-center">
+            @if(Auth::user()->avatar)
+            <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="w-full rounded-full" alt="">
+            @else
             <img src="{{asset('/images/icons/camera.svg')}}" class="w-7 h-7" alt="">
+            @endif
         </div>
         <button class="absolute top-6 right-6 flex items-center gap-2 text-white font-medium px-4 py-2 rounded-lg border-2 border-white hover:bg-white hover:bg-opacity-20 transition-all duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,7 +36,7 @@
             <h1 class="font-bold text-xl">{{Auth::user()->Firstname}} {{Auth::user()->LastName}}</h1>
             <p>{{Auth::user()->role}}</p>
             <div class="flex items-center gap-5 mt-6">
-                <button class="bg-[#2C2C2C] text-white px-3 py-2 rounded-lg">Edit profile</button>
+                <a href="{{route('editProfile',['userId'=>Auth::user()->id])}}" class="bg-[#2C2C2C] text-white px-3 py-2 rounded-lg">Edit profile</a>
                 <button class="bg-[#EBEBEB] p-2 rounded-lg flex items-end justify-center">
                     <img src="{{asset('/images/icons/share.svg')}}" class="w-5 h-5" alt="">
                 </button>

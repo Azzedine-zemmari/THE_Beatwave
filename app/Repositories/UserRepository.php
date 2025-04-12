@@ -31,5 +31,6 @@ class UserRepository implements UserRepositoryInterface{
     {
         $user = $this->findById($id);
         $user->update($data);
+        return $user;
     }
 }

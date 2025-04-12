@@ -77,7 +77,9 @@ Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
 Route::post('/organisateur/registerEvent',[EventController::class,'store'])->name('registerEvent');
 
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');
-Route::get('/EditProfile/{userId}',[ProfileController::class,'editProfile']);
+Route::get('/EditProfile/{userId}',[ProfileController::class,'editProfile'])->name('editProfile');
+Route::post('/UpdateProfile',[ProfileController::class,'updateProfile'])->name('updateprofile');
+
 Route::get('/EventDetail/{id}',[EventsSubmissionController::class,'eventDetails'])->name('eventDetails');
 
 Route::get('/auth/google',[GoogleAuthController::class,'redirectToGoogle'])->name("redirect.google");

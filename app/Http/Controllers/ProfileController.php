@@ -21,4 +21,8 @@ class ProfileController extends Controller
         $data = $this->profileservice->UserData($userId);
         return view('EditProfile',compact('data'));
     }
+    public function updateProfile(Request $request){
+        $this->profileservice->updateProfile($request->all());
+        return redirect()->route('profile')->with('success','profile updated successfully');
+    }
 }
