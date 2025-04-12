@@ -82,7 +82,7 @@ class EventService {
     public function findEvent(int $id){
         return $this->eventrepository->findById($id);
     }
-    public function update(int $id,array $data){
+    public function update(array $data){
         $validate = Validator::make($data,[
             'nom' => 'required|string|max:255',
             'description' => 'required|string',
@@ -110,7 +110,7 @@ class EventService {
 
         $data['organizerId'] = auth()->id();
 
-        $event = $this->eventrepository->update($id,$data);
+        $event = $this->eventrepository->update($data['eventId'],$data);
 
         return $event;
     }

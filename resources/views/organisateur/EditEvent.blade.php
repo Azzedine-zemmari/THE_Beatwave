@@ -1,21 +1,14 @@
 <x-organizateurDashboardNav>
-@if(session('success'))
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-        <strong class="font-bold">Success!</strong>
-        <span class="">{{ session('success') }}</span>
-        <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
-            ✖
-        </button>
-    </div>
-@endif
 
     <div class="p-6">
         <h1 class="text-xl font-semibold mb-6">Event Registration Form</h1>
 
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="{{route('updateEvent')}}" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="eventId" value="{{ $data->eventId }}">
             <!-- Event Image -->
-            <div class="mb-4"====p;                <label class="block text-sm font-medium text-gray-700 mb-1">Event Image</label>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Event Image</label>
                 <div class="flex items-center">
                     <button id="buttonFile" type="button" class="bg-black text-white text-sm rounded px-4 py-2 mr-3">Choisir un fichier</button>
                     <span id="" class="text-sm text-gray-500">Aucune fichier choisi</span>

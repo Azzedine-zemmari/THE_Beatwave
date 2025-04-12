@@ -33,9 +33,9 @@ class EventController extends Controller
         $data = $this->eventService->findEvent($id);
         return view('organisateur.EditEvent',compact('data','category','artists'));
     }
-    public function update(int $id,Request $request){
+    public function update(Request $request){
         $data = $request->all();
-        $this->eventService->update($id,$data);
-        return "traara";
+        $this->eventService->update($data);
+        return redirect()->route('showAllEvent')->with('success','event update successfully');
     }
 }

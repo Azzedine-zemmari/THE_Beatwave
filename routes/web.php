@@ -76,6 +76,7 @@ Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
 Route::post('/organisateur/registerEvent',[EventController::class,'store'])->name('registerEvent');
 // Update Event by organisateur
 Route::get('/organisateur/edit/{id}',[EventController::class,'edit'])->name('editEvent');
+Route::post('/organisateur/update',[EventController::class,'update'])->name('updateEvent');
 // Events table for organisateur 
 Route::get('/organisateur/Events',[EventController::class
 ,'index'])->name('showAllEvent');
