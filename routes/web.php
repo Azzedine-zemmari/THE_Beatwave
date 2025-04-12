@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventPurchaseController;
 use App\Http\Controllers\EventsSubmissionController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleChangeRequestController;
@@ -83,6 +84,8 @@ Route::get('/organisateur/Events',[EventController::class
 ,'index'])->name('showAllEvent');
 // delte event by organisateur
 Route::post('/organisateur/destroy/{id}',[EventController::class,'delete'])->name('destory');
+// get Inscription for authenticated organisateur events
+Route::get('/organisateur/inscriptions',[InscriptionController::class,'index'])->name('inscriptions');
 
 // profile routes
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');

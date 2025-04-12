@@ -43,6 +43,10 @@
                 </div>
             </div>
         </div>
+        <div class="flex justify-center items-center mt-4 gap-4 ">
+            <a href="{{route('downloadTicket',session('tiket')->event->eventId)}}" class="bg-[#7A38FC] text-white font-semibold px-4 py-2 rounded ">Download</a>
+            <a href="{{route('eventDetails',session('tiket')->event->eventId)}}" class="bg-[#EBEBEB] text-[#7A38FC] font-semibold px-4 py-2 rounded ">Cancel</a>
+        </div>
         @else
         <div class="w-full max-w-4xl overflow-hidden rounded-xl shadow-2xl">
             <div class="flex flex-col md:flex-row">
@@ -78,11 +82,11 @@
                 </div>
             </div>
         </div>
-        @endif
         <div class="flex justify-center items-center mt-4 gap-4 ">
             <a href="{{route('downloadTicket',$eventPurchase->event->eventId)}}" class="bg-[#7A38FC] text-white font-semibold px-4 py-2 rounded ">Download</a>
             <a href="{{route('eventDetails',$eventPurchase->event->eventId)}}" class="bg-[#EBEBEB] text-[#7A38FC] font-semibold px-4 py-2 rounded ">Cancel</a>
         </div>
+        @endif
     </div>
 </body>
 </html>
