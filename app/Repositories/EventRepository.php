@@ -34,4 +34,5 @@ class EventRepository implements EventInterface{
         }
         return $event->update($data);
     }
+    
 }

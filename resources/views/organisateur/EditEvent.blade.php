@@ -15,8 +15,7 @@
         <form method="POST" action="" enctype="multipart/form-data">
             @csrf
             <!-- Event Image -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Event Image</label>
+            <div class="mb-4"====p;                <label class="block text-sm font-medium text-gray-700 mb-1">Event Image</label>
                 <div class="flex items-center">
                     <button id="buttonFile" type="button" class="bg-black text-white text-sm rounded px-4 py-2 mr-3">Choisir un fichier</button>
                     <span id="" class="text-sm text-gray-500">Aucune fichier choisi</span>
