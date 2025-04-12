@@ -23,4 +23,8 @@ class EventController extends Controller
         $this->eventService->createEvent($data);
         return redirect()->back()->with('success','event created successfully');
     }
+    public function findEvent(int $id){
+        $data = $this->eventService->findById($id);
+        dd($data);
+    }
 }

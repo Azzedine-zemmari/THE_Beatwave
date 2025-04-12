@@ -21,4 +21,12 @@ class EventRepository implements EventInterface{
             'place' => $data['place']
         ]);
     }
+    public function findById(int $id)
+    {
+        return Event::find($id);
+    }
+    public function update(int $id, array $data)
+    {
+        
+    }
 }

@@ -73,4 +73,7 @@ class EventService {
     public function getArtists(){
         return $this->userRepository->findByRole('artist');
     }
+    public function findById(int $id){
+        return $this->eventrepository->findById($id);
+    }
 }

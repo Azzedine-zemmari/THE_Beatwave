@@ -32,7 +32,7 @@ Route::get('/', function () {
 });
 
 Route::get('/Events',[EventsSubmissionController::class,'events'])->name('events');
-
+Route::get('/Event/{id}',[EventController::class,'findEvent']);
 Route::get('/Artist',function(){
     return view('Artists');
 });
@@ -75,7 +75,7 @@ Route::get('/artist/Myschedule',function(){
 Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
 
 Route::post('/organisateur/registerEvent',[EventController::class,'store'])->name('registerEvent');
-
+// profile routes
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');
 Route::get('/EditProfile/{userId}',[ProfileController::class,'editProfile'])->name('editProfile');
 Route::post('/UpdateProfile',[ProfileController::class,'updateProfile'])->name('updateprofile');
