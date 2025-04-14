@@ -16,4 +16,7 @@ class InscriptionController extends Controller
         $data = $this->inscriptionService->show();
         return view('organisateur.Inscription',compact('data'));
     }
+    public function exportCSV(){
+        return $this->inscriptionService->exportCSV();
+    }
 }

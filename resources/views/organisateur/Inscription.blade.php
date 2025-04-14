@@ -8,8 +8,10 @@
         </button>
     </div>
 @endif
-
 <div class="p-6">
+    <div class="mb-3 flex justify-end items-center">
+        <a class=" bg-black text-white px-4 py-2 " href="{{route('ExportCSV')}}">Export csv</a>
+    </div>
     <!-- Table of Events -->
     <div class="bg-white rounded-lg shadow overflow-hidden">
         <table class="min-w-full divide-y divide-gray-200">

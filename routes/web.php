@@ -15,6 +15,7 @@ use App\Models\Event;
 use App\Models\EventPurchase;
 use App\Repositories\RoleChangeRequestRepository;
 use App\Services\EventSubmissionService;
+use App\Services\InscriptionService;
 use Illuminate\Support\Facades\Route;
 
 
@@ -86,6 +87,8 @@ Route::get('/organisateur/Events',[EventController::class
 Route::post('/organisateur/destroy/{id}',[EventController::class,'delete'])->name('destory');
 // get Inscription for authenticated organisateur events
 Route::get('/organisateur/inscriptions',[InscriptionController::class,'index'])->name('inscriptions');
+// export inscription
+Route::get('/organisateur/inscripton/export',[InscriptionController::class,'exportCSV'])->name('ExportCSV');
 
 // profile routes
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');
