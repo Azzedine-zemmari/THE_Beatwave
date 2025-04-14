@@ -15,8 +15,12 @@ class EventPurchaseController extends Controller
     }
 
     public function purchaseTicket(int $eventId){
+         // Clear previous tiket from session if it exists
+        session()->forget('tiket');
+
         $userId = auth()->id(); 
         $eventPurchase = $this->eventpurchaseService->getUserTicket($userId,$eventId);
+
         // dd($eventPurchase);
         return view('Tiket',compact('eventPurchase'));
     }

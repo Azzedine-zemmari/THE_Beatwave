@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->timestamp('deleted_at')->nullable();
+        Schema::table('event_purchases', function (Blueprint $table) {
+            $table->dropForeign(['eventId']);
+            $table->foreign('eventId')->references('id')->on('events_submissions');
         });
     }
 
@@ -21,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('deleted_at');
+        Schema::table('event_purchases', function (Blueprint $table) {
+            //
         });
     }
 };

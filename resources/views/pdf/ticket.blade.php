@@ -124,22 +124,22 @@
         <div class="ticket-content">
             <div class="left">
                 <div class="left-content">
-                    <img class="event-image" src="{{ public_path($eventPurchase->event->image) }}" alt="Event Image">
-                    <div class="event-name">{{ $eventPurchase->event->nom }}</div>
-                    <div class="event-place">{{ $eventPurchase->event->place }}</div>
+                    <img class="event-image" src="{{ public_path($eventPurchase->image) }}" alt="Event Image">
+                    <div class="event-name">{{ $eventPurchase->nom }}</div>
+                    <div class="event-place">{{ $eventPurchase->place }}</div>
                 </div>
             </div>
             <div class="right">
                 <div class="right-content">
                     <div class="details-top">
-                        <span class="date">{{ \Carbon\Carbon::parse($eventPurchase->event->date)->format('d M') }}</span>
+                        <span class="date">{{ \Carbon\Carbon::parse($eventPurchase->date)->format('d M') }}</span>
                         <span class="logo">Beatwave</span>
                     </div>
                     <div class="artist">
-                        {{ $eventPurchase->event->artist->Firstname }} {{ $eventPurchase->event->artist->LastName }}
+                        {{ $eventPurchase->Firstname }} {{ $eventPurchase->LastName }}
                     </div>
                     <div class="price">
-                        {{ $eventPurchase->event->taketPrice }} $
+                        {{ $eventPurchase->taketPrice }} $
                     </div>
                     <div class="notice">
                         Present this ticket at entry

@@ -84,6 +84,7 @@ class PayPalController extends Controller
     {
         $provider = new PayPalClient;
         
+        // dd('provider ',$provider);
         $provider->setApiCredentials(config('paypal'));
           // Create a Guzzle client with SSL disabled
           
@@ -113,13 +114,17 @@ class PayPalController extends Controller
             // Load the related event
             $eventPurchase = $this->eventPurchaservice->findPurchaseWithEvent($eventPurchase->id);
 
+            // $eventPurchase->load('event.artist');
+            // dd($eventPurchase);       
+            // change relationships to jointure in purchaseEvent
+                
             Mail::to(auth()->user()->email)->send(new TicketEmail($eventPurchase));
-            
-            session()->put('tiket', $eventPurchase);
-
+            session()->forget('event_id');
+            // dd($eventPurchase);
             return redirect()
-                ->route('tiketPreview')
-                ->with('success', 'Transaction complete.');
+            ->route('tiketPreview')
+            ->with('success', 'Transaction complete.')
+            ->with('tiket',$eventPurchase);
         } else {
             return redirect()
                 ->route('events')
