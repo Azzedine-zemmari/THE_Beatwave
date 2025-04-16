@@ -118,4 +118,7 @@ class EventService {
     public function destroy(int $id){
         return $this->eventrepository->destroy($id);
     }
+    public function eventCount(){
+        return $this->eventrepository->EventsCount();
+    }
 }

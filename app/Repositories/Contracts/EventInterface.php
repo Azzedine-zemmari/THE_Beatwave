@@ -8,4 +8,5 @@ interface EventInterface{
     public function findById(int $id);
     public function all();
     public function destroy(int $id);
+    public function EventsCount();
 }

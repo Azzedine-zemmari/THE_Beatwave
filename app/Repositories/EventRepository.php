@@ -35,6 +35,7 @@ class EventRepository implements EventInterface{
         }
         return $event->update($data);
     }
+    // to show the events created by the authenticated organisateur
     public function all(){
         return DB::table('events')
         ->join('users','users.id','=','events.artistId')
@@ -54,5 +55,11 @@ class EventRepository implements EventInterface{
         else{
             return false;
         }
+    }
+    public function EventsCount(){
+        return DB::table('events')
+        ->where('organizerId',auth()->id())
+        ->whereNull('deleted_at')
+        ->count();
     }
 }
