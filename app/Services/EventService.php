@@ -6,6 +6,7 @@ use App\Repositories\Contracts\CategorieInterface;
 use App\Repositories\Contracts\EventInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\ArtistInvitationInterface;
+use App\Repositories\Contracts\InscriptionInterface;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
@@ -16,17 +17,20 @@ class EventService {
     private $userRepository;
     private $categoryRepository;
     private $artistInvitationRepository;
+    private $inscriptionRepository;
     public function __construct(
         EventInterface $eventrepository,
         CategorieInterface $categoryRepository,
         UserRepositoryInterface $userRepository,
-        ArtistInvitationInterface $artistInvitationRepository
+        ArtistInvitationInterface $artistInvitationRepository,
+        InscriptionInterface $inscriptionRepository
         )
     {
         $this->eventrepository = $eventrepository;
         $this->userRepository = $userRepository;
         $this->categoryRepository = $categoryRepository;
         $this->artistInvitationRepository = $artistInvitationRepository;
+        $this->inscriptionRepository = $inscriptionRepository;
     }
 
     public function all(){
@@ -120,5 +124,8 @@ class EventService {
     }
     public function eventCount(){
         return $this->eventrepository->EventsCount();
+    }
+    public function inscriptionCount(){
+        return $this->inscriptionRepository->countInscription();
     }
 }

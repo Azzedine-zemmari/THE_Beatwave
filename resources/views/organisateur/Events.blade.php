@@ -13,6 +13,10 @@
         <p class="font-bold text-2xl text-[#7A38FC]">{{$eventCounter}}</p>
         <p class="font-semibold">Events</p>
     </div>
+    <div class="w-[200px] p-3 border-2 border-black rounded-xl flex justify-center items-center flex-col">
+        <p class="font-bold text-2xl text-[#7A38FC]">{{$inscriptionCounter}}</p>
+        <p class="font-semibold">Inscription</p>
+    </div>
 </div>
 <div class="p-6">
         <!-- Table of Events -->

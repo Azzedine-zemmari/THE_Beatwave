@@ -14,8 +14,9 @@ class EventController extends Controller
     }
     public function index(){
         $data = $this->eventService->all();
+        $inscriptionCounter = $this->eventService->inscriptionCount();
         $eventCounter = $this->eventService->eventCount();
-        return view('organisateur.Events',compact('data','eventCounter'));
+        return view('organisateur.Events',compact('data','eventCounter','inscriptionCounter'));
     }
     public function showform(){
         $category = $this->eventService->getCategories();
