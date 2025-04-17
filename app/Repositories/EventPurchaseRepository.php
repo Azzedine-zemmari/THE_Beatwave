@@ -59,4 +59,12 @@ class EventPurchaseRepository implements EventPurchaseInterface{
     public function checkTicket(int $userId,int $eventId){
         return EventPurchase::where('userId',$userId)->where('eventId',$eventId)->first();
     }
+    public function revenue(){
+        return DB::table('event_purchases')
+        ->join('events_submissions', 'events_submissions.eventId', '=', 'event_purchases.eventId')
+        ->join('events', 'events.eventId', '=', 'events_submissions.eventId')
+        ->where('events.organizerId',auth()->id())
+        ->selectRaw('SUM(events."taketPrice") as revenue')
+        ->value('revenue');
+    }
 }

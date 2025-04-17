@@ -6,6 +6,7 @@ use App\Repositories\Contracts\CategorieInterface;
 use App\Repositories\Contracts\EventInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\ArtistInvitationInterface;
+use App\Repositories\Contracts\EventPurchaseInterface;
 use App\Repositories\Contracts\InscriptionInterface;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -16,14 +17,19 @@ class EventService {
     private $eventrepository;
     private $userRepository;
     private $categoryRepository;
+    // to send invitation to the artist chosen by organisateur
     private $artistInvitationRepository;
+    // for the event inscription count
     private $inscriptionRepository;
+    // for the organizer revenue count
+    private $eventPurchaseRepository;
     public function __construct(
         EventInterface $eventrepository,
         CategorieInterface $categoryRepository,
         UserRepositoryInterface $userRepository,
         ArtistInvitationInterface $artistInvitationRepository,
-        InscriptionInterface $inscriptionRepository
+        InscriptionInterface $inscriptionRepository,
+        EventPurchaseInterface $eventPurchaseRepository
         )
     {
         $this->eventrepository = $eventrepository;
@@ -31,6 +37,7 @@ class EventService {
         $this->categoryRepository = $categoryRepository;
         $this->artistInvitationRepository = $artistInvitationRepository;
         $this->inscriptionRepository = $inscriptionRepository;
+        $this->eventPurchaseRepository = $eventPurchaseRepository;
     }
 
     public function all(){
@@ -127,5 +134,8 @@ class EventService {
     }
     public function inscriptionCount(){
         return $this->inscriptionRepository->countInscription();
+    }
+    public function revenuCount(){
+        return $this->eventPurchaseRepository->revenue();
     }
 }
