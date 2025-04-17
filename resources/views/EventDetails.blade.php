@@ -50,6 +50,11 @@
             <div class="flex  text-center my-2">
                     <a href="{{route('ticketShow',$data->id)}}" class="bg-[#7A38FC] w-full text-white py-2 rounded">Preview ticket</a>
             </div>
+            <!-- comments section -->
+            <form action="" method="post">
+                @csrf 
+                <textarea name="comment" id="" ></textarea>
+            </form>
             @endif
         </section>
     </main>
