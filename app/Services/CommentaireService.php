@@ -2,7 +2,8 @@
 
 namespace App\Services;
 use App\Repositories\Contracts\CommentaireInterface;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 class CommentaireService{
     private $CommentaireRepository;
     public function __construct(CommentaireInterface $commentaire)
@@ -11,6 +12,14 @@ class CommentaireService{
     }
 
     public function create(array $data){
+        $validator = Validator::make($data,[
+            'eventId' => "required|exists:events_submissions,id",
+            'userId' => "required|exists:users,id",
+            'commentaire' => "required|string"
+        ]);
+        if($validator->fails()){
+            throw new ValidationException($validator);
+        }
         return $this->CommentaireRepository->create($data);
     }
 }
