@@ -7,5 +7,16 @@ use Illuminate\Http\Request;
 
 class CommentaireController extends Controller
 {
-    
+    private $commentarieService;
+    public function __construct(CommentaireService $commentarieService)
+    {
+        $this->commentarieService = $commentarieService;
+    }
+    // create a comment
+    public function comment(Request $request){
+        $data = $request->all();
+        $data['userId'] = auth()->id();
+        // dd($data);
+        return $this->commentarieService->create($data);
+    }
 }

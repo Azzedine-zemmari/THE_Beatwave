@@ -176,7 +176,8 @@ return [
         App\Providers\EventSubmissionProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
         App\Providers\EventPurchaseProvider::class,
-        App\Providers\InscriptionProvider::class
+        App\Providers\InscriptionProvider::class,
+        App\Providers\CommentaireProvider::class
     ])->toArray(),
 
     /*

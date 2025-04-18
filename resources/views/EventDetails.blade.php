@@ -51,9 +51,11 @@
                     <a href="{{route('ticketShow',$data->id)}}" class="bg-[#7A38FC] w-full text-white py-2 rounded">Preview ticket</a>
             </div>
             <!-- comments section -->
-            <form action="" method="post">
+            <form action="{{route('createComment')}}" method="post">
                 @csrf 
-                <textarea name="comment" id="" ></textarea>
+                <input type="hidden" name="eventId" value="{{$data->id}}">
+                <textarea name="commentaire" id="" ></textarea>
+                <button>submit</button>
             </form>
             @endif
         </section>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Commentaire extends Model
 {
     use HasFactory;
+    protected $table = "commentaire";
     protected $fillable = [
         'eventId',
         'userId',

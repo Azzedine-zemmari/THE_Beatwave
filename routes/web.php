@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtistInvitationController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventPurchaseController;
 use App\Http\Controllers\EventsSubmissionController;
@@ -96,6 +97,8 @@ Route::get('/EditProfile/{userId}',[ProfileController::class,'editProfile'])->na
 Route::post('/UpdateProfile',[ProfileController::class,'updateProfile'])->name('updateprofile');
 
 Route::get('/EventDetail/{id}',[EventsSubmissionController::class,'eventDetails'])->name('eventDetails');
+// create comment in events
+Route::post('/Event/comment',[CommentaireController::class,'comment'])->name('createComment');
 
 Route::get('/auth/google',[GoogleAuthController::class,'redirectToGoogle'])->name("redirect.google");
 Route::get('/auth/google/callback',[GoogleAuthController::class,'handleGoogleCallback']);
