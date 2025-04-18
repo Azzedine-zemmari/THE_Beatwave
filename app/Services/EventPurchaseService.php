@@ -21,7 +21,12 @@ class EventPurchaseService{
         return $this->eventPurchaseRepository->getPurchaseWithEvent($id);
     }
     // to preview ticket
-    public function getUserTicket(int $userId,int $eventId){
-        return $this->eventPurchaseRepository->getUserPurchase($userId,$eventId);
+    // ? means userId can be int or null
+    public function getUserTicket(?int $userId,int $eventId){
+        if(!$userId){
+            return null;
+        }
+            return $this->eventPurchaseRepository->getUserPurchase($userId,$eventId);
+        
     }
 }
