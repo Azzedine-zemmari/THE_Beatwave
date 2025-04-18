@@ -51,12 +51,16 @@
                     <a href="{{route('ticketShow',$data->id)}}" class="bg-[#7A38FC] w-full text-white py-2 rounded">Preview ticket</a>
             </div>
             <!-- comments section -->
-            <form action="{{route('createComment')}}" method="post">
-                @csrf 
-                <input type="hidden" name="eventId" value="{{$data->id}}">
-                <textarea name="commentaire" id="" ></textarea>
-                <button>submit</button>
-            </form>
+            <div class="relative my-3">
+                <form action="{{route('createComment')}}" method="post">
+                    @csrf 
+                    <input type="hidden" name="eventId" value="{{$data->id}}">
+                    <textarea name="commentaire" id="" placeholder="Add comment" class="w-full border border-black rounded-xl resize-none placeholder:pl-5 placeholder:pt-3" ></textarea>
+                    <button class=" absolute right-2 top-3">
+                        <img src="{{asset('/images/icons/send.svg')}}" class="w-7 h-7" alt="">
+                    </button>
+                </form>
+            </div>
             @foreach($comments as $comment)
             <div class="flex gap-5">
                 <div>

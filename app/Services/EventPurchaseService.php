@@ -26,7 +26,7 @@ class EventPurchaseService{
         if(!$userId){
             return null;
         }
-            return $this->eventPurchaseRepository->getUserPurchase($userId,$eventId);
+        return $this->eventPurchaseRepository->getUserPurchase($userId,$eventId);
         
     }
 }
