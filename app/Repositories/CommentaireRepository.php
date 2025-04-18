@@ -14,4 +14,8 @@ class CommentaireRepository implements CommentaireInterface{
             'commentaire' => $data['commentaire']
         ]);
     }
+    public function get(int $eventId)
+    {
+        return Commentaire::where('eventId',$eventId)->get();
+    }
 }
