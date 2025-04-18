@@ -24,4 +24,7 @@ class CommentaireService{
         }
         return $this->CommentaireRepository->create($data);
     }
+    public function show(int $eventId){
+        return $this->CommentaireRepository->get($eventId);
+    }
 }
