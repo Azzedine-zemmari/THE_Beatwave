@@ -17,7 +17,8 @@ class CommentaireController extends Controller
         $data = $request->all();
         $data['userId'] = auth()->id();
         // dd($data);
-        return $this->commentarieService->create($data);
+        $this->commentarieService->create($data);
+        return redirect()->back();
     }
     public function getAll(int $eventId){
         $comments = $this->commentarieService->show($eventId);

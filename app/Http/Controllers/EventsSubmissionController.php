@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Services\EventPurchaseService;
 use Illuminate\Http\Request;
 use App\Services\EventSubmissionService;
+use App\Services\CommentaireService;
 
 class EventsSubmissionController extends Controller
 {
     private $eventSubmissionService;
     private $eventPurchaseService;
-    public function __construct(EventSubmissionService $eventSubmissionService,EventPurchaseService $eventPurchaseService)
+    private $commentService;
+    public function __construct(EventSubmissionService $eventSubmissionService,EventPurchaseService $eventPurchaseService,CommentaireService $commentService)
     {
         $this->eventSubmissionService = $eventSubmissionService;
         $this->eventPurchaseService = $eventPurchaseService;
+        $this->commentService = $commentService;
     }
     public function show(){
         $data = $this->eventSubmissionService->showEvents();
@@ -35,6 +38,7 @@ class EventsSubmissionController extends Controller
         $data = $this->eventSubmissionService->showSubmitedEvent($id);
         $userId = auth()->id();
         $eventPurchase = $this->eventPurchaseService->getUserTicket($userId,$id);
-        return view('EventDetails',compact('data','eventPurchase'));
+        $comments = $this->commentService->show($id);
+        return view('EventDetails',compact('data','eventPurchase','comments'));
     }
 }

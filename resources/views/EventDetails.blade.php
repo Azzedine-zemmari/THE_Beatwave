@@ -58,7 +58,19 @@
                 <button>submit</button>
             </form>
             @foreach($comments as $comment)
-            
+            <div class="flex gap-5">
+                <div>
+                    @if($comment->avatar)
+                    <img class="w-7 h-7 rounded-full" src="{{asset('storage/'.$comment->avatar)}}"/>
+                    @else
+                    <p class="font-bold bg-gray-100 rounded-full w-7 h-7 text-center">{{substr($comment->Firstname,0,1)}}</p>
+                    @endif
+                </div>
+                <div class="">
+                    <p class="font-bold text-lg">{{$comment->Firstname}}</p>
+                    <p class="text-md">{{$comment->commentaire}}</p>
+                </div>
+            </div>
             @endforeach
             @endif
         </section>
