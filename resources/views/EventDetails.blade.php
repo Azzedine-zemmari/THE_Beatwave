@@ -57,6 +57,9 @@
                 <textarea name="commentaire" id="" ></textarea>
                 <button>submit</button>
             </form>
+            @foreach($comments as $comment)
+            
+            @endforeach
             @endif
         </section>
     </main>

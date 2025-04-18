@@ -19,4 +19,9 @@ class CommentaireController extends Controller
         // dd($data);
         return $this->commentarieService->create($data);
     }
+    public function getAll(int $eventId){
+        $comments = $this->commentarieService->show($eventId);
+        dd($comments);
+        return view('EventDetails',compact('comments'));
+    }
 }
