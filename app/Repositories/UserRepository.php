@@ -37,7 +37,7 @@ class UserRepository implements UserRepositoryInterface{
     {
         return User::where('role','artist')
         ->where('Firstname','like',"%$name%")
-        ->orWhere('LastName','like','%$name%')
-        ->first();
+        ->orWhere('LastName','like',"%$name%")
+        ->get();
     }
 }
