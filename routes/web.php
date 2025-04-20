@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ArtistInvitationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentaireController;
@@ -37,9 +38,7 @@ Route::get('/', function () {
 
 Route::get('/Events',[EventsSubmissionController::class,'events'])->name('events');
 // Route::get('/Event/{id}',[EventController::class,'findEvent']);
-Route::get('/Artist',function(){
-    return view('Artists');
-});
+Route::get('/Artists',[ArtistController::class,'index']);
 // register
 Route::get('/register',[AuthController::class,'showRegistrationForm']);
 Route::post('/register',[AuthController::class,'register'])->name('register');

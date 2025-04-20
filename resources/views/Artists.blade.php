@@ -10,41 +10,15 @@
 </div>
 <section class="max-w-6xl mx-auto mt-10">
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    @foreach($data as $artist)
     <div class="bg-white shadow-lg rounded-lg">
-        <img src="{{asset('/images/Photo.png')}}" alt="profile">
+        <img src="{{asset('storage/'.$artist->avatar)}}" alt="profile" class="w-full rounded-t-lg">
         <div class="p-3">
-            <p>Alex ju</p>
-            <p>Dj</p>
+            <p class="font-semibold text-lg">{{$artist->Firstname}} {{$artist->LastName}}</p>
+            <p>{{$artist->bio}}</p> 
         </div>
     </div>
-    <div class="bg-white shadow-lg rounded-lg">
-        <img src="{{asset('/images/Photo.png')}}" alt="profile">
-        <div class="p-3">
-            <p>Alex ju</p>
-            <p>Dj</p>
-        </div>
-    </div>
-    <div class="bg-white shadow-lg rounded-lg">
-        <img src="{{asset('/images/Photo.png')}}" alt="profile">
-        <div class="p-3">
-            <p>Alex ju</p>
-            <p>Dj</p>
-        </div>
-    </div>
-    <div class="bg-white shadow-lg rounded-lg">
-        <img src="{{asset('/images/Photo.png')}}" alt="profile">
-        <div class="p-3">
-            <p>Alex ju</p>
-            <p>Dj</p>
-        </div>
-    </div>
-    <div class="bg-white shadow-lg rounded-lg">
-        <img src="{{asset('/images/Photo.png')}}" alt="profile">
-        <div class="p-3">
-            <p>Alex ju</p>
-            <p>Dj</p>
-        </div>
-    </div>
+    @endforeach
 </div>
 </section>
 </x-app>
