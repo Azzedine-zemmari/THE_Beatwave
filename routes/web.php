@@ -39,6 +39,8 @@ Route::get('/', function () {
 Route::get('/Events',[EventsSubmissionController::class,'events'])->name('events');
 // Route::get('/Event/{id}',[EventController::class,'findEvent']);
 Route::get('/Artists',[ArtistController::class,'index']);
+// Artist portfolio
+Route::get('/ArtistProfile/{id}',[ArtistController::class,'getArtistProfile']);
 // register
 Route::get('/register',[AuthController::class,'showRegistrationForm']);
 Route::post('/register',[AuthController::class,'register'])->name('register');

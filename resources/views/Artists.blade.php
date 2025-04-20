@@ -14,7 +14,7 @@
     <div class="bg-white shadow-lg rounded-lg">
         <img src="{{asset('storage/'.$artist->avatar)}}" alt="profile" class="w-full rounded-t-lg">
         <div class="p-3">
-            <p class="font-semibold text-lg">{{$artist->Firstname}} {{$artist->LastName}}</p>
+            <a href="/ArtistProfile/{{$artist->id}}" class="font-semibold text-lg">{{$artist->Firstname}} {{$artist->LastName}}</a>
             <p>{{$artist->bio}}</p> 
         </div>
     </div>

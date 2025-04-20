@@ -16,4 +16,7 @@ class ArtistService{
         return $this->userRepository->findByRole('artist');
     }
 
+    public function getArtist(int $id){
+        return $this->userRepository->findById($id);
+    }
 }
