@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
+use Illuminate\Support\Facades\Validator;
 
 class ArtistService{
     private $userRepository;
@@ -18,5 +19,8 @@ class ArtistService{
 
     public function getArtist(int $id){
         return $this->userRepository->findById($id);
+    }
+    public function searchByname(string $name){
+        return $this->userRepository->findByName($name);
     }
 }

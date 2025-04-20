@@ -21,4 +21,7 @@ class ArtistController extends Controller
         $data = $this->artistService->getArtist($id);
         return view('ArtistProfile',compact('data'));
     }
+    public function search(Request $request){
+        dd($request);
+    }
 }
