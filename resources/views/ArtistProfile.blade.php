@@ -40,15 +40,10 @@
 </head>
 
 <body class="font-sans">
-    @if(session('success'))
-    <div id="alert" class="mb-4 p-4 text-green-800 bg-green-100 border border-green-300 rounded-lg">
-        {{ session('success') }}
-    </div>
-    @endif
     <header class="w-full h-24 bg-gradient-to-r from-[#43CBFF] to-[#9708CC] relative">
         <div class="w-28 h-28 md:w-36 md:h-36 rounded-full border bg-gray-300 absolute top-10 left-2 md:left-7 flex justify-center items-center">
-            @if(Auth::user()->avatar)
-            <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="w-full rounded-full" alt="">
+            @if($data->avatar)
+            <img src="{{asset('storage/'.$data->avatar)}}" class="w-full rounded-full" alt="">
             @else
             <img src="{{asset('/images/icons/camera.svg')}}" class="w-7 h-7" alt="">
             @endif
@@ -63,73 +58,34 @@
     <main class="mt-20 md:mt-24 ml-4 md:ml-10">
         <!-- name and edit profile -->
         <section>
-            <h1 class="font-bold text-xl">{{Auth::user()->Firstname}} {{Auth::user()->LastName}}</h1>
-            <p>{{Auth::user()->role}}</p>
-            <div class="flex items-center gap-5 mt-6">
-                <a href="{{route('editProfile',['userId'=>Auth::user()->id])}}" class="bg-[#2C2C2C] text-white px-3 py-2 rounded-lg">Edit profile</a>
-                <button class="bg-[#EBEBEB] p-2 rounded-lg flex items-end justify-center">
-                    <img src="{{asset('/images/icons/share.svg')}}" class="w-5 h-5" alt="">
-                </button>
-
-                <!-- Role Change Request Dropdown -->
-                @if(Auth::user()->role === 'user')
-                <div class="relative group">
-                    <button type="button" class="bg-[#EBEBEB] hover:bg-gray-200 text-gray-800 px-3 py-2 rounded-lg flex items-center transition-all duration-300">
-                        <span>Change Role</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-
-                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <div class="py-1 text-sm text-gray-700">
-                            <form action="{{route('changeRole')}}" method="POST" id="roleChangeForm" class="px-4 py-2">
-                                @csrf
-                                <label for="requested_role" class="block mb-2 font-medium">Request new role:</label>
-                                <select name="requested_role" id="requested_role" class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2">
-                                    <option value="" selected disabled>Select a role</option>
-                                    <option value="artist">Artist</option>
-                                    <option value="organizer">Organizer</option>
-                                </select>
-                                <button type="submit" class="w-full mt-2 bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md transition-colors duration-300">
-                                    Submit Request
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                @else
-                <a href="{{Auth::user()->role == 'artist' ? '/artist/Invitation' : '/'}}" class="bg-gradient-to-r from-[#43CBFF] to-[#9708CC] p-2 rounded-lg">{{Auth::user()->role}} Dashboard</a>
-                @endif
-            </div>
+            <h1 class="font-bold text-xl">{{$data->Firstname}} {{$data->LastName}}</h1>
         </section>
 
         <!-- about user -->
         <section class="mt-6">
             <h2 class="font-bold">About : </h2>
-            <p class="font-medium text-[#8A8A8A] max-w-[550px]">{{Auth::user()->bio}}</p>
+            <p class="font-medium text-[#8A8A8A] max-w-[550px]">{{$data->bio}}</p>
             <div class="flex flex-col space-y-5 mt-4">
                 <div class="flex items-center">
                     <div class="w-5 h-5 flex justify-center items-center mr-3">
                         <img src="{{asset('/images/icons/mail.svg')}}" alt="">
                     </div>
-                    <p>{{Auth::user()->email}}</p>
+                    <p>{{$data->email}}</p>
                 </div>
                 <div class="flex items-center">
                     <div class="w-5 h-5 flex justify-center items-center mr-3">
                         <img src="{{asset('/images/icons/link-2.svg')}}" alt="">
                     </div>
-                    <p>{{Auth::user()->websiteLink ?? 'no website'}}</p>
+                    <p>{{$data->websiteLink ?? 'no website'}}</p>
                 </div>
                 <div class="flex items-center">
                     <div class="w-5 h-5 flex justify-center items-center mr-3">
                         <img src="{{asset('/images/icons/calendar.svg')}}" alt="">
                     </div>
-                    <p>Joined: {{Auth::user()->created_at->format('d-m-Y')}}</p>
+                    <p>Joined: {{$data->created_at->format('d-m-Y')}}</p>
                 </div>
             </div>
         </section>
-        @if(Auth::user()->role == 'artist')
         <section class="mt-8">
             <h2 class="font-bold mb-3">Artist Performance:</h2>
             <div class="custom-audio-player">
@@ -137,7 +93,7 @@
                     <img src="{{asset('/images/icons/ri_music-fill.svg')}}" class="w-6 h-6" alt="Music">
                 </div>
                 <audio controls>
-                    <source src="{{asset('storage/'.Auth::user()->song)}}">
+                    <source src="{{asset('storage/'.$data->song)}}">
                 </audio>
             </div>
             <div class="bg-white border border-gray-200 rounded-xl p-3 shadow-sm max-w-md">
@@ -150,11 +106,10 @@
                     <span class="font-medium">Artist Video</span>
                 </div>
                 <video controls class="w-full rounded-lg bg-gray-100">
-                    <source src="{{asset('storage/'.Auth::user()->vedeo ?? '')}}" type="video/mp4">
+                    <source src="{{asset('storage/'.$data->vedeo ?? '')}}" type="video/mp4">
                 </video>
             </div>
         </section>
-        @endif
     </main>
 </body>
 
