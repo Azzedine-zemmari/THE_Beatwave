@@ -6,6 +6,7 @@ use App\Services\EventPurchaseService;
 use Illuminate\Http\Request;
 use App\Services\EventSubmissionService;
 use App\Services\CommentaireService;
+use App\Services\ShareEvent;
 
 class EventsSubmissionController extends Controller
 {
@@ -34,11 +35,12 @@ class EventsSubmissionController extends Controller
         $data = $this->eventSubmissionService->showSubmitedEvents();
         return view('Events',compact('data'));
     }
-    public function eventDetails(int $id){
+    public function eventDetails(int $id,ShareEvent $Shareservice){
         $data = $this->eventSubmissionService->showSubmitedEvent($id);
         $userId = auth()->id();
         $eventPurchase = $this->eventPurchaseService->getUserTicket($userId,$id);
         $comments = $this->commentService->show($id);
-        return view('EventDetails',compact('data','eventPurchase','comments'));
+        $shareButtons = $Shareservice->share($id);
+        return view('EventDetails',compact('data','eventPurchase','comments','shareButtons'));
     }
 }

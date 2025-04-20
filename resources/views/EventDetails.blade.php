@@ -12,9 +12,26 @@
             <div class="flex flex-col space-y-8">
                 <div class="flex justify-between items-center">
                     <h2 class="font-semibold text-xl">Event details</h2>
-                    <button class="bg-black px-4 py-2 rounded-lg">
+                    <button id="toggleShare" class="bg-black px-4 py-2 rounded-lg">
                         <img src="{{asset('/images/icons/whiteShare.svg')}}" alt="">
                     </button>
+                </div>
+                <div id="ShareContainer" class="mt-2 hidden flex">
+                    @foreach($shareButtons as $link)
+                    @php
+                    $lower = strtolower($link);
+                    $icon = 'fa-share';
+                    if(str_contains($lower,'facebook')) $icon = 'fa-facebook';
+                    elseif(str_contains($lower,'reddit')) $icon = 'fa-reddit';
+                    elseif(str_contains($lower,'twitter')) $icon = 'fa-twitter';
+                    @endphp
+                    <a href="{{$link}}" target="_blank" class="text-white px-4 py-2 rounded-full flex items-center justify-center   
+                        {{ str_contains($link, 'facebook') ? 'bg-[#3b5998]' : '' }}
+                        {{ str_contains($link, 'twitter') ? 'bg-[#0077b5]' : '' }}
+                        {{ str_contains($link, 'reddit') ? 'bg-[#ee7c11]' : '' }}">
+                        <i class="fa-brands {{$icon}}" class="tex-xl"></i>
+                    </a>
+                    @endforeach
                 </div>
                 <p class=" text-[#8A8A8A]">{{$data->description}}</p>
             </div>
@@ -48,14 +65,14 @@
             </div>
             @else
             <div class="flex  text-center my-2">
-                    <a href="{{route('ticketShow',$data->id)}}" class="bg-[#7A38FC] w-full text-white py-2 rounded">Preview ticket</a>
+                <a href="{{route('ticketShow',$data->id)}}" class="bg-[#7A38FC] w-full text-white py-2 rounded">Preview ticket</a>
             </div>
             <!-- comments section -->
             <div class="relative my-3">
                 <form action="{{route('createComment')}}" method="post">
-                    @csrf 
+                    @csrf
                     <input type="hidden" name="eventId" value="{{$data->id}}">
-                    <textarea name="commentaire" id="" placeholder="Add comment" class="w-full border border-black rounded-xl resize-none placeholder:pl-5 placeholder:pt-3" ></textarea>
+                    <textarea name="commentaire" id="" placeholder="Add comment" class="w-full border border-black rounded-xl resize-none placeholder:pl-5 placeholder:pt-3"></textarea>
                     <button class=" absolute right-2 top-3">
                         <img src="{{asset('/images/icons/send.svg')}}" class="w-7 h-7" alt="">
                     </button>
@@ -65,7 +82,7 @@
             <div class="flex gap-5">
                 <div>
                     @if($comment->avatar)
-                    <img class="w-7 h-7 rounded-full" src="{{asset('storage/'.$comment->avatar)}}"/>
+                    <img class="w-7 h-7 rounded-full" src="{{asset('storage/'.$comment->avatar)}}" />
                     @else
                     <p class="font-bold bg-gray-100 rounded-full w-7 h-7 text-center">{{substr($comment->Firstname,0,1)}}</p>
                     @endif
@@ -79,4 +96,12 @@
             @endif
         </section>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('toggleShare').addEventListener('click', function() {
+                const shareBox = document.getElementById('ShareContainer')
+                shareBox.classList.toggle('hidden')
+            })
+        })
+    </script>
 </x-app>
