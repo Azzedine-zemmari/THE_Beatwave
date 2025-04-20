@@ -33,4 +33,11 @@ class UserRepository implements UserRepositoryInterface{
         $user->update($data);
         return $user;
     }
+    public function findByName(string $name)
+    {
+        return User::where('role','artist')
+        ->where('Firstname','like',"%$name%")
+        ->orWhere('LastName','like','%$name%')
+        ->first();
+    }
 }
