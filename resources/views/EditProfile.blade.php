@@ -71,8 +71,8 @@
                     <div class="flex flex-col">
                         <p class="mb-2">Video file:</p>
                         <div class="flex w-full">
-                            <button id="vedeo" class="bg-black text-white px-4 py-2 rounded-l-md">Upload as Mp4</button>
-                            <input type="file" class="hidden" id="mp4" name="vedeo">
+                            <button  id="buttonVedeo" class="bg-black text-white px-4 py-2 rounded-l-md">Upload as Mp4</button>
+                            <input type="file" class="hidden" id="vedeo" name="vedeo">
                             <div class="flex-1 border-t border-r border-b border-gray-300 rounded-r-md p-2 text-sm text-gray-500">
                                 Accepted format: mp4
                             </div>
@@ -81,8 +81,8 @@
                     <div class="flex flex-col">
                         <p class="mb-2">Audio file:</p>
                         <div class="flex w-full">
-                            <button id="audio" class="bg-black text-white px-4 py-2 rounded-l-md">Upload as Mp3</button>
-                            <input type="file" class="hidden" id="mp3" name="audio">
+                            <button  id="buttonSong" class="bg-black text-white px-4 py-2 rounded-l-md">Upload as Mp3</button>
+                            <input type="file" class="hidden" id="song" name="song">
                             <div class=" flex-1 border-t border-r border-b border-gray-300 rounded-r-md p-2 text-sm text-gray-500">
                                 Accepted format: mp3
                             </div>
@@ -99,11 +99,18 @@
         </form>
     </div>
     <script>
-        const buttonimage = document.getElementById('imagebutton')
-        const image = document.getElementById('image')
-        buttonimage.addEventListener('click',function(){
-            image.click();
-        })
+        function handleButtonClick(buttonId,inputId){
+            const button = document.getElementById(buttonId);
+            const input = document.getElementById(inputId);
+
+            button.addEventListener('click',function(e){
+                e.preventDefault();
+                input.click();
+            })
+        }
+        handleButtonClick('imagebutton','image');
+        handleButtonClick('buttonVedeo','vedeo');
+        handleButtonClick('buttonSong','song');
     </script>
 </body>
 

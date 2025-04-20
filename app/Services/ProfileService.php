@@ -23,13 +23,16 @@ class ProfileService{
             'facebookLink' => 'nullable',
             'instagramLink' => 'nullable',
             'websiteLink'=> 'nullable',
-            'businessMail'=>'nullable|email'
+            'businessMail'=>'nullable|email',
+            'vedeo' => 'nullable|mimes:mp4,mov,avi|max:10240',
+            'song' =>  'nullable|mimes:mp3,wav,aac|max:5120'
         ]);
 
         if($validator->fails()){
             throw new ValidationException($validator);
         }
 
+        // image handle
         if($data['avatar'] && $data['avatar']->isValid()){
             $path = $data['avatar']->store('avatars','public');
             $data['avatar'] = $path;
@@ -38,6 +41,22 @@ class ProfileService{
             unset($data['avatar']);
         }
 
+        // vedeo performance (only for artist)
+        if(!empty($data['vedeo'] && $data['vedeo']->isValid())){
+            $pathV = $data['vedeo']->store('vedeos','public');
+            $data['vedeo'] = $pathV;
+        }
+        else{
+            unset($data['vedeo']);
+        }
+        //audio file (only for artist)
+        if(!empty($data['song'] && $data['song']->isValid())){
+            $pathS = $data['song']->store('songs','public');
+            $data['song'] = $pathS;
+        }
+        else{
+            unset($data['song']);
+        }
         return $this->userRepository->update($userId,$data);
     }
 
