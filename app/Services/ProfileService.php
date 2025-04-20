@@ -33,30 +33,23 @@ class ProfileService{
         }
 
         // image handle
-        if($data['avatar'] && $data['avatar']->isValid()){
+        if(isset($data['avatar']) && $data['avatar']->isValid()){
             $path = $data['avatar']->store('avatars','public');
             $data['avatar'] = $path;
         }
-        else{
-            unset($data['avatar']);
-        }
 
         // vedeo performance (only for artist)
-        if(!empty($data['vedeo'] && $data['vedeo']->isValid())){
+        if(isset($data['vedeo']) && $data['vedeo']->isValid()){
             $pathV = $data['vedeo']->store('vedeos','public');
             $data['vedeo'] = $pathV;
         }
-        else{
-            unset($data['vedeo']);
-        }
+
         //audio file (only for artist)
-        if(!empty($data['song'] && $data['song']->isValid())){
+        if(isset($data['song']) && $data['song']->isValid()){
             $pathS = $data['song']->store('songs','public');
             $data['song'] = $pathS;
         }
-        else{
-            unset($data['song']);
-        }
+
         return $this->userRepository->update($userId,$data);
     }
 

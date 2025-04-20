@@ -28,6 +28,8 @@ class User extends Authenticatable
         'instagramLink',
         'websiteLink',
         'businessMail',
+        'song',
+        'vedeo'
     ];
 
     /**

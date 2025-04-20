@@ -16,7 +16,7 @@
                         <img src="{{asset('/images/icons/whiteShare.svg')}}" alt="">
                     </button>
                 </div>
-                <div id="ShareContainer" class="mt-2 hidden flex">
+                <div id="ShareContainer" class="mt-2 flex hidden ">
                     @foreach($shareButtons as $link)
                     @php
                     $lower = strtolower($link);

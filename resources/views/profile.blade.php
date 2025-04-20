@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom audio player styling */
+        .custom-audio-player {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            max-width: 450px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .custom-audio-player audio {
+            width: 100%;
+            height: 40px;
+        }
+
+        /* Music icon container */
+        .music-icon-container {
+            background-color: #2C2C2C;
+            border-radius: 50%;
+            padding: 6px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
+
 <body class="font-sans">
-@if(session('success'))
+    @if(session('success'))
     <div id="alert" class="mb-4 p-4 text-green-800 bg-green-100 border border-green-300 rounded-lg">
         {{ session('success') }}
     </div>
@@ -40,7 +72,7 @@
                 <button class="bg-[#EBEBEB] p-2 rounded-lg flex items-end justify-center">
                     <img src="{{asset('/images/icons/share.svg')}}" class="w-5 h-5" alt="">
                 </button>
-                
+
                 <!-- Role Change Request Dropdown -->
                 @if(Auth::user()->role === 'user')
                 <div class="relative group">
@@ -50,7 +82,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    
+
                     <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
                         <div class="py-1 text-sm text-gray-700">
                             <form action="{{route('changeRole')}}" method="POST" id="roleChangeForm" class="px-4 py-2">
@@ -73,7 +105,7 @@
                 @endif
             </div>
         </section>
-        
+
         <!-- about user -->
         <section class="mt-6">
             <h2 class="font-bold">About : </h2>
@@ -99,6 +131,33 @@
                 </div>
             </div>
         </section>
+        @if(Auth::user()->role == 'artist')
+        <section class="mt-8">
+            <h2 class="font-bold mb-3">Artist Performance:</h2>
+            <div class="custom-audio-player">
+                <div class="music-icon-container">
+                    <img src="{{asset('/images/icons/ri_music-fill.svg')}}" class="w-6 h-6" alt="Music">
+                </div>
+                <audio controls>
+                    <source src="{{asset('storage/'.Auth::user()->song)}}">
+                </audio>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-3 shadow-sm max-w-md">
+                <div class="flex items-center mb-3">
+                    <div class="bg-[#2C2C2C] rounded-full p-1.5 mr-3 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <span class="font-medium">Artist Video</span>
+                </div>
+                <video controls class="w-full rounded-lg bg-gray-100">
+                    <source src="{{asset('storage/'.Auth::user()->vedeo ?? '')}}" type="video/mp4">
+                </video>
+            </div>
+        </section>
+        @endif
     </main>
 </body>
+
 </html>
