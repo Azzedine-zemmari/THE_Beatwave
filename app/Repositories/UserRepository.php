@@ -38,7 +38,7 @@ class UserRepository implements UserRepositoryInterface{
         return User::where('role','artist')
         ->where('Firstname','like',"%$name%")
         ->orWhere('LastName','like',"%$name%")
-        ->get();
+        ->paginate(6); // use paginate because get dont have the pagination functionnality to help with ($data->links)
     }
     // find artist with paginate
     public function findArtist(){
