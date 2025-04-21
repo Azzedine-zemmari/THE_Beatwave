@@ -17,7 +17,7 @@
             <div class=" w-full max-w-md">
                 <div class="mb-8">
                     <h1 class="text-3xl font-bold text-[#121212] mb-2">BeatWave</h1>
-                    <p class="text-gray-500"> you are new here <a href="#" class="text-[#E7826B] font-medium hover:underline">Register</a></p>
+                    <p class="text-gray-500"> you are new here <a href="{{route('register')}}" class="text-[#E7826B] font-medium hover:underline">Register</a></p>
                 </div>
                 <form action="{{route('login')}}" method="POST">
                     @csrf

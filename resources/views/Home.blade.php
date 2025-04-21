@@ -58,9 +58,9 @@
 
             <!-- Navigation Links -->
             <div class="hidden md:flex space-x-8">
-                <p class="cursor-pointer hover:text-gray-300">Home</p>
-                <p class="cursor-pointer hover:text-gray-300">Events</p>
-                <p class="cursor-pointer hover:text-gray-300">Artists</p>
+                <a href="{{route('Home')}}" class="cursor-pointer hover:text-gray-300">Home</a>
+                <a href="{{route('events')}}" class="cursor-pointer hover:text-gray-300">Events</a>
+                <a href="{{route('artists')}}" class="cursor-pointer hover:text-gray-300">Artists</a>
             </div>
 
             <!-- Join Us Button -->
@@ -85,9 +85,9 @@
         <nav id="phoneNav" class="hidden absolute top-0 right-0 left-0 w-full bg-white shadow-lg z-50 ">
             <img id="closeButton" src="{{asset('/images/icons/close-square-svgrepo.svg')}}" class="w-4 h-4 absolute top-4 right-4 cursor-pointer " alt="">
             <div class="flex flex-col space-y-4 p-4">
-                <p class="cursor-pointer hover:text-gray-300">Home</p>
-                <p class="cursor-pointer hover:text-gray-300">Events</p>
-                <p class="cursor-pointer hover:text-gray-300">Artists</p>
+                <a href="{{route('Home')}}" class="cursor-pointer hover:text-gray-300">Home</a>
+                <a href="{{route('events')}}" class="cursor-pointer hover:text-gray-300">Events</a>
+                <a href="{{route('artists')}}"  class="cursor-pointer hover:text-gray-300">Artists</a>
                 @guest
                 <a href="{{route('register')}}" class=" bg-transparent px-6 py-2 rounded-full border-black border-2 hover:cursor-pointer">Join us</a>
                 @endguest 

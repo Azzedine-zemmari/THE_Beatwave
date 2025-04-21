@@ -53,12 +53,12 @@
             <img src="{{asset('/images/icons/camera.svg')}}" class="w-7 h-7" alt="">
             @endif
         </div>
-        <button class="absolute top-6 right-6 flex items-center gap-2 text-white font-medium px-4 py-2 rounded-lg border-2 border-white hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+        <a href="{{route('Home')}}" class="absolute top-6 right-6 flex items-center gap-2 text-white font-medium px-4 py-2 rounded-lg border-2 border-white hover:bg-white hover:bg-opacity-20 transition-all duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Back Home
-        </button>
+        </a>
     </header>
     <main class="mt-20 md:mt-24 ml-4 md:ml-10">
         <!-- name and edit profile -->
@@ -132,6 +132,7 @@
         @if(Auth::user()->role == 'artist')
         <section class="mt-8">
             <h2 class="font-bold mb-3">Artist Performance:</h2>
+            @if(Auth::user()->song)
             <div class="custom-audio-player">
                 <div class="music-icon-container">
                     <img src="{{asset('/images/icons/ri_music-fill.svg')}}" class="w-6 h-6" alt="Music">
@@ -140,6 +141,8 @@
                     <source src="{{asset('storage/'.Auth::user()->song)}}">
                 </audio>
             </div>
+            @endif
+            @if(Auth::user()->vedeo)
             <div class="bg-white border border-gray-200 rounded-xl p-3 shadow-sm max-w-md">
                 <div class="flex items-center mb-3">
                     <div class="bg-[#2C2C2C] rounded-full p-1.5 mr-3 flex items-center justify-center">
@@ -153,6 +156,7 @@
                     <source src="{{asset('storage/'.Auth::user()->vedeo ?? '')}}" type="video/mp4">
                 </video>
             </div>
+            @endif
         </section>
         @endif
     </main>

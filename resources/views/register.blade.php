@@ -17,7 +17,7 @@
             <div class=" w-full max-w-md">
                 <div class="mb-8">
                     <h1 class="text-3xl font-bold text-[#121212] mb-2">Create an account</h1>
-                    <p class="text-gray-500">already have an account <a href="#" class="text-[#E7826B] font-medium hover:underline">Log in</a></p>
+                    <p class="text-gray-500">already have an account <a href="{{route('login')}}" class="text-[#E7826B] font-medium hover:underline">Log in</a></p>
                 </div>
                 <form action="{{route('register')}}" method="POST">
                     @csrf

@@ -28,14 +28,25 @@
 
         <!-- Desktop Navigation -->
         <div class="hidden space-x-8 md:flex">
-            <a href="#" class="hover:underline hover:underline-offset-4 text-gray-700 ">Home</a>
-            <a href="#" class="hover:underline hover:underline-offset-4 text-gray-700 ">Events</a>
-            <a href="#" class="hover:underline hover:underline-offset-4 text-gray-700 ">Artists</a>
+            <a href="{{route('Home')}}" class="hover:underline hover:underline-offset-4 text-gray-700 ">Home</a>
+            <a href="{{route('events')}}" class="hover:underline hover:underline-offset-4 text-gray-700 ">Events</a>
+            <a href="{{route('artists')}}" class="hover:underline hover:underline-offset-4 text-gray-700 ">Artists</a>
         </div>
 
-        <!-- Join Us Button (Desktop) -->
-        <button class="hidden bg-[#7A38FC] text-white px-5 py-2 rounded-full md:block">Join Us</button>
-
+        <!-- Join Us Button -->
+        @guest
+            <div>
+                <a href="{{route('register')}}" class="hidden bg-[#7A38FC] text-white px-5 py-2 rounded-full md:block">Join us</a>
+            </div>
+            @endguest
+            @auth
+            <div>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button class="hidden bg-[#7A38FC] text-white px-5 py-2 rounded-full md:block">Log out</button>
+                </form>
+            </div>
+            @endauth
         <!-- Burger Menu (Mobile) -->
         <button
             id="burgerMenu"
@@ -48,10 +59,22 @@
     <!-- Mobile Navigation -->
     <nav id="menu" class="absolute top-16 right-0 left-0 bg-white shadow-lg hidden">
         <div class="py-4 px-4 space-y-4">
-            <a href="#" class="block text-gray-700 hover:text-purple-600 transition-colors duration-200">Home</a>
-            <a href="#" class="block text-gray-700 hover:text-purple-600 transition-colors duration-200">Events</a>
-            <a href="#" class="block text-gray-700 hover:text-purple-600 transition-colors duration-200">Artists</a>
-            <button class="bg-[#7A38FC] text-white px-5 py-2 rounded-full w-full">Join Us</button>
+            <a href="{{route('Home')}}" class="block text-gray-700 hover:text-purple-600 transition-colors duration-200">Home</a>
+            <a href="{{route('events')}}" class="block text-gray-700 hover:text-purple-600 transition-colors duration-200">Events</a>
+            <a href="{{route('artists')}}" class="block text-gray-700 hover:text-purple-600 transition-colors duration-200">Artists</a>
+            @guest
+            <div>
+                <a href="{{route('register')}}" class="hidden bg-[#7A38FC] text-white px-5 py-2 rounded-full md:block">Join us</a>
+            </div>
+            @endguest
+            @auth
+            <div>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button class="hidden bg-[#7A38FC] text-white px-5 py-2 rounded-full md:block">Log out</button>
+                </form>
+            </div>
+            @endauth        
         </div>
     </nav>
 </header>

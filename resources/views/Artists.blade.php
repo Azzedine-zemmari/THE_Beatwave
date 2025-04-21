@@ -16,7 +16,11 @@
     @endif
     @foreach($data as $artist)
     <div class="bg-white shadow-lg rounded-lg">
+        @if($artist->avatar)
         <img src="{{asset('storage/'.$artist->avatar)}}" alt="profile" class="w-full rounded-t-lg">
+        @else
+        <img src="{{asset('/images/defaultProfile.webp')}}" alt="" class="w-full rounded-t-lg">
+        @endif
         <div class="p-3">
             <a href="/ArtistProfile/{{$artist->id}}" class="font-semibold text-lg">{{$artist->Firstname}} {{$artist->LastName}}</a>
             <p>{{$artist->bio}}</p> 
