@@ -27,9 +27,9 @@
         </div>
     </div>
     @endforeach
-    <div>
+</div>
+<div class="mt-8 flex justify-end">
         {{ $data->links() }}
-    </div>
 </div>
 </section>
 </x-app>
