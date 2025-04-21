@@ -23,6 +23,9 @@
         </div>
     </div>
     @endforeach
+    <div>
+        {{ $data->links() }}
+    </div>
 </div>
 </section>
 </x-app>
