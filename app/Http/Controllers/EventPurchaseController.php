@@ -27,6 +27,7 @@ class EventPurchaseController extends Controller
     public function downloadTicket(int $eventId){
         $userId = auth()->id();
         $eventPurchase = $this->eventpurchaseService->getUserTicket($userId,$eventId);
+        // dd($eventId);
         $pdf = Pdf::loadView('pdf.ticket',compact('eventPurchase'));
         return $pdf->download('ticket.pdf');
     }

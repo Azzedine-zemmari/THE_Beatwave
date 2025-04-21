@@ -53,7 +53,7 @@ class EventService {
             'stockeTicket' => 'required|integer|min:1',
             'numberOfPlace' => 'required|integer|min:1',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'artistId' => ['required',Rule::exists('users','id')->where('role','artist')],
+            'artistId' => ['required',Rule::exists('users','id')->where('role_id',2)],
             'categorieId' => 'required|exists:categories,id',
             'place' => 'required|string',
         ]);
@@ -88,7 +88,7 @@ class EventService {
         return $this->categoryRepository->getAll();
     }
     public function getArtists(){
-        return $this->userRepository->findByRole('artist');
+        return $this->userRepository->findByRole(2);
     }
     public function findEvent(int $id){
         return $this->eventrepository->findById($id);
@@ -102,7 +102,7 @@ class EventService {
             'stockeTicket' => 'required|integer|min:1',
             'numberOfPlace' => 'required|integer|min:1',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'artistId' => ['required',Rule::exists('users','id')->where('role','artist')],
+            'artistId' => ['required',Rule::exists('users','id')->where('role_id',2)],
             'categorieId' => 'required|exists:categories,id',
             'place' => 'required|string',
         ]);

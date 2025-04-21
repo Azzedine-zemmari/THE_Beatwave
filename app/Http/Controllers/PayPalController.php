@@ -111,8 +111,11 @@ class PayPalController extends Controller
                 'eventId' => session('event_id'),
                 'transactionId' => $response['id']
             ]);
+            // dd($eventPurchase->id);
             // Load the related event
             $eventPurchase = $this->eventPurchaservice->findPurchaseWithEvent($eventPurchase->id);
+
+            // dd($eventPurchase);
 
             // $eventPurchase->load('event.artist');
             // dd($eventPurchase);       

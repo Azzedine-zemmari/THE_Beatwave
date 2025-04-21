@@ -23,9 +23,9 @@ class UserRepository implements UserRepositoryInterface{
     {
         return User::find($id);
     }
-    public function findByRole(string $role)
+    public function findByRole(int $role)
     {
-        return User::where('role',$role)->get();
+        return User::where('role_id',$role)->get();
     }
     public function update(int $id,array $data)
     {
@@ -35,13 +35,13 @@ class UserRepository implements UserRepositoryInterface{
     }
     public function findByName(string $name)
     {
-        return User::where('role','artist')
+        return User::where('role_id',2)
         ->where('Firstname','like',"%$name%")
         ->orWhere('LastName','like',"%$name%")
         ->paginate(6); // use paginate because get dont have the pagination functionnality to help with ($data->links)
     }
     // find artist with paginate
     public function findArtist(){
-        return User::where('role','artist')->paginate(6);
+        return User::where('role_id',2)->paginate(6);
     }
 }
