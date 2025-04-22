@@ -67,7 +67,10 @@ Route::get('/admin/EventSubmission',[EventsSubmissionController::class,'show']);
 Route::post('/admin/EventSubmission/accept/{id}',[EventsSubmissionController::class,'accept'])->name('acceptEvent');
 // admin refuse event to be published
 Route::post('/admin/EventSubmission/refuse/{id}',[EventsSubmissionController::class,'refuse'])->name('refuseEvent');
-
+// admin Website dashbiard
+Route::get('/admin/Dashboard',function(){
+    return view('admin.Dashboard');
+});
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
 // accept invitation for event
