@@ -15,7 +15,7 @@ class RoleChangeRequestController extends Controller
     }
     public function changeUserRole(Request $request){
         $data = $request->validate([
-            'requested_role' => 'required|in:artist,organizer'
+            'requested_role' => 'required|in:1,2'
         ]);
         $this->rolechangeservice->changeRole($data);
         return redirect()->back()->with('success', 'Role change request submitted.');

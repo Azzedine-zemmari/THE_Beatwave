@@ -28,7 +28,8 @@ class RoleChangeRequestRepository implements RoleChangeRequestInterface{
         $request = RoleChangeRequest::findOrFail($requestId);
         $user = User::findOrFail($request->userId);
 
-        $user->role = $request->requested_role;
+        // dd($request->requested_role);
+        $user->role_id = $request->requested_role;
         $user->save();
 
         $request->status = 'approved';

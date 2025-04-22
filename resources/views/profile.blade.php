@@ -64,7 +64,7 @@
         <!-- name and edit profile -->
         <section>
             <h1 class="font-bold text-xl">{{Auth::user()->Firstname}} {{Auth::user()->LastName}}</h1>
-            <p>{{Auth::user()->role}}</p>
+            <p>{{Auth::user()->role->type}}</p>
             <div class="flex items-center gap-5 mt-6">
                 <a href="{{route('editProfile',['userId'=>Auth::user()->id])}}" class="bg-[#2C2C2C] text-white px-3 py-2 rounded-lg">Edit profile</a>
                 <button class="bg-[#EBEBEB] p-2 rounded-lg flex items-end justify-center">
@@ -72,7 +72,7 @@
                 </button>
 
                 <!-- Role Change Request Dropdown -->
-                @if(Auth::user()->role === 'user')
+                @if(Auth::user()->role->type === 'user')
                 <div class="relative group">
                     <button type="button" class="bg-[#EBEBEB] hover:bg-gray-200 text-gray-800 px-3 py-2 rounded-lg flex items-center transition-all duration-300">
                         <span>Change Role</span>
@@ -88,8 +88,8 @@
                                 <label for="requested_role" class="block mb-2 font-medium">Request new role:</label>
                                 <select name="requested_role" id="requested_role" class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2">
                                     <option value="" selected disabled>Select a role</option>
-                                    <option value="artist">Artist</option>
-                                    <option value="organizer">Organizer</option>
+                                    <option value="2">Artist</option>
+                                    <option value="1">Organizer</option>
                                 </select>
                                 <button type="submit" class="w-full mt-2 bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md transition-colors duration-300">
                                     Submit Request
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 @else
-                <a href="{{Auth::user()->role == 'artist' ? '/artist/Invitation' : '/'}}" class="bg-gradient-to-r from-[#43CBFF] to-[#9708CC] p-2 rounded-lg">{{Auth::user()->role}} Dashboard</a>
+                <a href="{{Auth::user()->role->type == 'artist' ? '/artist/Invitation' : '/'}}" class="bg-gradient-to-r from-[#43CBFF] to-[#9708CC] p-2 rounded-lg">{{Auth::user()->role->type}} Dashboard</a>
                 @endif
             </div>
         </section>

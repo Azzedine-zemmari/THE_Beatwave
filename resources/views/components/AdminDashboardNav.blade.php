@@ -15,16 +15,13 @@
         })
     </script>
 </head>
-<body class="flex h-screen bg-gray-100 relative">
+<body class="flex min-h-screen bg-gray-100">
     <!-- burger button -->
-    <button
-            id="burgerMenu"
-            class="lg:hidden w-8 h-8 p-1 absolute right-2.5 top-3"
-        >
+    <button id="burgerMenu" class="lg:hidden w-8 h-8 p-1 fixed right-2.5 top-3 z-50">
             <img src="{{ asset('/images/icons/ep_menu.svg') }}" alt="Menu" class="w-full h-full">
     </button>
     <!-- Sidebar -->
-    <aside id="sidebar" class="w-60 bg-[#7A38FC] text-white z-50 absolute lg:relative h-full hidden lg:block">
+    <aside id="sidebar" class="w-60 bg-[#7A38FC] text-white fixed top-0 left-0 h-screen overflow-y-auto z-40 hidden lg:block">
         <div class="p-4 border-b border-[#7A38FC]">
             <h1 class="text-xl font-bold">BeatWave</h1>
             <p class="text-xs text-purple-200">Experience the next level of sound</p>
@@ -105,7 +102,7 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1">
+    <main class="flex-1 lg:ml-60 overflow-x-auto">
         <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
             <h2 class="text-lg font-medium">Welcome {{Auth::user()->Firstname}}</h2>
             
@@ -128,8 +125,10 @@
                 </form>
             </div>
         </header>
-
-        {{$slot}}
+<div class="p-6">
+    {{$slot}}
+</div>
+        
     </main>
 </body>
 </html>

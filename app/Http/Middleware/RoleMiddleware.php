@@ -16,7 +16,7 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next,$role): Response
     {
         // check if the user is authenticated and has the required role
-        if(!auth()->check() || auth()->user()->role !== $role){
+        if(!auth()->check() || auth()->user()->role->type !== $role){
             return redirect('/')->with('error','You dont have the permission to enter this page');
         }
         return $next($request);
