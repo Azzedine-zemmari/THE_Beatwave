@@ -29,5 +29,22 @@ class Dashboard{
     public function purchaseCount(){
         return $this->EventPurchaseRipository->countPurchase();
     }
+    public function getEventsByCategoryForChart()
+    {
+        $result = $this->EventRepository->countByCategorie();
 
+        // data format for chart.js
+        $labels = $result->pluck('nom')->toArray();
+        $data = $result->pluck('total')->toArray();
+
+        return [
+            "labels" => $labels,
+            "datasets" => [
+                [
+                    'label'=>'Events by Category',
+                    'data' => $data
+                ]
+            ]
+                ];
+    }
 }

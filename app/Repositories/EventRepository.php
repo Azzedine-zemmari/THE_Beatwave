@@ -127,4 +127,12 @@ class EventRepository implements EventInterface{
     {
         return DB::table('events')->count();
     }
+    public function countByCategorie()
+    {
+        return DB::table('events')
+        ->join('categories','categories.id','=','events.categorieId')
+        ->select('categories.nom',DB::raw('count(*) as total'))
+        ->groupBy('categories.nom')
+        ->get();
+    }
 }

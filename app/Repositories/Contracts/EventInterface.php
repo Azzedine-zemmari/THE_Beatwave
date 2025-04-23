@@ -20,4 +20,6 @@ interface EventInterface{
     public function getEventPrice(int $id);
     // count event for admin dashboard
     public function countEvent();
+    // count event by categorie
+    public function countByCategorie();
 }
