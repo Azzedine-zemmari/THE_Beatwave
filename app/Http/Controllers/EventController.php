@@ -59,4 +59,8 @@ class EventController extends Controller
         $this->eventService->refuseEvent($id);
         return redirect()->back()->with('success','event canceled successfully');
     }
+    public function events(){
+        $data = $this->eventService->showSubmitedEvents();
+        return view('Events',compact('data'));
+    }
 }

@@ -85,4 +85,12 @@ class EventRepository implements EventInterface{
         'events.eventId as ID'
         )->whereNotIn('events.status',['pending','desactive'])->get();
     }
+    public function Events()
+    {
+        return DB::table('events')
+        ->join('categories','categories.id','=','events.categorieId')
+        ->select('events.nom','events.description','events.image','events.eventId as ID','categories.nom as Category')
+        ->where('events.status','done')
+        ->get();
+    }
 }

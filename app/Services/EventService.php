@@ -150,4 +150,9 @@ class EventService {
     public function refuseEvent(int $id){
         return $this->eventrepository->updateStatus($id,'archive');
     }
+    // show events for the final user
+
+    public function showSubmitedEvents(){
+        return $this->eventrepository->Events();
+    }
 }

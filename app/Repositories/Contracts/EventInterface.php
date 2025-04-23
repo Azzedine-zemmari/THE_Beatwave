@@ -12,4 +12,6 @@ interface EventInterface{
     public function updateStatus(int $id,string $status);
     // show all active event for the admin
     public function allActive();
+    // get all the events with status done to show to the user
+    public function Events();
 }

@@ -36,7 +36,7 @@ Route::get('/', function () {
     return view('Home');
 })->name('Home');
 
-Route::get('/Events',[EventsSubmissionController::class,'events'])->name('events');
+Route::get('/Events',[EventController::class,'events'])->name('events');
 // Route::get('/Event/{id}',[EventController::class,'findEvent']);
 Route::get('/Artists',[ArtistController::class,'index'])->name('artists');
 // Artist portfolio
