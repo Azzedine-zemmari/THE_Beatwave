@@ -11,4 +11,6 @@ interface EventPurchaseInterface{
     public function revenue();
     // top events
     public function topEvent();
+    //count number of ticket sold
+    public function countPurchase();
 }

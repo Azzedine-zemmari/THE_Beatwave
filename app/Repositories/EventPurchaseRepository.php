@@ -75,4 +75,9 @@ class EventPurchaseRepository implements EventPurchaseInterface{
         ->limit(3)
         ->get();
     }
+    // count number of ticket for admin
+    public function countPurchase()
+    {
+        return DB::table('event_purchases')->count();
+    }
 }
