@@ -64,4 +64,15 @@ class EventPurchaseRepository implements EventPurchaseInterface{
         ->selectRaw('SUM(events."taketPrice") as revenue')
         ->value('revenue');
     }
+    // TOP EVENT IN HOME SECTION
+    public function topEvent()
+    {
+        return DB::table('event_purchases as ep')
+        ->join('events as e','e.eventId','=','ep.eventId')
+        ->select('ep.eventId',DB::raw('count(*) as total_purchases'),'e.nom','e.image')
+        ->groupBy('ep.eventId','e.nom','e.image')
+        ->orderByDesc('total_purchases')
+        ->limit(3)
+        ->get();
+    }
 }

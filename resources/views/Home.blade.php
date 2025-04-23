@@ -111,44 +111,22 @@
         <h2 class=" font-Kadwa text-4xl text-center font-semibold">Upcomming Events</h2>
         <!-- events -->
         <div class="flex justify-center items-center flex-wrap space-x-12 mt-5">
+            @foreach($top3 as $top)
             <div class="relative ">
-                <img src="{{asset('/images/PartyR.jpeg')}}" class="w-[150px] h-[200px] md:w-[200px] md:h-[300px] rounded-xl object-cover shadow-lg" alt="">
+                <img src="{{asset($top->image)}}" class="w-[150px] h-[200px] md:w-[200px] md:h-[300px] rounded-xl object-cover shadow-lg" alt="">
                 <span class="absolute top-2 right-2 border-2 border-white px-3 py-1 rounded-full flex items-center space-x-2">
                     <img src="{{asset('/images/icons/mdi-light_calendar.svg')}}" class="w-4 h-4" alt="">
-                    <p class="text-white">22-02</p>
+                    <p class="text-white">{{$top->total_purchases}}</p>
                 </span>
                 <div class="flex justify-between items-center">
-                    <p>name</p>
+                    <p>{{$top->nom}}</p>
                     <img src="{{asset('/images/icons/memory_arrow-up.svg')}}" class="w-6 h-6" alt="">
                 </div>
             </div>
-            <!-- event 2 -->
-            <div class="relative ">
-                <img src="{{asset('/images/PartyR.jpeg')}}" class="w-[150px] h-[200px] md:w-[200px] md:h-[300px] rounded-xl object-cover shadow-lg" alt="">
-                <span class="absolute top-2 right-2 border-2 border-white px-3 py-1 rounded-full flex items-center space-x-2">
-                    <img src="{{asset('/images/icons/mdi-light_calendar.svg')}}" class="w-4 h-4" alt="">
-                    <p class="text-white">22-02</p>
-                </span>
-                <div class="flex justify-between items-center">
-                    <p>name</p>
-                    <img src="{{asset('/images/icons/memory_arrow-up.svg')}}" class="w-6 h-6" alt="">
-                </div>
-            </div>
-            <!-- event 3 -->
-            <div class="relative ">
-                <img src="{{asset('/images/PartyR.jpeg')}}" class="w-[150px] h-[200px] md:w-[200px] md:h-[300px] rounded-xl object-cover shadow-lg" alt="">
-                <span class="absolute top-2 right-2 border-2 border-white px-3 py-1 rounded-full flex items-center space-x-2">
-                    <img src="{{asset('/images/icons/mdi-light_calendar.svg')}}" class="w-4 h-4" alt="">
-                    <p class="text-white">22-02</p>
-                </span>
-                <div class="flex justify-between items-center">
-                    <p>name</p>
-                    <img src="{{asset('/images/icons/memory_arrow-up.svg')}}" class="w-6 h-6" alt="">
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="flex justify-center items-center my-5">
-            <button class=" bg-white border-2 border-black px-6 py-2 rounded-full">View all event</button>
+            <a href="{{route('events')}}" class=" bg-white border-2 border-black px-6 py-2 rounded-full">View all event</a>
         </div>
     </section>
     <!-- why choose us -->

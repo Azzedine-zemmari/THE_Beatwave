@@ -8,6 +8,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventPurchaseController;
 use App\Http\Controllers\EventsSubmissionController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProfileController;
@@ -32,9 +33,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Home');
-})->name('Home');
+Route::get('/', [HomeController::class,'index'])->name('Home');
 
 Route::get('/Events',[EventController::class,'events'])->name('events');
 // Route::get('/Event/{id}',[EventController::class,'findEvent']);

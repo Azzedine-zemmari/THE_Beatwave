@@ -29,4 +29,8 @@ class EventPurchaseService{
         return $this->eventPurchaseRepository->getUserPurchase($userId,$eventId);
         
     }
+    // topEvent
+    public function ToPthree(){
+        return $this->eventPurchaseRepository->topEvent();
+    }
 }
