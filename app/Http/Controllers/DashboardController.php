@@ -15,8 +15,13 @@ class DashboardController extends Controller
         $users = $this->dashboardService->userCount();
         $events = $this->dashboardService->eventCount();
         $purchaseCount = $this->dashboardService->purchaseCount();
-        $chartData = $this->dashboardService->getEventsByCategoryForChart();
-        dd($chartData);
         return view('admin.Dashboard',compact('users','events','purchaseCount'));
+    }
+    public function getChartData(){
+        $chartData = $this->dashboardService->getEventsByCategoryForChart();
+        return response()->json([
+            'success' => true,
+            'data' => $chartData
+        ]);
     }
 }
