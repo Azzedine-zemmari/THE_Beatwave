@@ -16,4 +16,6 @@ interface EventInterface{
     public function Events();
     // to get event details
     public function eventdetails(int $id);
+    // to get the price in the paypal traitement
+    public function getEventPrice(int $id);
 }

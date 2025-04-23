@@ -26,7 +26,7 @@ return new class extends Migration
             $table->dropForeign(['role_id']);
             $table->dropColumn('role_id');
 
-            $table->string('role');
+            $table->string('role')->default('user');
         });
     }
 };

@@ -159,4 +159,8 @@ class EventService {
     public function EventDetail(int $id){
         return $this->eventrepository->eventdetails($id);
     }
+
+    public function getEventPrice(int $id){
+        return $this->eventrepository->getEventPrice($id);
+    }
 }

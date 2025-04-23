@@ -116,4 +116,11 @@ class EventRepository implements EventInterface{
         ->where('events.eventId',$id)
         ->first();
     }
+    public function getEventPrice(int $id)
+    {
+        return DB::table('events')
+        ->select('events.taketPrice')
+        ->where('events.eventId',$id)
+        ->first();
+    }
 }

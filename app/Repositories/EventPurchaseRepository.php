@@ -17,9 +17,8 @@ class EventPurchaseRepository implements EventPurchaseInterface{
     public function getPurchaseWithEvent(int $id){
         // return EventPurchase::with('event.artist')->find($id);
         return DB::table('event_purchases')
-        ->join('events_submissions', 'events_submissions.id', '=', 'event_purchases.eventId')
-        ->join('events', 'events.eventId', '=', 'events_submissions.eventId')
-        ->join('users', 'users.id', '=', 'events_submissions.artistId')
+        ->join('events', 'events.eventId', '=', 'event_purchases.eventId')
+        ->join('users', 'users.id', '=', 'events.artistId')
         ->where('event_purchases.id', $id)
         ->select(
             'event_purchases.*',
@@ -39,9 +38,8 @@ class EventPurchaseRepository implements EventPurchaseInterface{
         // ->where('eventId',$eventId)
         // ->first();
         return DB::table('event_purchases')
-        ->join('events_submissions', 'events_submissions.id', '=', 'event_purchases.eventId')
-        ->join('events', 'events.eventId', '=', 'events_submissions.eventId')
-        ->join('users', 'users.id', '=', 'events_submissions.artistId')
+        ->join('events', 'events.eventId', '=', 'event_purchases.eventId')
+        ->join('users', 'users.id', '=', 'events.artistId')
         ->where('event_purchases.userId',$userId)
         ->where('event_purchases.eventId',$eventId)
         ->select(

@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\TicketEmail;
 use App\Services\EventPurchaseService;
-use App\Services\EventSubmissionService;
+use App\Services\EventService;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Illuminate\Support\Facades\Log;
@@ -12,7 +12,7 @@ class PayPalController extends Controller
 {
     private $eventservice;
     private $eventPurchaservice;
-    public function __construct(EventSubmissionService $eventservice,EventPurchaseService $eventPurchaservice)
+    public function __construct(EventService $eventservice,EventPurchaseService $eventPurchaservice)
     {
         $this->eventservice = $eventservice;
         $this->eventPurchaservice = $eventPurchaservice;
