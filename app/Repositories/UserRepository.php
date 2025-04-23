@@ -44,4 +44,8 @@ class UserRepository implements UserRepositoryInterface{
     public function findArtist(){
         return User::where('role_id',2)->paginate(6);
     }
+    public function countUsers()
+    {
+        return User::where('role_id',4)->count();
+    }
 }

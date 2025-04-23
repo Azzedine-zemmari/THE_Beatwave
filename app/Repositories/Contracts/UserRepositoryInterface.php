@@ -10,4 +10,5 @@ interface UserRepositoryInterface{
     public function update(int $id,array $data);
     public function findByName(string $name);
     public function findArtist();
+    public function countUsers();
 }
