@@ -138,4 +138,8 @@ class EventService {
     public function revenuCount(){
         return $this->eventPurchaseRepository->revenue();
     }
+    // to show active for admin
+    public function showEvents(){
+        return $this->eventrepository->allActive();
+    }
 }

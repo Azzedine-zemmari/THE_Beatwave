@@ -62,7 +62,7 @@ Route::post('/role-change/approve/{id}',[RoleChangeRequestController::class,'app
 Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'rejected'])->name('role-change.rejected');
 
 // admin Event submission
-Route::get('/admin/EventSubmission',[EventsSubmissionController::class,'show']);
+Route::get('/admin/EventSubmission',[EventController::class,'showAll']);
 // admin accept event to be published
 Route::post('/admin/EventSubmission/accept/{id}',[EventsSubmissionController::class,'accept'])->name('acceptEvent');
 // admin refuse event to be published

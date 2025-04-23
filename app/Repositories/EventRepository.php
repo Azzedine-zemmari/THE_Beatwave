@@ -68,6 +68,21 @@ class EventRepository implements EventInterface{
     }
     public function allActive()
     {
-        
+        return DB::table('events')
+        ->join('users as organizer','organizer.id','events.organizerId')
+        ->join('users as artist','artist.id','events.artistId')
+        ->join('categories','categories.id','=','events.categorieId')
+        ->select('events.nom as Event',
+        'events.description',
+        'events.place','events.date',
+        'categories.nom as EventCategorie',
+        'events.taketPrice',
+        'organizer.Firstname as organizerF',
+        'organizer.LastName as organizerL',
+        'artist.Firstname as artistF',
+        'artist.LastName as artistL',
+        'events.status',
+        'events.eventId as ID'
+        )->where('events.status','active')->get();
     }
 }

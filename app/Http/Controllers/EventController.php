@@ -45,4 +45,10 @@ class EventController extends Controller
         $this->eventService->destroy($id);
         return redirect()->route('showAllEvent')->with('success','event deleted successfully');
     }
+    // to show all events for admin
+    public function showAll(){
+        $data = $this->eventService->showEvents();
+        return view('admin.EventSubmission',compact('data'));
+
+    }
 }
