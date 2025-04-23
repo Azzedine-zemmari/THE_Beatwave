@@ -18,4 +18,6 @@ interface EventInterface{
     public function eventdetails(int $id);
     // to get the price in the paypal traitement
     public function getEventPrice(int $id);
+    // count event for admin dashboard
+    public function countEvent();
 }

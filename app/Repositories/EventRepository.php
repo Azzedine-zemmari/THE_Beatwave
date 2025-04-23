@@ -123,4 +123,8 @@ class EventRepository implements EventInterface{
         ->where('events.eventId',$id)
         ->first();
     }
+    public function countEvent()
+    {
+        return DB::table('events')->count();
+    }
 }
