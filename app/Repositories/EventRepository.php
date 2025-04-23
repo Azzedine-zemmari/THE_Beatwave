@@ -93,4 +93,27 @@ class EventRepository implements EventInterface{
         ->where('events.status','done')
         ->get();
     }
+    public function eventdetails(int $id)
+    {
+        return DB::table('events')
+        ->join('users as organizer','organizer.id','=','events.organizerId')
+        ->join('users as artist','artist.id','=','events.artistId')
+        ->join('categories','categories.id','=','events.categorieId')
+        ->select('events.nom as Event',
+        'events.image',
+        'events.description',
+        'events.place','events.date',
+        'categories.nom as EventCategorie',
+        'events.taketPrice',
+        'organizer.Firstname as organizerF',
+        'organizer.LastName as organizerL',
+        'artist.Firstname as artistF',
+        'artist.LastName as artistL',
+        'events.status',
+        'events.eventId as id'
+        )
+        ->where('events.status','done')
+        ->where('events.eventId',$id)
+        ->first();
+    }
 }

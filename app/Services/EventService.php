@@ -155,4 +155,8 @@ class EventService {
     public function showSubmitedEvents(){
         return $this->eventrepository->Events();
     }
+
+    public function EventDetail(int $id){
+        return $this->eventrepository->eventdetails($id);
+    }
 }

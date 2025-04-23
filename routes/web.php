@@ -102,7 +102,7 @@ Route::get('/profile',[ProfileController::class,'index'])->name('profile');
 Route::get('/EditProfile/{userId}',[ProfileController::class,'editProfile'])->name('editProfile');
 Route::post('/UpdateProfile',[ProfileController::class,'updateProfile'])->name('updateprofile');
 // event details
-Route::get('/EventDetail/{id}',[EventsSubmissionController::class,'eventDetails'])->name('eventDetails');
+Route::get('/EventDetail/{id}',[EventController::class,'eventDetails'])->name('eventDetails');
 // create comment in events
 Route::post('/Event/comment',[CommentaireController::class,'comment'])->name('createComment');
 

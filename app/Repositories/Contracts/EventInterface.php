@@ -14,4 +14,6 @@ interface EventInterface{
     public function allActive();
     // get all the events with status done to show to the user
     public function Events();
+    // to get event details
+    public function eventdetails(int $id);
 }

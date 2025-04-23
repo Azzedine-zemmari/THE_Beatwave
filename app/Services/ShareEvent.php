@@ -2,21 +2,21 @@
 
 namespace App\Services;
 
-use App\Repositories\Contracts\EventSubmissionInterface;
+use App\Repositories\Contracts\EventInterface;
 use Jorenvh\Share\Share;
 
 class ShareEvent{
     private $eventrepository;
     private $share;
 
-    public function __construct(EventSubmissionInterface $eventrepository,Share $share)
+    public function __construct(EventInterface $eventrepository,Share $share)
     {
         $this->eventrepository = $eventrepository;
         $this->share = $share;
     }
 
     public function share(int $id){
-        $event = $this->eventrepository->getSubmitedEvent($id);
+        $event = $this->eventrepository->eventdetails($id);
 
         if(!$event){
             return null;
@@ -28,6 +28,6 @@ class ShareEvent{
         )->facebook()            
         ->reddit()
         ->twitter()
-        ->getRawLinks(); // renders the links as HTML
+        ->getRawLinks(); 
     }
 }
