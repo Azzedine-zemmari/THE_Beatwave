@@ -35,6 +35,7 @@ class AuthGoogleServices{
                 'password'=> $password
             ];
             $this->userRepository->create($data);
+            $user = $this->userRepository->findByEmail($googleUser->getEmail());
         }
         Auth::login($user);
         return redirect('/');
