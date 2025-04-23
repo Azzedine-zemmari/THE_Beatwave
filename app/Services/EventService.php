@@ -142,4 +142,12 @@ class EventService {
     public function showEvents(){
         return $this->eventrepository->allActive();
     }
+    // to accept event by admin
+    public function acceptEvent(int $id){
+        return $this->eventrepository->updateStatus($id,'done');
+    }
+    // to archive event by admin
+    public function refuseEvent(int $id){
+        return $this->eventrepository->updateStatus($id,'archive');
+    }
 }

@@ -64,9 +64,9 @@ Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'reje
 // admin Event submission
 Route::get('/admin/EventSubmission',[EventController::class,'showAll']);
 // admin accept event to be published
-Route::post('/admin/EventSubmission/accept/{id}',[EventsSubmissionController::class,'accept'])->name('acceptEvent');
+Route::post('/admin/EventSubmission/accept/{id}',[EventController::class,'accept'])->name('acceptEvent');
 // admin refuse event to be published
-Route::post('/admin/EventSubmission/refuse/{id}',[EventsSubmissionController::class,'refuse'])->name('refuseEvent');
+Route::post('/admin/EventSubmission/refuse/{id}',[EventController::class,'refuse'])->name('refuseEvent');
 // admin Website dashbiard
 Route::get('/admin/Dashboard',function(){
     return view('admin.Dashboard');

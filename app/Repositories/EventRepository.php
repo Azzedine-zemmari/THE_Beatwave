@@ -83,6 +83,6 @@ class EventRepository implements EventInterface{
         'artist.LastName as artistL',
         'events.status',
         'events.eventId as ID'
-        )->where('events.status','active')->get();
+        )->whereNotIn('events.status',['pending','desactive'])->get();
     }
 }

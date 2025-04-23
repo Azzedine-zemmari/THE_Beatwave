@@ -51,4 +51,12 @@ class EventController extends Controller
         return view('admin.EventSubmission',compact('data'));
 
     }
+    public function accept(int $id){
+        $this->eventService->acceptEvent($id);
+        return redirect()->back()->with('success','event published successfully');
+    }
+    public function refuse(int $id){
+        $this->eventService->refuseEvent($id);
+        return redirect()->back()->with('success','event canceled successfully');
+    }
 }
