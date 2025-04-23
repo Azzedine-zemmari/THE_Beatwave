@@ -88,6 +88,7 @@
         </section>
         <section class="mt-8">
             <h2 class="font-bold mb-3">Artist Performance:</h2>
+            @if(Auth::user()->song)
             <div class="custom-audio-player">
                 <div class="music-icon-container">
                     <img src="{{asset('/images/icons/ri_music-fill.svg')}}" class="w-6 h-6" alt="Music">
@@ -96,6 +97,8 @@
                     <source src="{{asset('storage/'.$data->song)}}">
                 </audio>
             </div>
+            @endif
+            @if(Auth::user()->vedeo)
             <div class="bg-white border border-gray-200 rounded-xl p-3 shadow-sm max-w-md">
                 <div class="flex items-center mb-3">
                     <div class="bg-[#2C2C2C] rounded-full p-1.5 mr-3 flex items-center justify-center">
@@ -109,6 +112,7 @@
                     <source src="{{asset('storage/'.$data->vedeo ?? '')}}" type="video/mp4">
                 </video>
             </div>
+            @endif
         </section>
     </main>
 </body>

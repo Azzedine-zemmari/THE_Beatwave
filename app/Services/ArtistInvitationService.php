@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Providers\EventSubmissionProvider;
 use App\Repositories\Contracts\ArtistInvitationInterface;
 use App\Repositories\Contracts\EventInterface;
 

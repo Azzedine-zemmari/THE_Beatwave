@@ -129,7 +129,7 @@
                 </div>
             </div>
         </section>
-        @if(Auth::user()->role == 'artist')
+        @if(Auth::user()->role_id == 2)
         <section class="mt-8">
             <h2 class="font-bold mb-3">Artist Performance:</h2>
             @if(Auth::user()->song)

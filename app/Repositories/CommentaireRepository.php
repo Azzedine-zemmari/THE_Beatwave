@@ -18,7 +18,7 @@ class CommentaireRepository implements CommentaireInterface{
     public function get(int $eventId)
     {
         return DB::table('commentaire')
-        ->join('events_submissions','events_submissions.id','=','commentaire.eventId')
+        ->join('events','events.eventId','=','commentaire.eventId')
         ->join('users','users.id','commentaire.userId')
         ->select('users.avatar','users.Firstname','users.LastName','commentaire.commentaire')
         ->where('commentaire.eventId',$eventId)
