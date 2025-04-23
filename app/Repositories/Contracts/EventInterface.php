@@ -9,4 +9,7 @@ interface EventInterface{
     public function all();
     public function destroy(int $id);
     public function EventsCount();
+    public function updateStatus(int $id,string $status);
+    // show all active event for the admin
+    public function allActive();
 }

@@ -62,4 +62,12 @@ class EventRepository implements EventInterface{
         ->whereNull('deleted_at')
         ->count();
     }
+    public function updateStatus(int $id,string $status)
+    {
+        return Event::where('eventId',$id)->update(['status'=>$status]);
+    }
+    public function allActive()
+    {
+        
+    }
 }

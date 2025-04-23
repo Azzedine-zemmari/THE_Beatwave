@@ -4,17 +4,17 @@ namespace App\Services;
 
 use App\Providers\EventSubmissionProvider;
 use App\Repositories\Contracts\ArtistInvitationInterface;
-use App\Repositories\Contracts\EventSubmissionInterface;
+use App\Repositories\Contracts\EventInterface;
 
 
 class ArtistInvitationService{
     private $artistrepository;
-    private $eventSubmission;
+    private $event;
 
-    public function __construct(ArtistInvitationInterface $artistrepository,EventSubmissionInterface $eventSubmission)
+    public function __construct(ArtistInvitationInterface $artistrepository,EventInterface $event)
     {
         $this->artistrepository = $artistrepository;
-        $this->eventSubmission = $eventSubmission;
+        $this->event = $event;
     }
 
     public function showInvitation(){
@@ -23,14 +23,14 @@ class ArtistInvitationService{
     public function acceptInvitation(int $invitationId){
         $this->artistrepository->acceptInvitation($invitationId);
         $data = $this->artistrepository->getById($invitationId);
-        $this->eventSubmission->create([
-            'organizerId' => $data->organizerId,
-            'artistId' => $data->artistId,
-            'eventId' => $data->eventsId
-        ]);
+        // to update the event status
+        $this->event->updateStatus($data->eventsId,'active');
     }
     public function refuseInvitation(int $invitationId){
-        return $this->artistrepository->refuseInvitation($invitationId);
+        $this->artistrepository->refuseInvitation($invitationId);
+        $data = $this->artistrepository->getById($invitationId);
+        $this->event->updateStatus($data->eventsId,'desactive');
+
     }
     public function availlability(){
         return $this->artistrepository->availability();
