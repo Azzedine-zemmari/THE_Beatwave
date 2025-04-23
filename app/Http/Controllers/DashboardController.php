@@ -7,8 +7,14 @@ use App\Services\Dashboard;
 class DashboardController extends Controller
 {
     private $dashboardService;
+    public function __construct(Dashboard $dashboardService)
+    {
+        $this->dashboardService = $dashboardService;
+    }
     public function index(){
-        
-        return view('admin.Dashboard');
+        $users = $this->dashboardService->userCount();
+        $events = $this->dashboardService->eventCount();
+        $purchaseCount = $this->dashboardService->purchaseCount();
+        return view('admin.Dashboard',compact('users','events','purchaseCount'));
     }
 }

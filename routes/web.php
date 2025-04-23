@@ -4,6 +4,7 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ArtistInvitationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventPurchaseController;
 use App\Http\Controllers\EventsSubmissionController;
@@ -67,9 +68,7 @@ Route::post('/admin/EventSubmission/accept/{id}',[EventController::class,'accept
 // admin refuse event to be published
 Route::post('/admin/EventSubmission/refuse/{id}',[EventController::class,'refuse'])->name('refuseEvent');
 // admin Website dashbiard
-Route::get('/admin/Dashboard',function(){
-    return view('admin.Dashboard');
-});
+Route::get('/admin/Dashboard',[DashboardController::class,'index']);
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
 // accept invitation for event
