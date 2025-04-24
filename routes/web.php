@@ -69,6 +69,12 @@ Route::post('/admin/EventSubmission/accept/{id}',[EventController::class,'accept
 Route::post('/admin/EventSubmission/refuse/{id}',[EventController::class,'refuse'])->name('refuseEvent');
 // admin Website dashbiard
 Route::get('/admin/Dashboard',[DashboardController::class,'index']);
+
+// admin create categorie
+Route::get('/admin/Categorie',function(){
+    return view('admin.CategorieTable');
+});
+
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
 // accept invitation for event
