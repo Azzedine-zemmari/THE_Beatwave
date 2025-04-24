@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ArtistInvitationController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
@@ -71,9 +72,7 @@ Route::post('/admin/EventSubmission/refuse/{id}',[EventController::class,'refuse
 Route::get('/admin/Dashboard',[DashboardController::class,'index']);
 
 // admin create categorie
-Route::get('/admin/Categorie',function(){
-    return view('admin.CategorieTable');
-});
+Route::get('/admin/Categorie',[CategoryController::class,"all"]);
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
