@@ -11,4 +11,5 @@ interface UserRepositoryInterface{
     public function findByName(string $name);
     public function findArtist();
     public function countUsers();
+    public function dropUser(int $id);
 }

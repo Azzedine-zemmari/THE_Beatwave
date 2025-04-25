@@ -48,4 +48,8 @@ class UserRepository implements UserRepositoryInterface{
     {
         return User::where('role_id',4)->count();
     }
+    public function dropUser(int $id)
+    {
+        return $this->findById($id)->delete();
+    }
 }

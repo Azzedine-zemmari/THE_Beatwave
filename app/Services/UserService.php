@@ -1,0 +1,18 @@
+<?php 
+
+namespace App\Services;
+
+use App\Repositories\Contracts\UserRepositoryInterface;
+
+
+class UserService{
+    private $userRepository;
+
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+    public function delete(int $id){
+        return $this->userRepository->dropUser($id);
+    }
+}
