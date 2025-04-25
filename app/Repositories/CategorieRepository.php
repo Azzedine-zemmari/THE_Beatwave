@@ -17,4 +17,13 @@ class CategorieRepository implements CategorieInterface{
             "description" => $data['description']
         ]);
     }
+    public function findById(int $id)
+    {
+        return Category::where('id',$id)->first();
+    }
+    public function update(int $id, array $data)
+    {
+        $category = $this->findById($id);
+        return $category->update($data);
+    }
 }
