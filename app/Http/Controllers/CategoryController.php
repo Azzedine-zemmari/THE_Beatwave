@@ -28,11 +28,15 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors($e->validator->errors())->withInput();
         }
     }
-    public function update(int $id,Request $request){
+    public function modifier(int $id){
+        $data = $this->categorieService->findCategory($id);
+        return view('admin.createCategorie',compact('data'));
+    }
+    public function update(Request $request){
         try{
             $data = $request->all();
-            $this->categorieService->UpdateCategory($id,$data);
-            return redirect()->back()->with('success','categorie created successfully');
+            $this->categorieService->UpdateCategory($data);
+            return redirect()->back()->with('success','categorie updated successfully');
         }catch(ValidationException $e){
             return redirect()->back()->withErrors($e->validator->errors())->withInput();
         }

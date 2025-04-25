@@ -25,7 +25,10 @@ class CategorieServices{
         }
         return $this->categorieRepository->create($data);
     }
-    public function UpdateCategory(int $id , array $data){
+    public function findCategory(int $id){
+        return $this->categorieRepository->findById($id);
+    }
+    public function UpdateCategory(array $data){
         $validate = Validator::make($data,[
             'nom' => "required|string|max:20",
             "description" => "required|string",
@@ -34,7 +37,7 @@ class CategorieServices{
         if($validate->fails()){
             throw new ValidationException($validate);
         }
-
+        $id = $data['id'];
         return $this->categorieRepository->update($id,$data);
     }
 }

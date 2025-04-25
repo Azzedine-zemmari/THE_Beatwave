@@ -38,15 +38,16 @@
         @endif
     <div class="p-6">
         <h1 class="font-bold text-lg">Categorie formulaire</h1>
-        <form action="{{route('insertCategorie')}}" method="post">
+        <form action="{{$data ? route('updateCategorie') : route('insertCategorie')}}" method="post">
             @csrf 
             <div class="mt-3">
+                <input type="hidden" name="id" value="{{$data ? $data->id : ''}}">
             <div class="">
                 <label for="">Name</label>
-                <input type="text" name="nom" placeholder="Name" class="w-full p-3 rounded-lg border placeholder:pl-4 mt-1">
+                <input type="text" name="nom" placeholder="Name" value="{{$data->nom?$data->nom:''}}" class="w-full p-3 rounded-lg border placeholder:pl-4 mt-1">
             <div class="mt-3">
                 <label for="">Description</label>
-                <textarea name="description" placeholder="Description" class="w-full p-3 rounded-lg border placeholder:pl-4 resize-none h-[150px] mt-1"></textarea>
+                <textarea name="description" placeholder="Description" class="w-full p-3 rounded-lg border placeholder:pl-4 resize-none h-[150px] mt-1">{{$data->description ? $data->description : '' }}</textarea>
             </div>
             <button class="bg-black px-4 py-2 rounded-lg mt-3 text-white text-md">submit</button>
             </div>

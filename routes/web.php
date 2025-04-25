@@ -77,6 +77,10 @@ Route::get('/admin/Categorie',[CategoryController::class,"all"]);
 Route::get('/admin/CreateCategorie',[CategoryController::class,"create"]);
 // add categorie 
 Route::post('/admin/CreateCategorie',[CategoryController::class,"insert"])->name('insertCategorie');
+// modifier categorie
+Route::get('/admin/modifierCategorie/{id}',[CategoryController::class,'modifier'])->name('modifierCategorie');
+// update categorie
+Route::post('/admin/updateCategorie',[CategoryController::class,'update'])->name('updateCategorie');
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
