@@ -4,4 +4,5 @@ namespace App\Repositories\Contracts;
 
 interface CategorieInterface{
     public function getAll();
+    public function create(array $data);
 }

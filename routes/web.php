@@ -73,6 +73,10 @@ Route::get('/admin/Dashboard',[DashboardController::class,'index']);
 
 // admin create categorie
 Route::get('/admin/Categorie',[CategoryController::class,"all"]);
+// add categorie (interface)
+Route::get('/admin/CreateCategorie',[CategoryController::class,"create"]);
+// add categorie 
+Route::post('/admin/CreateCategorie',[CategoryController::class,"insert"])->name('insertCategorie');
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);

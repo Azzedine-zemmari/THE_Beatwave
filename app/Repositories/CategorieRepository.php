@@ -10,4 +10,11 @@ class CategorieRepository implements CategorieInterface{
     {
         return Category::all();
     }
+    public function create(array $data)
+    {
+        return Category::create([
+            'nom'=>$data['nom'],
+            "description" => $data['description']
+        ]);
+    }
 }

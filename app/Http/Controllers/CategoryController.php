@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\CategorieServices;
-
+use Illuminate\Validation\ValidationException;
 class CategoryController extends Controller
 {
     private $categorieService;
@@ -15,5 +15,17 @@ class CategoryController extends Controller
     public function all(){
         $data = $this->categorieService->get();
         return view('admin.CategorieTable',compact('data'));
+    }
+    public function create(){
+        return view('admin.createCategorie');
+    }
+    public function insert(Request $request){
+        try{
+            $data = $request->all();
+            $this->categorieService->addCategorie($data);
+            return redirect()->back()->with('success','categorie created successfully');
+        }catch(ValidationException $e){
+            return redirect()->back()->withErrors($e->validator->errors())->withInput();
+        }
     }
 }

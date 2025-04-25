@@ -2,6 +2,8 @@
 
 namespace App\Services;
 use App\Repositories\Contracts\CategorieInterface;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 
 class CategorieServices{
     private $categorieRepository;
@@ -11,5 +13,16 @@ class CategorieServices{
     }
     public function get(){
         return $this->categorieRepository->getAll();
+    }
+    public function addCategorie(array $data){
+        $validate = Validator::make($data,[
+            'nom' => 'required|string|max:255',
+            'description' => 'required|string'
+        ]);
+
+        if($validate->fails()){
+            throw new ValidationException($validate);
+        }
+        return $this->categorieRepository->create($data);
     }
 }
