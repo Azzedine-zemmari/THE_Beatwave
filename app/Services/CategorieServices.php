@@ -16,7 +16,7 @@ class CategorieServices{
     }
     public function addCategorie(array $data){
         $validate = Validator::make($data,[
-            'nom' => 'required|string|max:255',
+            'nom' => 'required|string|max:20',
             'description' => 'required|string'
         ]);
 
@@ -24,5 +24,17 @@ class CategorieServices{
             throw new ValidationException($validate);
         }
         return $this->categorieRepository->create($data);
+    }
+    public function UpdateCategory(int $id , array $data){
+        $validate = Validator::make($data,[
+            'nom' => "required|string|max:20",
+            "description" => "required|string",
+        ]);
+
+        if($validate->fails()){
+            throw new ValidationException($validate);
+        }
+
+        return $this->categorieRepository->update($id,$data);
     }
 }
