@@ -41,4 +41,13 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors($e->validator->errors())->withInput();
         }
     }
+    public function delete(int $id){
+        $categorie = $this->categorieService->destroy($id);
+        if($categorie){
+            return redirect()->back()->with('success','categorie deleted successfully');
+        }
+        else{
+            return redirect()->back()->with('error','something went wrong');
+        }
+    }
 }

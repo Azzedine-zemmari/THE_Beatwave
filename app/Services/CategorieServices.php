@@ -40,4 +40,7 @@ class CategorieServices{
         $id = $data['id'];
         return $this->categorieRepository->update($id,$data);
     }
+    public function destroy(int $id){
+        return $this->categorieRepository->delete($id);
+    }
 }

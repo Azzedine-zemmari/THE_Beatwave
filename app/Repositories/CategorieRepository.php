@@ -26,4 +26,12 @@ class CategorieRepository implements CategorieInterface{
         $category = $this->findById($id);
         return $category->update($data);
     }
+    public function delete(int $id)
+    {
+        $category = $this->findById($id);
+        if($category){
+            return $category->delete();
+        }
+        return false;
+    }
 }
