@@ -35,7 +35,7 @@
             </table>
         </div>
     </div>
-    <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden z-50 transition-opacity duration-300" aria-hidden="true">
+    <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden z-50 transition-opacity duration-300">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 transform transition-all duration-300 scale-95" id="modal-content">
         <!-- Modal Header -->
         <div class="flex items-center justify-between mb-4">
@@ -55,13 +55,12 @@
             @csrf
             <div class="flex justify-end space-x-3">
                 <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:outline-none transition-colors">Cancel</button>
-                <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none transition-colors">Delete</button>
+                <button  class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none transition-colors">Delete</button>
             </div>
         </form>
     </div>
 </div>
     <script>
-        const deleteButton = document.querySelectorAll('DeleteButton');
         const modal = document.getElementById('modal');
         const modalContent = document.getElementById('modal-content')
         const deleteForm = document.getElementById('delete-form')

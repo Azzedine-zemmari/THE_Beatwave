@@ -13,7 +13,8 @@ class UserController extends Controller
     }
 
     public function deleteUser(int $id){
-        return $this->userService->delete($id);
+        $this->userService->delete($id);
+        return redirect()->back();
     }
     public function users(){
         $data = $this->userService->GetUsers();
