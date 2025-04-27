@@ -27,7 +27,10 @@
                             <p class="border rounded-full py-2 text-center @if($user->deleted_at === null) text-blue-600 bg-blue-200 border-blue-300 @else text-red-600 bg-red-200 border-red-300 @endif">{{$user->deleted_at === null ? 'Active' : 'Archive'}}</p>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <button>Archiver</button>
+                            <form method="post" action="{{route('archiveUser',$user->userId)}}">
+                                @csrf 
+                                <button>Archiver</button>   
+                            </form>
                             <button>Active</button>
                         </td>
                     </tr>

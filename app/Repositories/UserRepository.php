@@ -57,7 +57,7 @@ class UserRepository implements UserRepositoryInterface{
     {
         return DB::table('users')
         ->join('roles','roles.id','=','users.role_id')
-        ->select('Firstname','LastName','email','roles.type','deleted_at')
+        ->select('Firstname','LastName','email','roles.type','deleted_at','users.id as userId')
         ->where('roles.type','!=','admin')
         ->get();
     }

@@ -86,6 +86,8 @@ Route::post('/admin/updateCategorie',[CategoryController::class,'update'])->name
 Route::post('/admin/deletCategorie/{id}',[CategoryController::class,'delete'])->name('deleteCategory');
 // admin show all users
 Route::get('/admin/users',[UserController::class,'users']);
+// admin soft delete a user
+Route::post('/admin/ArchiveUser/{id}',[UserController::class,'deleteUser'])->name('archiveUser');
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
