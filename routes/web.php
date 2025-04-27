@@ -15,6 +15,7 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleChangeRequestController;
+use App\Http\Controllers\UserController;
 use App\Mail\RoleChangeApproved;
 use App\Models\Event;
 use App\Models\EventPurchase;
@@ -83,6 +84,8 @@ Route::get('/admin/modifierCategorie/{id}',[CategoryController::class,'modifier'
 Route::post('/admin/updateCategorie',[CategoryController::class,'update'])->name('updateCategorie');
 // drop categorie
 Route::post('/admin/deletCategorie/{id}',[CategoryController::class,'delete'])->name('deleteCategory');
+// admin show all users
+Route::get('/admin/users',[UserController::class,'users']);
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);

@@ -15,4 +15,7 @@ class UserService{
     public function delete(int $id){
         return $this->userRepository->dropUser($id);
     }
+    public function GetUsers(){
+        return $this->userRepository->allUsers();
+    }
 }

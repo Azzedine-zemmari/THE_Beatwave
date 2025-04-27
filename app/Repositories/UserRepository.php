@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserRepository implements UserRepositoryInterface{
     public function create(array $data){
@@ -51,5 +52,13 @@ class UserRepository implements UserRepositoryInterface{
     public function dropUser(int $id)
     {
         return $this->findById($id)->delete();
+    }
+    public function allUsers()
+    {
+        return DB::table('users')
+        ->join('roles','roles.id','=','users.role_id')
+        ->select('Firstname','LastName','email','roles.type','deleted_at')
+        ->where('roles.type','!=','admin')
+        ->get();
     }
 }

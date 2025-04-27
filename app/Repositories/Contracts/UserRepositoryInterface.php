@@ -12,4 +12,5 @@ interface UserRepositoryInterface{
     public function findArtist();
     public function countUsers();
     public function dropUser(int $id);
+    public function allUsers();
 }
