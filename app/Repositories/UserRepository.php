@@ -60,12 +60,12 @@ class UserRepository implements UserRepositoryInterface{
         ->join('roles','roles.id','=','users.role_id')
         ->select('Firstname','LastName','email','roles.type','deleted_at','users.id as userId')
         ->where('roles.type','!=','admin')
-        ->get();
+        ->paginate(5);
     }
     public function UserSearch(string $name)
     {
         return User::where('Firstname','like',"%$name%")
         ->orWhere('LastName','like',"%$name%")
-        ->get();
+        ->paginate(5);
     }
 }

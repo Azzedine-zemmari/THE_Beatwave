@@ -54,6 +54,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="mt-3">
+            {{$data->links()}}
+        </div>
     </div>
     <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden z-50 transition-opacity duration-300">
         <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 transform transition-all duration-300 scale-95" id="modal-content">
