@@ -34,6 +34,7 @@ class UserRepository implements UserRepositoryInterface{
         $user->update($data);
         return $user;
     }
+    // search for artist
     public function findByName(string $name)
     {
         return User::where('role_id',2)
@@ -59,6 +60,12 @@ class UserRepository implements UserRepositoryInterface{
         ->join('roles','roles.id','=','users.role_id')
         ->select('Firstname','LastName','email','roles.type','deleted_at','users.id as userId')
         ->where('roles.type','!=','admin')
+        ->get();
+    }
+    public function UserSearch(string $name)
+    {
+        return User::where('Firstname','like',"%$name%")
+        ->orWhere('LastName','like',"%$name%")
         ->get();
     }
 }

@@ -20,5 +20,10 @@ class UserController extends Controller
         $data = $this->userService->GetUsers();
         return view('admin.UsersTable',compact('data'));
     }
+    public function search(Request $request){
+        $user = $request->input('name');
+        $data = $this->userService->search($user);
+        return view('admin.UsersTable',compact('data'));
+    }
 }
 

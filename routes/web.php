@@ -88,6 +88,8 @@ Route::post('/admin/deletCategorie/{id}',[CategoryController::class,'delete'])->
 Route::get('/admin/users',[UserController::class,'users']);
 // admin soft delete a user
 Route::post('/admin/ArchiveUser/{id}',[UserController::class,'deleteUser'])->name('archiveUser');
+// admin serach for a user
+Route::post('/admin/search',[UserController::class,'search'])->name('UserSearch');
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);

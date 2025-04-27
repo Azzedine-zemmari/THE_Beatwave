@@ -1,6 +1,25 @@
 <x-AdminDashboardNav>
     <div class="p-6">
-        <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="mb-6">
+            <form action="{{ route('UserSearch') }}" method="post" class="bg-white rounded-lg shadow p-4 flex items-center space-x-3">
+                @csrf
+                <div class="flex-1">
+                    <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="Enter user name..." 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                    >
+                </div>
+                <button 
+                    type="submit" 
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 "
+                >
+                    Search
+                </button>
+            </form>
+        </div>
+        <div class="bg-white rounded-lg shadow overflow-auto lg:overflow-hidden">
             <table class="min-w-full divide-y divide-gray-50">
                 <thead class="bg-gray-50">
                     <tr>

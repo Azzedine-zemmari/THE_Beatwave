@@ -18,4 +18,7 @@ class UserService{
     public function GetUsers(){
         return $this->userRepository->allUsers();
     }
+    public function search(string $name){
+        return $this->userRepository->UserSearch($name);
+    }
 }
