@@ -68,7 +68,8 @@ class EventController extends Controller
     }
     public function events(){
         $data = $this->eventService->showSubmitedEvents();
-        return view('Events',compact('data'));
+        $categories = $this->eventService->getCategories();
+        return view('Events',compact('data','categories'));
     }
     public function eventDetails(int $id,ShareEvent $Shareservice){
         $data = $this->eventService->EventDetail($id);
@@ -86,5 +87,13 @@ class EventController extends Controller
             return view('Events',compact('data'));
         }
         return null;
+    }
+    // filtre the events
+    public function filtrage(Request $request){
+        $category = $request->query('category');
+        // to show the categories in the blade 
+        $categories = $this->eventService->getCategories();
+        $data = $this->eventService->filter($category);
+        return view('Events',compact('data','categories'));
     }
 }

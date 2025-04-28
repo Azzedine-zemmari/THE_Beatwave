@@ -14,11 +14,9 @@
     <h1 class=" font-Kadwa text-4xl font-bold text-center">All Events</h1>
     <!-- all events -->
     <div class="flex items-center justify-center space-x-4 overflow-x-auto whitespace-nowrap">
-        <p>Concerts</p>
-        <p>Electronic</p>
-        <p>jazz</p>
-        <p>Hip-Hop</p>
-        <p>pop</p>
+        @foreach($categories as $categorie)
+            <a href="{{route('event.filtrage',['category'=>$categorie->nom])}}">{{$categorie->nom}}</a>
+        @endforeach
     </div>
 </section>
 <div class="max-w-6xl mx-auto">

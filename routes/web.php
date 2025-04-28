@@ -127,6 +127,8 @@ Route::get('/EventDetail/{id}',[EventController::class,'eventDetails'])->name('e
 Route::post('/Event/comment',[CommentaireController::class,'comment'])->name('createComment');
 // Event search
 Route::post('/Event/search',[EventController::class,'search'])->name('event.search');
+// Event filtrage
+Route::get('/Event/filtrage',[EventController::class,'filtrage'])->name('event.filtrage');
 
 Route::get('/auth/google',[GoogleAuthController::class,'redirectToGoogle'])->name("redirect.google");
 Route::get('/auth/google/callback',[GoogleAuthController::class,'handleGoogleCallback']);
