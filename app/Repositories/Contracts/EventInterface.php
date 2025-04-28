@@ -22,4 +22,8 @@ interface EventInterface{
     public function countEvent();
     // count event by categorie
     public function countByCategorie();
+    // find by name
+    public function searchByname(string $name);
+    // filter by category
+    public function filterByCategorie(string $category);
 }

@@ -22,9 +22,10 @@
     </div>
 </section>
 <div class="max-w-6xl mx-auto">
-    <form action="" class=" flex justify-end">
+    <form action="{{route('event.search')}}" method="POST" class=" flex justify-end">
+        @csrf
         <div class="relative">
-            <input type="text" placeholder="search" class=" py-2 px-4 rounded-full bg-[#E7D8C9] text-[#1E1812] bg-opacity-30 opacity-70">
+            <input type="text" placeholder="search" name="name" class=" py-2 px-4 rounded-full bg-[#E7D8C9] text-[#1E1812] bg-opacity-30 opacity-70">
             <img src="{{asset('/images/icons/searchsvg.svg')}}" class="absolute top-3 right-3 w-4 h-4" alt="">
         </div>
     </form>

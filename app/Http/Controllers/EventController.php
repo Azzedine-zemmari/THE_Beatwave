@@ -78,4 +78,13 @@ class EventController extends Controller
         $shareButtons = $Shareservice->share($id);
         return view('EventDetails',compact('data','eventPurchase','comments','shareButtons'));
     }
+    // search in the events page
+    public function search(Request $request){
+        $name = $request->input('name');
+        if($name){
+            $data = $this->eventService->search($name);
+            return view('Events',compact('data'));
+        }
+        return null;
+    }
 }

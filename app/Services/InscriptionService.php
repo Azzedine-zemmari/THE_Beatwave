@@ -18,7 +18,7 @@ class InscriptionService{
     public function exportCSV(){
         $data = $this->InscriptionRepository->getInscription();
 
-        $columns = ['Firstname','LastName','nom','transactionId','taketPrice'];
+        $columns = ['Firstname','LastName','Event','transactionId','taketPrice'];
 
         return response()->stream(function () use ($data,$columns){
             // to open buffer and give it ablity to write
@@ -30,6 +30,7 @@ class InscriptionService{
                 fputcsv($handle,[
                     $row->Firstname,
                     $row->LastName,
+                    $row->nom,
                     $row->transactionId,
                     $row->taketPrice
                 ]);

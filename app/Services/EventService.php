@@ -8,6 +8,7 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\ArtistInvitationInterface;
 use App\Repositories\Contracts\EventPurchaseInterface;
 use App\Repositories\Contracts\InscriptionInterface;
+use Error;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
@@ -162,5 +163,24 @@ class EventService {
 
     public function getEventPrice(int $id){
         return $this->eventrepository->getEventPrice($id);
+    }
+    public function search(string $name){
+        $validate = Validator::make(['name'=>$name],[
+            'name' => 'required|string|min:5'
+        ]);
+
+        if($validate->fails()){
+            throw new ValidationException($validate);
+        }
+        return $this->eventrepository->searchByname($name);
+    }
+    public function filter(string $category){
+        $validate = Validator::make(['category'=>$category],[
+            'category' => ['required',Rule::exists('categories','nom')]
+        ]);
+        if($validate->fails()){
+            throw new ValidationException($validate);
+        }
+        return $this->eventrepository->filterByCategorie($category);
     }
 }
