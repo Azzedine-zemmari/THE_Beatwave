@@ -58,24 +58,24 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 Route::post('/changeRole',[RoleChangeRequestController::class,'changeUserRole'])->name('changeRole');
 
 //admin dashboard 
-Route::get('/dashboard',[RoleChangeRequestController::class,'show']);
+Route::get('/dashboard',[RoleChangeRequestController::class,'show'])->name('admin.roleChange');
 // approve changing user role by admin 
 Route::post('/role-change/approve/{id}',[RoleChangeRequestController::class,'approve'])->name('role-change.approve');
 Route::post('/role-change/reject/{id}',[RoleChangeRequestController::class,'rejected'])->name('role-change.rejected');
 
 // admin Event submission
-Route::get('/admin/EventSubmission',[EventController::class,'showAll']);
+Route::get('/admin/EventSubmission',[EventController::class,'showAll'])->name('admin.event');
 // admin accept event to be published
 Route::post('/admin/EventSubmission/accept/{id}',[EventController::class,'accept'])->name('acceptEvent');
 // admin refuse event to be published
 Route::post('/admin/EventSubmission/refuse/{id}',[EventController::class,'refuse'])->name('refuseEvent');
 // admin Website dashbiard
-Route::get('/admin/Dashboard',[DashboardController::class,'index']);
+Route::get('/admin/Dashboard',[DashboardController::class,'index'])->name('admin.Dashboard');
 
 // admin create categorie
-Route::get('/admin/Categorie',[CategoryController::class,"all"]);
+Route::get('/admin/Categorie',[CategoryController::class,"all"])->name('admin.category');
 // add categorie (interface)
-Route::get('/admin/CreateCategorie',[CategoryController::class,"create"]);
+Route::get('/admin/CreateCategorie',[CategoryController::class,"create"])->name('admin.addCategory');
 // add categorie 
 Route::post('/admin/CreateCategorie',[CategoryController::class,"insert"])->name('insertCategorie');
 // modifier categorie
@@ -85,14 +85,14 @@ Route::post('/admin/updateCategorie',[CategoryController::class,'update'])->name
 // drop categorie
 Route::post('/admin/deletCategorie/{id}',[CategoryController::class,'delete'])->name('deleteCategory');
 // admin show all users
-Route::get('/admin/users',[UserController::class,'users']);
+Route::get('/admin/users',[UserController::class,'users'])->name('admin.users');
 // admin soft delete a user
 Route::post('/admin/ArchiveUser/{id}',[UserController::class,'deleteUser'])->name('archiveUser');
 // admin serach for a user
 Route::post('/admin/search',[UserController::class,'search'])->name('UserSearch');
 
 // invitation to events for the artist
-Route::get('/artist/Invitation',[ArtistInvitationController::class,'show']);
+Route::get('/artist/Invitation',[ArtistInvitationController::class,'show'])->name('artist.invitation');
 // accept invitation for event
 Route::post('/artist/Invitation/accept/{id}',[ArtistInvitationController::class,'accepte'])->name('accept');
 // accept invitation for event
@@ -100,9 +100,9 @@ Route::post('/artist/Invitation/refuse/{id}',[ArtistInvitationController::class,
 // Artist schedule for the events
 Route::get('/artist/Myschedule',function(){
     return view('artist.Myschedule');
-});
+})->name('artist.schedule');
 // Add Event by organisateur
-Route::get('/organisateur/AddEvent',[EventController::class,'showform']);
+Route::get('/organisateur/AddEvent',[EventController::class,'showform'])->name('organisateur.addEvent');
 Route::post('/organisateur/registerEvent',[EventController::class,'store'])->name('registerEvent');
 // Update Event by organisateur
 Route::get('/organisateur/edit/{id}',[EventController::class,'edit'])->name('editEvent');

@@ -1,5 +1,8 @@
 <x-AdminDashboardNav>
     <div class="p-6">
+        <div class="flex justify-end">
+            <a  href="{{route('admin.addCategory')}}" class="bg-black text-white px-3 py-2 mb-2">Create Category</a>
+        </div>
         <div class="bg-white rounded-lg shadow overflow-hidden">
             <table class="min-w-full divide-y divide-gray-300">
             <thead class="bg-gray-50">

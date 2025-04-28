@@ -31,7 +31,7 @@
         <nav class="mt-4">
             <ul>
                 <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 bg-[#7A38FC] text-white hover:bg-purple-900">
+                    <a href="{{route('admin.Dashboard')}}" class="flex items-center px-4 py-3 bg-[#7A38FC] text-white hover:bg-purple-900">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6z" />
@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
+                    <a href="{{route('admin.users')}}" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
@@ -50,23 +50,7 @@
                     </a>
                 </li>
                 <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Organisateurs
-                    </a>
-                </li>
-                <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                        </svg>
-                        Artists
-                    </a>
-                </li>
-                <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
+                    <a href="{{route('admin.event')}}" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -74,23 +58,15 @@
                     </a>
                 </li>
                 <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
+                    <a href="{{route('admin.category')}}" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                         </svg>
                         Categories
-                    </a>
+                    </a
                 </li>
                 <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                        </svg>
-                        Comments
-                    </a>
-                </li>
-                <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
+                    <a href="{{route('admin.roleChange')}}" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c2.21 0 4-1.79 4-4S14.21 3 12 3 8 4.79 8 7s1.79 4 4 4zm-6 8c0-2.21 3.58-4 6-4s6 1.79 6 4M4 16h16M4 20h16"/>
                         </svg>

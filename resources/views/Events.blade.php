@@ -11,7 +11,9 @@
     @endif
 <!-- filter -->
 <section class="mt-10 relative">
-    <h1 class=" font-Kadwa text-4xl font-bold text-center">All Events</h1>
+    <div class="flex justify-center items-center">
+        <a href="{{route('events')}}" class=" font-Kadwa text-4xl font-bold text-center">All Events</a>
+    </div>
     <!-- all events -->
     <div class="flex items-center justify-center space-x-4 overflow-x-auto whitespace-nowrap">
         @foreach($categories as $categorie)

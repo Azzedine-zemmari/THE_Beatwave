@@ -33,13 +33,13 @@
         <nav class="mt-4">
             <ul>
                 <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
+                    <a href="{{route('artist.invitation')}}" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
                         <img src="{{asset('images/icons/user-plus.svg')}}" alt="invitation" class="h-5 w-5 mr-3">
                         Invitations
                     </a>
                 </li>
                 <li class="mb-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
+                    <a href="{{route('artist.schedule')}}" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
                        <img src="{{asset('images/icons/solar_calendar-linear.svg')}}" alt="schedule" class="h-5 w-5 mr-3">
                        My schedule
                     </a>
