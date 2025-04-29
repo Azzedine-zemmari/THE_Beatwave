@@ -80,4 +80,8 @@ class EventPurchaseRepository implements EventPurchaseInterface{
     {
         return DB::table('event_purchases')->count();
     }
+    public function CheckBuy(int $userId, int $eventId)
+    {
+        return EventPurchase::where('userId',$userId)->where('eventId',$eventId)->first();
+    }
 }

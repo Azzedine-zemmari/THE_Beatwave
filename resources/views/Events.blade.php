@@ -9,52 +9,65 @@
         {{ session('error') }}
     </div>
     @endif
-<!-- filter -->
-<section class="mt-10 relative">
-    <div class="flex justify-center items-center">
-        <a href="{{route('events')}}" class=" font-Kadwa text-4xl font-bold text-center">All Events</a>
+    <!-- filter -->
+    <section class="mt-10 relative">
+        <div class="flex justify-center items-center">
+            <a href="{{route('events')}}" class=" font-Kadwa text-4xl font-bold text-center">All Events</a>
+        </div>
+        <!-- all events -->
+        <div class="flex items-center justify-center space-x-4 overflow-x-auto whitespace-nowrap">
+            @if(isset($categories))
+            @foreach($categories as $categorie)
+            <a href="{{route('event.filtrage',['category'=>$categorie->nom])}}">{{$categorie->nom}}</a>
+            @endforeach
+            @endif
+        </div>
+    </section>
+    <div class="max-w-6xl mx-auto">
+        <form action="{{route('event.search')}}" method="POST" class=" flex justify-end">
+            @csrf
+            <div class="relative">
+                <input type="text" placeholder="search" name="name" class=" py-2 px-4 rounded-full bg-[#E7D8C9] text-[#1E1812] bg-opacity-30 opacity-70">
+                <img src="{{asset('/images/icons/searchsvg.svg')}}" class="absolute top-3 right-3 w-4 h-4" alt="">
+            </div>
+        </form>
     </div>
     <!-- all events -->
-    <div class="flex items-center justify-center space-x-4 overflow-x-auto whitespace-nowrap">
-        @if(isset($categories))
-        @foreach($categories as $categorie)
-            <a href="{{route('event.filtrage',['category'=>$categorie->nom])}}">{{$categorie->nom}}</a>
-        @endforeach
-        @endif
-    </div>
-</section>
-<div class="max-w-6xl mx-auto">
-    <form action="{{route('event.search')}}" method="POST" class=" flex justify-end">
-        @csrf
-        <div class="relative">
-            <input type="text" placeholder="search" name="name" class=" py-2 px-4 rounded-full bg-[#E7D8C9] text-[#1E1812] bg-opacity-30 opacity-70">
-            <img src="{{asset('/images/icons/searchsvg.svg')}}" class="absolute top-3 right-3 w-4 h-4" alt="">
-        </div>
-    </form>
-</div>
-<!-- all events -->
-<section class="max-w-6xl mx-auto mt-10">
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    @foreach($data as $event)
-    <div class="bg-white shadow-md rounded-lg">
-        <img src="{{ asset($event->image) }}" class="w-full h-64 object-cover" alt="">
-        <div class="p-4">
-            <a href="{{route('eventDetails',$event->ID)}}" class="text-sm font-semibold md:text-lg">{{$event->nom}}</a>
-            <p class="text-xs md:text-sm mb-4">{{$event->description}}</p>
-            <div class="flex justify-end">
-                <a href="" class="bg-[#7A38FC] text-white text-sm px-3 py-2">Buy</a>
+    <section class="max-w-6xl mx-auto mt-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            @foreach($data as $event)
+            <div class="bg-white shadow-md rounded-lg">
+                <img src="{{ asset($event->image) }}" class="w-full h-64 object-cover" alt="">
+                <div class="p-4">
+                    <a href="{{route('eventDetails',$event->ID)}}" class="text-sm font-semibold md:text-lg">{{$event->nom}}</a>
+                    <p class="text-xs md:text-sm mb-4">{{$event->description}}</p>
+                    @if(Auth::check())
+                    @if(Auth::user()->role_id === 4 && !($eventPurchaseService->checkBuy($event->ID)))
+                    <div class="flex justify-end">
+                        <form action="{{route('processTransaction',$event->ID)}}" method="POST">
+                            @csrf
+                            <button class="bg-[#7A38FC] text-white text-sm px-3 py-2">Buy</button>
+                        </form>
+                    </div>
+                    @elseif(Auth::user()->role_id === 4)
+                    <p class="text-sm text-green-600">Already Purchased</p>
+                    @endif
+                    @else
+                    <p class="text-sm text-gray-600">
+                        <a href="{{ route('login') }}" class="text-purple-600 hover:underline">Login</a> to buy
+                    </p>
+                    @endif
+                </div>
             </div>
+            @endforeach
         </div>
-    </div>
-    @endforeach
-</div>
-</section>
-<script>
-    const alert = document.getElementById('alert');
-    if(alert){
-        setTimeout(()=>{
-            alert.style.display = 'none';
-        },3000);
-    }
-</script>
+    </section>
+    <script>
+        const alert = document.getElementById('alert');
+        if (alert) {
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+    </script>
 </x-app>

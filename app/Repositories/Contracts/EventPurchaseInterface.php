@@ -13,4 +13,6 @@ interface EventPurchaseInterface{
     public function topEvent();
     //count number of ticket sold
     public function countPurchase();
+    // get if the user buy a ticket for that event 
+    public function CheckBuy(int $userId,int $eventId);
 }

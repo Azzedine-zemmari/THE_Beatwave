@@ -69,7 +69,9 @@ class EventController extends Controller
     public function events(){
         $data = $this->eventService->showSubmitedEvents();
         $categories = $this->eventService->getCategories();
-        return view('Events',compact('data','categories'));
+        // to get Checkbuy in the view because i cant pass event id here
+        $eventPurchaseService = $this->eventPurchaseService;
+        return view('Events',compact('data','categories','eventPurchaseService'));
     }
     public function eventDetails(int $id,ShareEvent $Shareservice){
         $data = $this->eventService->EventDetail($id);

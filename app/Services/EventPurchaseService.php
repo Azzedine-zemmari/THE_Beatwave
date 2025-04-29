@@ -33,4 +33,9 @@ class EventPurchaseService{
     public function ToPthree(){
         return $this->eventPurchaseRepository->topEvent();
     }
+    // check if the user buy that event or not 
+    public function checkBuy(int $eventId){
+        $userId = auth()->id();
+        return $this->eventPurchaseRepository->CheckBuy($userId,$eventId);
+    }
 }
