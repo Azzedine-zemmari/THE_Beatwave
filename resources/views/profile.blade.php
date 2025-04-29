@@ -39,13 +39,25 @@
     </style>
 </head>
 
-<body class="font-sans">
-    @if(session('success'))
-    <div id="alert" class="mb-4 p-4 text-green-800 bg-green-100 border border-green-300 rounded-lg">
-        {{ session('success') }}
-    </div>
-    @endif
+<body class="font-sans relative">
     <header class="w-full h-24 bg-gradient-to-r from-[#43CBFF] to-[#9708CC] relative">
+        @if(session('success'))
+        <div id="alert" class="z-50 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded-r-lg shadow-sm flex justify-between items-center max-w-lg mx-auto">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>{{ session('success')}}</span>
+            </div>
+            <button type="button" onclick="document.getElementById('alert').remove()" 
+                    class="text-green-700 hover:text-green-900 focus:outline-none" 
+                    aria-label="Close alert">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        @endif
         <div class="w-28 h-28 md:w-36 md:h-36 rounded-full border bg-gray-300 absolute top-10 left-2 md:left-7 flex justify-center items-center">
             @if(Auth::user()->avatar)
             <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="w-full rounded-full" alt="">
@@ -67,9 +79,6 @@
             <p>{{Auth::user()->role->type}}</p>
             <div class="flex items-center gap-5 mt-6">
                 <a href="{{route('editProfile',['userId'=>Auth::user()->id])}}" class="bg-[#2C2C2C] text-white px-3 py-2 rounded-lg">Edit profile</a>
-                <button class="bg-[#EBEBEB] p-2 rounded-lg flex items-end justify-center">
-                    <img src="{{asset('/images/icons/share.svg')}}" class="w-5 h-5" alt="">
-                </button>
 
                 <!-- Role Change Request Dropdown -->
                 @if(Auth::user()->role->type === 'user')
@@ -160,6 +169,11 @@
         </section>
         @endif
     </main>
+    <script>
+        setTimeout(()=>{
+            document.getElementById('alert').remove();
+        },2000);
+    </script>
 </body>
 
 </html>

@@ -48,7 +48,7 @@
 </head>
 
 <body>
-    <header class="relative flex justify-center items-center">
+<header class="relative flex justify-center items-center">
         <img src="{{asset('/images/hero1.png')}}" class="w-full h-[600px] object-cover" alt="Hero Image">
         <nav class="absolute top-0 left-0 right-0 px-8 py-4 flex justify-between items-center text-white">
             <!-- Logo -->
@@ -63,17 +63,25 @@
                 <a href="{{route('artists')}}" class="cursor-pointer hover:text-gray-300">Artists</a>
             </div>
 
-            <!-- Join Us Button -->
-             @guest
+            <!-- Authentication & Profile -->
+            @guest
             <div>
                 <a href="{{route('register')}}" class="hidden md:flex bg-transparent text-white px-6 py-2 rounded-full border-white border-2 hover:cursor-pointer">Join us</a>
             </div>
             @endguest
             @auth
-            <div>
+            <div class="hidden md:flex items-center space-x-4">
+                <!-- Profile Button -->
+                <a href="{{route('profile')}}" class="flex items-center space-x-2 hover:text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span>Profile</span>
+                </a>
+                <!-- Logout Button -->
                 <form action="{{route('logout')}}" method="post">
                     @csrf
-                    <button class="hidden md:flex bg-transparent text-white px-6 py-2 rounded-full border-white border-2 hover:cursor-pointer">Log out</button>
+                    <button class="bg-transparent text-white px-6 py-2 rounded-full border-white border-2 hover:cursor-pointer">Log out</button>
                 </form>
             </div>
             @endauth
@@ -92,12 +100,19 @@
                 <a href="{{route('register')}}" class=" bg-transparent px-6 py-2 rounded-full border-black border-2 hover:cursor-pointer">Join us</a>
                 @endguest 
                 @auth
-                <form action="{{route('register')}}">
-                @csrf
-                <button class="bg-transparent px-6 py-2 rounded-full border-black border-2 hover:cursor-pointer">Log out</button>
+                <!-- Profile Link for Mobile -->
+                <a href="{{route('profile')}}" class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span>Profile</span>
+                </a>
+                <!-- Logout Button -->
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button class="bg-transparent px-6 py-2 rounded-full border-black border-2 hover:cursor-pointer">Log out</button>
                 </form>    
                 @endauth    
-
             </div>
         </nav>
         <div class="absolute top-52 right-0 left-0 flex flex-col items-center space-y-3">

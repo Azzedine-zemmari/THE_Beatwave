@@ -45,7 +45,16 @@ class AuthController extends Controller
 
         if($user && Hash::check($data['password'],$user->password)){
             Auth::login($user);
-            return redirect('/');
+            switch($user->role_id){
+                case '3':
+                    return redirect()->route('admin.Dashboard');
+                case '2':
+                    return redirect()->route('artist.invitation');
+                case '1':
+                    return redirect()->route('showAllEvent');
+                default:
+                    return redirect()->route('Home');
+            }
         }
         else{
             return back()->withErrors(['email'=>'The given credentials does not math our records']);
