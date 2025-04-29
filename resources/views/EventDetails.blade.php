@@ -54,20 +54,28 @@
             <p>{{$data->artistF}} {{$data->artistL}}</p>
         </section>
         <section class="p-5 border border-gray-200 rounded-xl shadow-sm">
-            <h4 class="text-lg font-semibold">Get Ticket</h4>
-            <p class="text-md font-semibold">{{$data->taketPrice}} dh</p>
-            @if(!$eventPurchase)
-            <div class="flex  text-center my-2">
-                <form action="{{route('processTransaction',$data->id)}}" method="post">
-                    @csrf
-                    <button class="bg-black w-full text-white py-2 rounded">Purchase</button>
-                </form>
-            </div>
+            <h4 class="text-lg font-semibold">{{$eventPurchase ? 'Preview Ticket' : 'Get Ticket'}}</h4>
+            <p class="text-md font-semibold">{{!$eventPurchase ? $data->taketPrice . ' $' : ''}}</p>
+            @if(Auth::check())
+                @if(Auth::user()->role_id === 4 && !$eventPurchase)
+                    <div class="flex  text-center my-2">
+                        <form action="{{route('processTransaction',$data->id)}}" method="post" class="w-full">
+                            @csrf
+                            <button class="bg-black w-full text-white py-2 rounded">Purchase</button>
+                        </form>
+                    </div>
+                @elseif(Auth::user()->role_id === 4 && $eventPurchase)
+                    <div class="flex  text-center my-2">
+                        <a href="{{route('ticketShow',$data->id)}}" class="bg-[#7A38FC] w-full text-white py-2 rounded">Preview ticket</a>
+                    </div>
+                @endif
             @else
-            <div class="flex  text-center my-2">
-                <a href="{{route('ticketShow',$data->id)}}" class="bg-[#7A38FC] w-full text-white py-2 rounded">Preview ticket</a>
-            </div>
+                    <p class="text-sm text-gray-600">
+                        <a href="{{ route('login') }}" class="text-purple-600 hover:underline">Login</a> to buy
+                    </p>
+            @endif
             <!-- comments section -->
+            @if(Auth::check() && Auth::user()->role_id === 4 && $eventPurchase)
             <div class="relative my-3">
                 <form action="{{route('createComment')}}" method="post">
                     @csrf
@@ -78,6 +86,8 @@
                     </button>
                 </form>
             </div>
+            @endif
+            @if($comments->isNotEmpty())
             @foreach($comments as $comment)
             <div class="flex gap-5">
                 <div>

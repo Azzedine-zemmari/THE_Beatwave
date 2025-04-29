@@ -76,7 +76,7 @@ class EventController extends Controller
     public function eventDetails(int $id,ShareEvent $Shareservice){
         $data = $this->eventService->EventDetail($id);
         $userId = auth()->id();
-        $eventPurchase = $this->eventPurchaseService->getUserTicket($userId,$id);
+        $eventPurchase = $this->eventPurchaseService->checkBuy($id);
         $comments = $this->commentService->show($id);
         $shareButtons = $Shareservice->share($id);
         return view('EventDetails',compact('data','eventPurchase','comments','shareButtons'));
