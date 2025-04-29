@@ -45,6 +45,12 @@
                         Inscription
                     </a>
                 </li>
+                <li class="mb-1">
+                    <a href="{{route('showAllEvent')}}" class="flex items-center px-4 py-3 text-white hover:bg-purple-800">
+                        <img src="{{asset('images/icons/brand-eventbrite-svgrepo-com.svg')}}" alt="schedule" class="h-5 w-5 mr-3">
+                        MyEvents
+                    </a>
+                </li>
             </ul>
         </nav>
     </aside>
