@@ -16,9 +16,11 @@
     </div>
     <!-- all events -->
     <div class="flex items-center justify-center space-x-4 overflow-x-auto whitespace-nowrap">
+        @if(isset($categories))
         @foreach($categories as $categorie)
             <a href="{{route('event.filtrage',['category'=>$categorie->nom])}}">{{$categorie->nom}}</a>
         @endforeach
+        @endif
     </div>
 </section>
 <div class="max-w-6xl mx-auto">

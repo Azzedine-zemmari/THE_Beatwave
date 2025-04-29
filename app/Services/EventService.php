@@ -166,7 +166,7 @@ class EventService {
     }
     public function search(string $name){
         $validate = Validator::make(['name'=>$name],[
-            'name' => 'required|string|min:5'
+            'name' => 'required|string'
         ]);
 
         if($validate->fails()){
