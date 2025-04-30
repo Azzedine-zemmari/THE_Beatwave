@@ -63,7 +63,7 @@
                 </div>
             </div>
 
-            @if($data->role == 'artist')
+            @if($data->role_id == 2)
             <!-- Performance Section -->
             <div class="my-8">
                 <p class="text-sm font-medium mb-4">Performance</p>

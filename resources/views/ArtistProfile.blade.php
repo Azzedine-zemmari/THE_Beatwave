@@ -48,12 +48,12 @@
             <img src="{{asset('/images/icons/camera.svg')}}" class="w-7 h-7" alt="">
             @endif
         </div>
-        <button class="absolute top-6 right-6 flex items-center gap-2 text-white font-medium px-4 py-2 rounded-lg border-2 border-white hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+        <a href="{{route('Home')}}" class="absolute top-6 right-6 flex items-center gap-2 text-white font-medium px-4 py-2 rounded-lg border-2 border-white hover:bg-white hover:bg-opacity-20 transition-all duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Back Home
-        </button>
+        </a>
     </header>
     <main class="mt-20 md:mt-24 ml-4 md:ml-10">
         <!-- name and edit profile -->
