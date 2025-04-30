@@ -8,6 +8,19 @@
         </button>
     </div>
 @endif
+@if($errors->any())
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+        <strong class="font-bold">Error!</strong>
+        <div class="flex flex-col space-y-1">
+            @foreach($errors->all() as $error)
+            <span class="">{{ $error }}</span>
+            @endforeach
+        </div>
+        <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
+            ✖
+        </button>
+    </div>
+@endif
 
     <div class="p-6">
         <h1 class="text-xl font-semibold mb-6">Event Registration Form</h1>

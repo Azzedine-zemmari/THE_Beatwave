@@ -51,7 +51,7 @@ class EventService {
         $validator = Validator::make($data,[
             'nom' => 'required|string|max:255',
             'description' => 'required|string',
-            'date' => 'required|date',
+            'date' => 'required|date|after:today',
             'taketPrice' => 'required|numeric|min:0',
             'stockeTicket' => 'required|integer|min:1',
             'numberOfPlace' => 'required|integer|min:1',

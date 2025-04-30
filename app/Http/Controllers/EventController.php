@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\CommentaireService;
 use App\Services\ShareEvent;
 use App\Services\EventPurchaseService;
-
+use Illuminate\Validation\ValidationException;
 class EventController extends Controller
 {
     private $eventService;
@@ -33,9 +33,13 @@ class EventController extends Controller
         return view('organisateur.addEvent',compact('category','artists'));
     }
     public function store(Request $request){
-        $data = $request->all();
-        $event= $this->eventService->createEvent($data);
-        return redirect()->back()->with('success','event created successfully');
+        try{
+            $data = $request->all();
+            $event= $this->eventService->createEvent($data);
+            return redirect()->back()->with('success','event created successfully');
+        }catch(ValidationException $e){
+            return redirect()->back()->withErrors($e->validator)->withInput();
+        }
     }
     public function edit(int $id){
         $category = $this->eventService->getCategories();
