@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Mail\ArtistInvitation;
 use App\Repositories\Contracts\CategorieInterface;
 use App\Repositories\Contracts\EventInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class EventService {
     private $eventrepository;
@@ -81,6 +83,10 @@ class EventService {
             'organizerId' => auth()->id(),
             'eventsId' => $event->eventId
         ]);
+
+        $artist = $this->userRepository->findById($data['artistId']);
+
+        Mail::to($artist->email)->send(new ArtistInvitation($artist,$event));
 
         return $event;
 

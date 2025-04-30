@@ -46,7 +46,7 @@
                     @elseif(Auth::check() && Auth::user()->role_id === 4)
                     @if(!$eventPurchaseService->checkBuy($event->ID))
                     <div class="flex justify-end">
-                        <form action="{{ route('processTransaction', $event->eventId) }}" method="POST">
+                        <form action="{{ route('processTransaction', $event->ID) }}" method="POST">
                             @csrf
                             <button class="bg-[#7A38FC] text-white text-sm px-3 py-2">Buy</button>
                         </form>
