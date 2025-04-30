@@ -84,18 +84,22 @@ class EventController extends Controller
     // search in the events page
     public function search(Request $request){
         $name = $request->input('name');
+        // The events page need $eventPurchaseService to check if the event is buyed by the user authenticated or not 
+        $eventPurchaseService = $this->eventPurchaseService;
         if($name){
             $data = $this->eventService->search($name);
-            return view('Events',compact('data'));
+            return view('Events',compact('data','eventPurchaseService'));
         }
         return null;
     }
     // filtre the events
     public function filtrage(Request $request){
         $category = $request->query('category');
+        // The events page need $eventPurchaseService to check if the event is buyed by the user authenticated or not 
+        $eventPurchaseService = $this->eventPurchaseService;
         // to show the categories in the blade 
         $categories = $this->eventService->getCategories();
         $data = $this->eventService->filter($category);
-        return view('Events',compact('data','categories'));
+        return view('Events',compact('data','categories','eventPurchaseService'));
     }
 }
