@@ -39,17 +39,19 @@
             <div class="bg-white shadow-md rounded-lg">
                 <img src="{{ asset($event->image) }}" class="w-full h-64 object-cover" alt="">
                 <div class="p-4">
-                    <a href="{{route('eventDetails',$event->ID)}}" class="text-sm font-semibold md:text-lg">{{$event->nom}}</a>
-                    <p class="text-xs md:text-sm mb-4">{{$event->description}}</p>
-                    @if(Auth::check())
-                    @if(Auth::user()->role_id === 4 && !($eventPurchaseService->checkBuy($event->ID)))
+                    <a href="{{ $event->deleted_at === null ? route('eventDetails', $event->ID) : '' }}" class="text-sm font-semibold md:text-lg">{{ $event->nom }}</a>
+                    <p class="text-xs md:text-sm mb-4">{{ $event->description }}</p>
+                    @if($event->deleted_at !== null)
+                    <p class="text-sm text-red-600">Deleted by organizer</p>
+                    @elseif(Auth::check() && Auth::user()->role_id === 4)
+                    @if(!$eventPurchaseService->checkBuy($event->ID))
                     <div class="flex justify-end">
-                        <form action="{{route('processTransaction',$event->ID)}}" method="POST">
+                        <form action="{{ route('processTransaction', $event->eventId) }}" method="POST">
                             @csrf
                             <button class="bg-[#7A38FC] text-white text-sm px-3 py-2">Buy</button>
                         </form>
                     </div>
-                    @elseif(Auth::user()->role_id === 4)
+                    @else
                     <p class="text-sm text-green-600">Already Purchased</p>
                     @endif
                     @else
