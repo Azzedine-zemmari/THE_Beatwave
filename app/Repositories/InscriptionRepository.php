@@ -24,4 +24,13 @@ class InscriptionRepository implements InscriptionInterface{
         ->where('events.organizerId',auth()->id())
         ->count();
     }
+    public function getAllInscription()
+    {
+        return DB::table('event_purchases')
+        ->join('users as attendee', 'attendee.id', '=', 'event_purchases.userId')
+        ->join('events', 'events.eventId', '=', 'event_purchases.eventId')
+        ->join('users as organizer', 'organizer.id', '=', 'events.organizerId')
+        ->select('attendee.Firstname', 'attendee.LastName', 'events.nom', 'event_purchases.transactionId', 'events.taketPrice','organizer.Firstname as OrganisateurF','organizer.LastName  as OrganisateurL')
+        ->get();
+    }
 }

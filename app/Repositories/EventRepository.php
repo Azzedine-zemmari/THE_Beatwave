@@ -138,16 +138,18 @@ class EventRepository implements EventInterface{
     public function searchByname(string $name)
     {
         return DB::table('events')
-        ->select('events.nom','events.description','events.image','events.eventId as ID')
+        ->select('events.nom','events.description','events.image','events.eventId as ID','events.deleted_at')
         ->where('nom','like',"%$name%")
+        ->where('events.status','done')
         ->get();
     }
     public function filterByCategorie(string $category)
     {
         return DB::table('events')
         ->join('categories','categories.id','=','events.categorieId')
-        ->select('events.nom','events.description','events.image','events.eventId as ID')
+        ->select('events.nom','events.description','events.image','events.eventId as ID','events.deleted_at')
         ->where('categories.nom',$category)
+        ->where('events.status','done')
         ->get();
     }
 }

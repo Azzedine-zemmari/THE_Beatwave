@@ -24,7 +24,7 @@
 <header class="w-full py-4 bg-white">
     <nav class="flex items-center justify-between max-w-6xl mx-auto px-4">
         <!-- Logo -->
-        <a href="#" class="text-2xl font-bold text-gray-800">BeatWave</a>
+        <a href="{{route('Home')}}" class="text-2xl font-bold text-gray-800">BeatWave</a>
 
         <!-- Desktop Navigation -->
         <div class="hidden space-x-8 md:flex">

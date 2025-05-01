@@ -43,4 +43,7 @@ class InscriptionService{
         ]);
 
     }
+    public function showAll(){
+        return $this->InscriptionRepository->getAllInscription();
+    }
 }

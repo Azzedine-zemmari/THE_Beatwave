@@ -123,7 +123,7 @@
     </header>
     <!-- events -->
     <section class="my-5">
-        <h2 class=" font-Kadwa text-4xl text-center font-semibold">Upcomming Events</h2>
+        <h2 class=" font-Kadwa text-4xl text-center font-semibold">Top Events</h2>
         <!-- events -->
         <div class="flex justify-center items-center flex-wrap space-x-12 mt-5">
             @foreach($top3 as $top)
@@ -158,13 +158,13 @@
             </div>
             <div class="flex flex-col items-center space-y-5 border border-black w-[340px] h-[200px] p-2">
                 <img src="{{asset('/images/icons/twemoji_man-dancing.svg')}}" alt="">
-                <h3 class=" font-Kadwa font-semibold text-center">Unforgettable Parties</h3>
-                <p class=" font-sans text-[#818181] text-center text-sm">Discover the best events, from local hangouts to epic festivals.</p>
+                <h3 class=" font-Kadwa font-semibold text-center">Vibes & Beats</h3>
+                <p class=" font-sans text-[#818181] text-center text-sm">Get lost in rhythm with live DJs, open-air venues, and unforgettable night vibes.</p>
             </div>
             <div class="flex flex-col items-center space-y-5 border border-black w-[340px] h-[200px] p-2">
                 <img src="{{asset('/images/icons/fxemoji_lock.png')}}" alt="">
                 <h3 class=" font-Kadwa font-semibold text-center">Unforgettable Parties</h3>
-                <p class=" font-sans text-[#818181] text-center text-sm">Discover the best events, from local hangouts to epic festivals.</p>
+                <p class=" font-sans text-[#818181] text-center text-sm">Our events are fully secured with professional staff and surveillance to ensure your peace of mind.</p>
             </div>
         </div>
     </section>
@@ -178,7 +178,7 @@
         <div class="carousel">
             <div class="carousel-quotes">
                 <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi voluptatem earum odit voluptate aut exercitationem nobis doloremque animi itaque sapiente? Laudantium sequi ullam adipisci ipsum repudiandae dolor provident dolores pariatur!
-                Nostrum dicta natus consequatur debitis maiores voluptates harum ea esse, ab eius, praesentium, repellat deserunt veniam. Quidem, dolorem. Voluptas necessitatibus assumenda neque quo perferendis delectus commodi? Sapiente illum autem corrupti.</p>
+                Nostrum dicta natus consequatur debitis maiores voluptates harum ea esse, ab eius,</p>
                 <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam mollitia debitis molestiae ipsum deserunt libero animi nam deleniti iusto, perferendis vitae ullam saepe? Voluptate optio voluptatibus adipisci enim ea aliquam.
                 Libero nesciunt minima asperiores odit maxime, architecto laborum numquam dolore dolores nisi obcaecati, quos quod? Deserunt, aspernatur delectus officia tempora soluta sint quasi iure. Repudiandae ratione suscipit in praesentium earum.</p>
                 <p class="">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas odit nulla aliquam sint doloremque, assumenda ea suscipit amet minus eum quibusdam non explicabo enim molestias quod labore ullam quo laboriosam.

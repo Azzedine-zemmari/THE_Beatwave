@@ -90,6 +90,8 @@ Route::get('/admin/users',[UserController::class,'users'])->name('admin.users');
 Route::post('/admin/ArchiveUser/{id}',[UserController::class,'deleteUser'])->name('archiveUser');
 // admin serach for a user
 Route::post('/admin/search',[UserController::class,'search'])->name('UserSearch');
+// show all inscription in the platform for admin
+Route::get('/admin/event/inscriptions',[InscriptionController::class,'show'])->name('admin.inscriptions'); 
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show'])->name('artist.invitation');
