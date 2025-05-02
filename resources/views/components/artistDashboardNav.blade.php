@@ -15,7 +15,7 @@
         })
     </script>
 </head>
-<body class="flex h-screen bg-gray-100 relative">
+<body class="flex min-h-screen bg-gray-100 relative">
     <!-- burger button -->
     <button
             id="burgerMenu"
@@ -24,7 +24,7 @@
             <img src="{{ asset('/images/icons/ep_menu.svg') }}" alt="Menu" class="w-full h-full">
     </button>
     <!-- Sidebar -->
-    <aside id="sidebar" class="w-60 bg-[#7A38FC] text-white z-50 absolute lg:relative h-full hidden lg:block">
+    <aside id="sidebar" class="w-60 bg-[#7A38FC] text-white z-50 min-h-screen absolute lg:relative  hidden lg:block">
         <div class="p-4 border-b border-[#7A38FC]">
             <h1 class="text-xl font-bold">BeatWave</h1>
             <p class="text-xs text-purple-200">Experience the next level of sound</p>

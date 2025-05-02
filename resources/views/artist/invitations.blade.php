@@ -82,5 +82,6 @@
                     </tbody>
                 </table>
             </div>
+            {{$data->links()}}
         </div>
 </x-artistDashboardNav>

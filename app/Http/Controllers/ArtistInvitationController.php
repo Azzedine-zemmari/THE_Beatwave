@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ArtistInvitationService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ArtistInvitationController extends Controller
 {
@@ -26,6 +28,8 @@ class ArtistInvitationController extends Controller
     }
     public function availlable(){
         $data = $this->artistInvitationService->availlability();
+        Log::info($data);
+        Log::info('Raw data:', $data ? $data->toArray() : ['NO DATA']);
         $calendarData = $data->map(function($event){
             return [
                 'title' => $event->Event,

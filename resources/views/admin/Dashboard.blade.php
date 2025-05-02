@@ -14,12 +14,12 @@
                 <p class="text-sm font-semibold text-gray-400">Ticket</p>
                 <p class="font-bold text-xl">{{$purchaseCount}}</p>
             </div>
-            <div class="w-[150px] h-[75px] rounded-lg shadow-md p-3">
-                <p class="text-sm font-semibold text-gray-400">Enrollement</p>
-                <p class="font-bold text-xl">2,845</p>
-            </div>
+                <!-- <div class="w-[150px] h-[75px] rounded-lg shadow-md p-3">
+                    <p class="text-sm font-semibold text-gray-400">Enrollement</p>
+                    <p class="font-bold text-xl">2,845</p>
+                </div> -->
         </div>
-        <h4 class="font-bold text-lg mb-3">Events</h4>
+        <h4 class="font-bold text-lg mb-3">Events by category</h4>
         <div class="flex justify-center items-center w-full">
             <div class="w-full max-w-2xl h-full">
                 <canvas id="eventsChart"></canvas>

@@ -102,7 +102,7 @@ Route::post('/artist/Invitation/refuse/{id}',[ArtistInvitationController::class,
 // Artist schedule for the events
 Route::get('/artist/Myschedule',function(){
     return view('artist.Myschedule');
-})->name('artist.schedule');
+})->name('artist.schedule')->middleware(['web', 'auth']);
 // Add Event by organisateur
 Route::get('/organisateur/AddEvent',[EventController::class,'showform'])->name('organisateur.addEvent');
 Route::post('/organisateur/registerEvent',[EventController::class,'store'])->name('registerEvent');

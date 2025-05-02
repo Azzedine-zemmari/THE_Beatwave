@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use PDO;
 
 class AuthController extends Controller
@@ -42,9 +43,12 @@ class AuthController extends Controller
         ]);
 
         $user = $this->userRepository->findByEmail($data['email']);
-
+        
         if($user && Hash::check($data['password'],$user->password)){
             Auth::login($user);
+            session()->regenerate();
+            session(['user_id' => $user->id]);
+            Log::info("ana flogin " . print_r(session()->all(), true));
             switch($user->role_id){
                 case '3':
                     return redirect()->route('admin.Dashboard');

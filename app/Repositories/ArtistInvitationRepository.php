@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\artistInvitation;
 use App\Repositories\Contracts\ArtistInvitationInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ArtistInvitationRepository implements ArtistInvitationInterface{
     public function create(array $data)
@@ -30,7 +31,7 @@ class ArtistInvitationRepository implements ArtistInvitationInterface{
         'artist_invitations.status',
         'artist_invitations.id as ID')
         ->where('artist_invitations.artistId',auth()->id())
-        ->get();    
+        ->paginate(7);    
         
     }
     // public function updateStatus(int $invitationId, string $status)
@@ -47,12 +48,33 @@ class ArtistInvitationRepository implements ArtistInvitationInterface{
     {
         return artistInvitation::where('id',$id)->update(['status'=>'refuse']);
     }
-    public function availability(){
+    public function availability() {
+        // Try to get the user ID from auth first
+        $userId = auth()->id();
+        
+        // If auth ID is not available, fall back to session
+        if (!$userId && session()->has('user_id')) {
+            $userId = session('user_id');
+            Log::info('Using session user ID: ' . $userId);
+        }
+        
+        // If still no user ID, log and return empty collection
+        if (!$userId) {
+            Log::info('No user ID found in auth or session');
+            return collect();
+        }
+        
+        Log::info('Using user ID for query: ' . $userId);
+        
         return DB::table('artist_invitations')
-        ->join('events','events.eventId','=','artist_invitations.eventsId')
-        ->select('events.nom as Event','events.date')
-        ->where('artist_invitations.status','accept')
-        ->get();
+            ->join('events', 'events.eventId', '=', 'artist_invitations.eventsId')
+            ->select('events.nom as Event', 'events.date')
+            ->where('artist_invitations.status', 'accept')
+            ->where('artist_invitations.artistId', $userId)
+            ->whereNull('events.deleted_at')
+            ->get();
+        
+        Log::info('Query result count: ' . $get->count());
     }
     public function getById(int $id)
     {

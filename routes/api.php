@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register',[AuthController::class,'register']);
 
-Route::get('/artist/Availlability',[ArtistInvitationController::class,'availlable']);
+// Apply web middleware group to enable sessions for this API route
+Route::middleware(['web', 'auth'])->get('/artist/Availlability',[ArtistInvitationController::class,'availlable']);
 
 Route::get('/events/chart-data',[DashboardController::class,'getChartData']);
