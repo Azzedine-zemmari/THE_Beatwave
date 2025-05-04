@@ -45,15 +45,15 @@
         <div id="alert" class="z-50 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded-r-lg shadow-sm flex justify-between items-center max-w-lg mx-auto">
             <div class="flex items-center">
                 <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
                 <span>{{ session('success')}}</span>
             </div>
-            <button type="button" onclick="document.getElementById('alert').remove()" 
-                    class="text-green-700 hover:text-green-900 focus:outline-none" 
-                    aria-label="Close alert">
+            <button type="button" onclick="document.getElementById('alert').remove()"
+                class="text-green-700 hover:text-green-900 focus:outline-none"
+                aria-label="Close alert">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </div>
@@ -141,8 +141,10 @@
         @if(Auth::user()->role_id == 2)
         <section class="mt-8">
             <h2 class="font-bold mb-3">Artist Performance:</h2>
+
+            <!-- Audio Section -->
             @if(Auth::user()->song)
-            <div class="custom-audio-player">
+            <div class="custom-audio-player mb-4">
                 <div class="music-icon-container">
                     <img src="{{asset('/images/icons/ri_music-fill.svg')}}" class="w-6 h-6" alt="Music">
                 </div>
@@ -150,7 +152,17 @@
                     <source src="{{asset('storage/'.Auth::user()->song)}}">
                 </audio>
             </div>
+            @else
+            <div class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm max-w-md mb-4 flex items-center">
+                <div class="bg-gray-100 rounded-full p-2 mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                    </svg>
+                </div>
+                <p class="text-gray-700 text-sm">No audio available</p>
+            </div>
             @endif
+
             @if(Auth::user()->vedeo)
             <div class="bg-white border border-gray-200 rounded-xl p-3 shadow-sm max-w-md">
                 <div class="flex items-center mb-3">
@@ -162,17 +174,26 @@
                     <span class="font-medium">Artist Video</span>
                 </div>
                 <video controls class="w-full rounded-lg bg-gray-100">
-                    <source src="{{asset('storage/'.Auth::user()->vedeo ?? '')}}" type="video/mp4">
+                    <source src="{{asset('storage/'.Auth::user()->vedeo)}}" type="video/mp4">
                 </video>
+            </div>
+            @else
+            <div class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm max-w-md flex items-center">
+                <div class="bg-gray-100 rounded-full p-2 mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <p class="text-gray-700 text-sm">No video available</p>
             </div>
             @endif
         </section>
         @endif
     </main>
     <script>
-        setTimeout(()=>{
+        setTimeout(() => {
             document.getElementById('alert').remove();
-        },2000);
+        }, 2000);
     </script>
 </body>
 

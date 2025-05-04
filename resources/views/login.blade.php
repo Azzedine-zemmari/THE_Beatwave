@@ -9,15 +9,18 @@
 </head>
 
 <body class="bg-[#f8f4f0] font-sans">
-    <main class="w-full flex min-h-screen">
-        <div class="hidden md:block w-1/2 p-4">
-            <img src="{{asset('/images/loging.png')}}" class="w-full h-full object-cover" alt="">
+    <main class="w-full flex min-h-screen overflow-hidden">
+        <div class="hidden md:block w-1/2 bg-gray-100">
+            <div class="h-screen fixed w-1/2 left-0">
+                <img src="{{asset('/images/loging.png')}}" class="object-cover h-full w-full" alt="Beatwave login image">
+            </div>
         </div>
+        
         <div class="w-full flex justify-center items-center p-6 md:w-1/2">
-            <div class=" w-full max-w-md">
+            <div class="w-full max-w-md">
                 <div class="mb-8">
                     <h1 class="text-3xl font-bold text-[#121212] mb-2">BeatWave</h1>
-                    <p class="text-gray-500"> you are new here <a href="{{route('register')}}" class="text-[#E7826B] font-medium hover:underline">Register</a></p>
+                    <p class="text-gray-500">You are new here <a href="{{route('register')}}" class="text-[#E7826B] font-medium hover:underline">Register</a></p>
                 </div>
                 <form action="{{route('login')}}" method="POST">
                     @csrf
@@ -55,7 +58,6 @@
                         </svg>
                         Google
                     </a>
-
                 </form>
             </div>
         </div>

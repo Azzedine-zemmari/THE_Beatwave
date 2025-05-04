@@ -36,14 +36,14 @@
         <!-- Join Us Button -->
         @guest
             <div>
-                <a href="{{route('register')}}" class="hidden bg-[#7A38FC] text-white px-5 py-2 rounded-full md:block">Join us</a>
+                <a href="{{route('register')}}" class="hidden bg-[#E7826B] hover:bg-[#d6715b] text-white px-5 py-2 rounded-full md:block">Join us</a>
             </div>
             @endguest
             @auth
             <div>
                 <form action="{{route('logout')}}" method="post">
                     @csrf
-                    <button class="hidden bg-[#7A38FC] text-white px-5 py-2 rounded-full md:block">Log out</button>
+                    <button class="hidden bg-[#E7826B] hover:bg-[#d6715b] text-white px-5 py-2 rounded-full md:block">Log out</button>
                 </form>
             </div>
             @endauth
@@ -59,19 +59,19 @@
     <!-- Mobile Navigation -->
     <nav id="menu" class="absolute top-16 right-0 left-0 bg-white shadow-lg hidden">
         <div class="py-4 px-4 space-y-4">
-            <a href="{{route('Home')}}" class="block text-gray-700 hover:text-purple-600 transition-colors duration-200">Home</a>
-            <a href="{{route('events')}}" class="block text-gray-700 hover:text-purple-600 transition-colors duration-200">Events</a>
-            <a href="{{route('artists')}}" class="block text-gray-700 hover:text-purple-600 transition-colors duration-200">Artists</a>
+            <a href="{{route('Home')}}" class="block text-gray-700 hover:text-[#d6715b] transition-colors duration-200">Home</a>
+            <a href="{{route('events')}}" class="block text-gray-700 hover:text-[#d6715b] transition-colors duration-200">Events</a>
+            <a href="{{route('artists')}}" class="block text-gray-700 hover:text-[#d6715b] transition-colors duration-200">Artists</a>
             @guest
             <div>
-                <a href="{{route('register')}}" class="hidden bg-[#7A38FC] text-white px-5 py-2 rounded-full md:block">Join us</a>
+                <a href="{{route('register')}}" class="hidden bg-[#E7826B] hover:bg-[#d6715b] text-white px-5 py-2 rounded-full md:block">Join us</a>
             </div>
             @endguest
             @auth
             <div>
                 <form action="{{route('logout')}}" method="post">
                     @csrf
-                    <button class="hidden bg-[#7A38FC] text-white px-5 py-2 rounded-full md:block">Log out</button>
+                    <button class="hidden bg-[#E7826B] hover:bg-[#d6715b] text-white px-5 py-2 rounded-full md:block">Log out</button>
                 </form>
             </div>
             @endauth        

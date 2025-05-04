@@ -29,7 +29,6 @@ class ArtistInvitationController extends Controller
     public function availlable(){
         $data = $this->artistInvitationService->availlability();
         Log::info($data);
-        Log::info('Raw data:', $data ? $data->toArray() : ['NO DATA']);
         $calendarData = $data->map(function($event){
             return [
                 'title' => $event->Event,

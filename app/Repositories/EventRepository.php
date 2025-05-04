@@ -91,7 +91,8 @@ class EventRepository implements EventInterface{
         ->join('categories','categories.id','=','events.categorieId')
         ->select('events.nom','events.description','events.image','events.eventId as ID','categories.nom as Category','events.deleted_at')
         ->where('events.status','done')
-        ->get();
+        ->where('events.deleted_at',null)
+        ->paginate(6);
     }
     public function eventdetails(int $id)
     {
@@ -141,7 +142,8 @@ class EventRepository implements EventInterface{
         ->select('events.nom','events.description','events.image','events.eventId as ID','events.deleted_at')
         ->where('nom','like',"%$name%")
         ->where('events.status','done')
-        ->get();
+        ->where('events.deleted_at',null)
+        ->paginate(6);
     }
     public function filterByCategorie(string $category)
     {
@@ -150,6 +152,7 @@ class EventRepository implements EventInterface{
         ->select('events.nom','events.description','events.image','events.eventId as ID','events.deleted_at')
         ->where('categories.nom',$category)
         ->where('events.status','done')
-        ->get();
+        ->where('events.deleted_at',null)
+        ->paginate(6);
     }
 }

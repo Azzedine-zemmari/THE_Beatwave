@@ -33,7 +33,7 @@
                         </div>
                         
                         <div class="mb-8">
-                            <p class="font-bold text-white text-2xl md:text-3xl">{{session('tiket')->taketPrice}}</p>
+                            <p class="font-bold text-white text-2xl md:text-3xl">{{session('tiket')->taketPrice}} $</p>
                         </div>
                     </div>
                     
@@ -72,7 +72,7 @@
                         </div>
                         
                         <div class="mb-8">
-                            <p class="font-bold text-white text-2xl md:text-3xl">{{$eventPurchase->taketPrice}}</p>
+                            <p class="font-bold text-white text-2xl md:text-3xl">{{$eventPurchase->taketPrice}} $</p>
                         </div>
                     </div>
                     

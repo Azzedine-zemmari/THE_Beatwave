@@ -66,12 +66,12 @@
                     </div>
                 @elseif(Auth::user()->role_id === 4 && $eventPurchase)
                     <div class="flex  text-center my-2">
-                        <a href="{{route('ticketShow',$data->id)}}" class="bg-[#7A38FC] w-full text-white py-2 rounded">Preview ticket</a>
+                        <a href="{{route('ticketShow',$data->id)}}" class="bg-[#E7826B] hover:bg-[#d6715b] w-full text-white py-2 rounded">Preview ticket</a>
                     </div>
                 @endif
             @else
                     <p class="text-sm text-gray-600">
-                        <a href="{{ route('login') }}" class="text-purple-600 hover:underline">Login</a> to buy
+                        <a href="{{ route('login') }}" class=" text-[#d6715b] hover:underline">Login</a> to buy
                     </p>
             @endif
             <!-- comments section -->

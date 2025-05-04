@@ -97,6 +97,15 @@
                     <source src="{{asset('storage/'.$data->song)}}">
                 </audio>
             </div>
+            @else
+            <div class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm max-w-md mb-4 flex items-center">
+                <div class="bg-gray-100 rounded-full p-2 mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                    </svg>
+                </div>
+                <p class="text-gray-700 text-sm">No audio available</p>
+            </div>
             @endif
             @if($data->vedeo)
             <div class="bg-white border border-gray-200 rounded-xl p-3 shadow-sm max-w-md">
@@ -111,6 +120,15 @@
                 <video controls class="w-full rounded-lg bg-gray-100">
                     <source src="{{asset('storage/'.$data->vedeo ?? '')}}" type="video/mp4">
                 </video>
+            </div>
+            @else
+            <div class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm max-w-md flex items-center">
+                <div class="bg-gray-100 rounded-full p-2 mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <p class="text-gray-700 text-sm">No video available</p>
             </div>
             @endif
         </section>

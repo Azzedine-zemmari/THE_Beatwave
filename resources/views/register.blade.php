@@ -9,9 +9,11 @@
 </head>
 
 <body class="bg-[#f8f4f0] font-sans">
-    <main class="w-full flex min-h-screen">
-        <div class="hidden md:block w-1/2 p-4">
-            <img src="{{asset('/images/loging.png')}}" class="w-full h-full object-cover" alt="">
+    <main class="w-full flex min-h-screen overflow-hidden">
+        <div class="hidden md:block w-1/2">
+        <div class="h-screen fixed w-1/2 left-0">
+                <img src="{{asset('/images/loging.png')}}" class="object-cover h-full w-full" alt="Beatwave login image">
+        </div>
         </div>
         <div class="w-full flex justify-center items-center p-6 md:w-1/2">
             <div class=" w-full max-w-md">
