@@ -23,4 +23,7 @@ class InscriptionController extends Controller
         $data = $this->inscriptionService->showAll();
         return view('admin.AllInscriptionTable',compact('data'));
     }
+    public function exportAllCSV(){
+        return $this->inscriptionService->exportAllCSV();
+    }
 }

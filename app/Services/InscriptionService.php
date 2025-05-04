@@ -46,4 +46,30 @@ class InscriptionService{
     public function showAll(){
         return $this->InscriptionRepository->getAllInscription();
     }
+    // export csv for admin
+    public function exportAllCSV(){
+        $data = $this->InscriptionRepository->getAllInscription();
+
+        $columns = ['User_Firstname','User_Lastname','Event','transactionId','taketPrice','Organisateur_Firstname','Organisateur_Lastname'];
+
+        return response()->stream(function() use ($data,$columns){
+            $handle = fopen("php://output","w");
+            fputcsv($handle,$columns);
+            foreach($data as $row){
+                fputcsv($handle,[
+                    $row->Firstname,
+                    $row->LastName,
+                    $row->nom,
+                    $row->transactionId,
+                    $row->taketPrice,
+                    $row->OrganisateurF,
+                    $row->OrganisateurL
+                ]);
+            }
+            fclose($handle);
+        },200,[
+            'Content-Type'=>'text-csv',
+            'Content-Disposition' => 'attachement;filename="inscriptions.csv"'
+        ]);
+    }
 }

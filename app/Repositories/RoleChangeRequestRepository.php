@@ -21,7 +21,7 @@ class RoleChangeRequestRepository implements RoleChangeRequestInterface{
         return DB::table('role_change_requests')
         ->join('users','users.id','=','role_change_requests.userId')
         ->select('users.Firstname','users.LastName','role_change_requests.*')
-        ->get();
+        ->paginate(7);
     }
     public function approved($requestId)
     {

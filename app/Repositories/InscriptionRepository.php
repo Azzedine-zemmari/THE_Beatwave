@@ -31,6 +31,6 @@ class InscriptionRepository implements InscriptionInterface{
         ->join('events', 'events.eventId', '=', 'event_purchases.eventId')
         ->join('users as organizer', 'organizer.id', '=', 'events.organizerId')
         ->select('attendee.Firstname', 'attendee.LastName', 'events.nom', 'event_purchases.transactionId', 'events.taketPrice','organizer.Firstname as OrganisateurF','organizer.LastName  as OrganisateurL')
-        ->get();
+        ->paginate(7);
     }
 }

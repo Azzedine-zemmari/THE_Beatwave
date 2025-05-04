@@ -92,6 +92,8 @@ Route::post('/admin/ArchiveUser/{id}',[UserController::class,'deleteUser'])->nam
 Route::post('/admin/search',[UserController::class,'search'])->name('UserSearch');
 // show all inscription in the platform for admin
 Route::get('/admin/event/inscriptions',[InscriptionController::class,'show'])->name('admin.inscriptions'); 
+// export csv all inscription
+Route::get('/admin/event/inscriptions/export',[InscriptionController::class,'exportAllCSV'])->name('admin.exportCsv');
 
 // invitation to events for the artist
 Route::get('/artist/Invitation',[ArtistInvitationController::class,'show'])->name('artist.invitation');

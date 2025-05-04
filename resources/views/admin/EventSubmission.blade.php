@@ -94,5 +94,8 @@
                     </tbody>
                 </table>
             </div>
+            <div class="flex justify-end my-3">
+                {{$data->links()}}
+            </div>
         </div>
 </x-AdminDashboardNav>

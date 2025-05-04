@@ -44,7 +44,7 @@ class EventRepository implements EventInterface{
         ->whereNull('events.deleted_at')
         ->select('categories.nom as Category',
         'users.Firstname','users.LastName','events.nom','events.description','events.place','events.taketPrice','events.date','events.numberOfPlace','events.eventId')
-        ->get();
+        ->paginate(7);
     }
     public function destroy(int $id)
     {
@@ -83,7 +83,7 @@ class EventRepository implements EventInterface{
         'artist.LastName as artistL',
         'events.status',
         'events.eventId as ID'
-        )->whereNotIn('events.status',['pending','desactive'])->get();
+        )->whereNotIn('events.status',['pending','desactive'])->paginate(7);
     }
     public function Events()
     {
