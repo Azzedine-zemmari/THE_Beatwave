@@ -1,20 +1,18 @@
 <x-AdminDashboardNav>
     <div class="p-6">
-    <div class="mb-6">
+        <div class="mb-6">
             <form action="{{ route('UserSearch') }}" method="post" class="bg-white rounded-lg shadow p-4 flex items-center space-x-3">
                 @csrf
                 <div class="flex-1">
-                    <input 
-                        type="text" 
-                        name="name" 
-                        placeholder="Enter user name..." 
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
-                    >
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter user name..."
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900">
                 </div>
-                <button 
-                    type="submit" 
-                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 "
-                >
+                <button
+                    type="submit"
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 ">
                     Search
                 </button>
             </form>
@@ -46,33 +44,31 @@
                             <p class="border rounded-full py-2 text-center @if($user->deleted_at === null) text-blue-600 bg-blue-200 border-blue-300 @else text-red-600 bg-red-200 border-red-300 @endif">{{$user->deleted_at === null ? 'Active' : 'Archive'}}</p>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-    <div class="flex items-center space-x-3">
-        <!-- Archive Button -->
-        <button 
-            onclick="openModal('{{$user->userId}}','{{$user->Firstname}}','{{$user->type}}')"
-            class="p-1.5 bg-amber-50 text-amber-600 rounded-full hover:bg-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500 "
-            title="Archiver"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-            </svg>
-        </button>
-        
-        <!-- Active Button -->
-        <form method="POST" action="{{route('activeUser',['id'=>$user->userId])}}">
-            @csrf 
-            <button 
-                type="submit"
-                class="p-1.5 bg-green-50 text-green-600 rounded-full hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500"
-                title="Active"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-            </button>
-        </form>
-    </div>
-</td>
+                            <div class="flex items-center space-x-3">
+                                <!-- Archive Button -->
+                                <button
+                                    onclick="openModal('{{$user->userId}}','{{$user->Firstname}}','{{$user->type}}')"
+                                    class="p-1.5 bg-amber-50 text-amber-600 rounded-full hover:bg-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500 "
+                                    title="Archiver">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                                    </svg>
+                                </button>
+
+                                <!-- Active Button -->
+                                <form method="POST" action="{{route('activeUser',['id'=>$user->userId])}}">
+                                    @csrf
+                                    <button
+                                        type="submit"
+                                        class="p-1.5 bg-green-50 text-green-600 rounded-full hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        title="Active">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
 
                     </tr>
                     @endforeach
@@ -91,27 +87,27 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
-                </button>   
+                </button>
             </div>
-                <div class="mb-6">
-                    <p class="text-gray-600" id="Modal-message"></p>
+            <div class="mb-6">
+                <p class="text-gray-600" id="Modal-message"></p>
+            </div>
+            <form id="archive-form" action="" method="post">
+                @csrf
+                <div class="flex justify-end space-x-3">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover-bg-gray-300 focus:outline-none transition-colors">Cancel</button>
+                    <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none transition-colors">Delete</button>
                 </div>
-                <form id="archive-form" action="" method="post">
-                    @csrf 
-                    <div class="flex justify-end space-x-3">
-                            <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover-bg-gray-300 focus:outline-none transition-colors">Cancel</button>
-                            <button  class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none transition-colors">Delete</button>
-                    </div>
-                </form>
-            </div>
+            </form>
         </div>
+    </div>
     <script>
         const modal = document.getElementById('modal');
         const modalContent = document.getElementById('modal-content')
         const archiveForm = document.getElementById('archive-form')
         const ModalMessage = document.getElementById('Modal-message')
 
-        function openModal(userId,userName,userRole){
+        function openModal(userId, userName, userRole) {
             archiveForm.action = `/admin/ArchiveUser/${userId}`
             ModalMessage.textContent = `Are you sure you want to delete the ${userRole} ${userName} `;
             modal.classList.remove('hidden')
@@ -119,7 +115,8 @@
             modalContent.classList.remove('scale-95')
             modalContent.classList.add('scale-100')
         }
-        function closeModal(){
+
+        function closeModal() {
             modal.classList.toggle('hidden')
         }
     </script>

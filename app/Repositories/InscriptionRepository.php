@@ -15,7 +15,7 @@ class InscriptionRepository implements InscriptionInterface{
         ->join('users as organizer', 'organizer.id', '=', 'events.organizerId')
         ->where('events.organizerId', auth()->id())
         ->select('attendee.Firstname', 'attendee.LastName', 'events.nom', 'event_purchases.transactionId', 'events.taketPrice')
-        ->get();
+        ->paginate(7);
     }
     public function countInscription()
     {

@@ -1,25 +1,53 @@
 <x-organizateurDashboardNav>
 @if(session('success'))
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-        <strong class="font-bold">Success!</strong>
-        <span class="">{{ session('success') }}</span>
-        <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
-            ✖
-        </button>
-    </div>
-@endif
-@if($errors->any())
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-        <strong class="font-bold">Error!</strong>
-        <div class="flex flex-col space-y-1">
-            @foreach($errors->all() as $error)
-            <span class="">{{ $error }}</span>
-            @endforeach
+    <div id="alert" class="fixed top-4 right-4 z-50">
+        <div class="bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg flex items-center max-w-sm">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <div class="flex-1">
+                <p class="font-medium">Success!</p>
+                <p class="text-sm">{{ session('success') }}</p>
+            </div>
+            <button
+                type="button"
+                onclick="this.parentElement.remove()"
+                class="ml-3 text-white hover:text-gray-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
         </div>
-        <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
-            ✖
-        </button>
     </div>
+    @endif
+    @if ($errors->any())
+<div class="fixed top-4 left-4 right-4 md:left-auto md:right-4 z-50 animate-slide-in max-w-md" id="validationalert">
+    <div class="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg shadow-lg">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="font-semibold text-sm">Please fix the following errors</span>
+            </div>
+            <button 
+                type="button" 
+                onclick="this.closest('#validationalert').remove()" 
+                class="text-red-600 hover:text-red-800 transition-colors"
+                aria-label="Close"
+            >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <ul class="mt-2 text-sm list-disc list-inside">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+</div>
 @endif
 
     <div class="p-6">
@@ -116,5 +144,8 @@
                 image.click();
             });
         });
+        setTimeout(() => {
+            document.getElementById('alert').remove();
+        }, 3000)
     </script>
 </x-organizateurDashboardNav>

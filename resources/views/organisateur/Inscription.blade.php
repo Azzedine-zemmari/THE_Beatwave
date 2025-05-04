@@ -1,13 +1,4 @@
 <x-organizateurDashboardNav>
-@if(session('success'))
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-        <strong class="font-bold">Success!</strong>
-        <span class="">{{ session('success') }}</span>
-        <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
-            ✖
-        </button>
-    </div>
-@endif
 <div class="p-6">
     <div class="mb-3 flex justify-end items-center">
         <a class=" bg-black text-white px-4 py-2 " href="{{route('ExportCSV')}}">Export csv</a>
@@ -42,6 +33,9 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="flex justify-end my-3">
+        {{$data->links()}}
     </div>
 </div>
 </x-organizateurDashboardNav>

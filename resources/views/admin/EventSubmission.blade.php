@@ -1,13 +1,25 @@
 <x-AdminDashboardNav>
 @if(session('success'))
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-        <strong class="font-bold">Success!</strong>
-        <span class="">{{ session('success') }}</span>
-        <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
-            ✖
-        </button>
+    <div id="alert" class="fixed top-4 right-4 z-50">
+        <div class="bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg flex items-center max-w-sm">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <div class="flex-1">
+                <p class="font-medium">Success!</p>
+                <p class="text-sm">{{ session('success') }}</p>
+            </div>
+            <button
+                type="button"
+                onclick="this.parentElement.remove()"
+                class="ml-3 text-white hover:text-gray-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
     </div>
-@endif
+    @endif
 <div class="p-6">
             <!-- Table of Users -->
             <div class="bg-white rounded-lg shadow overflow-x-auto">
@@ -110,4 +122,9 @@
                 {{$data->links()}}
             </div>
         </div>
+        <script>
+        setTimeout(() => {
+            document.getElementById('alert').remove();
+        }, 3000)
+    </script>
 </x-AdminDashboardNav>

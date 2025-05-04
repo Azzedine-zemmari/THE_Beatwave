@@ -75,6 +75,9 @@
             </div>
         </div>
     @endif
+    <div class="flex justify-end my-2">
+        {{$data->links()}}
+    </div>
 </section>
     <script>
         const alert = document.getElementById('alert');
