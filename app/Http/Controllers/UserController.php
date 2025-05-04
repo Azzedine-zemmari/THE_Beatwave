@@ -25,5 +25,9 @@ class UserController extends Controller
         $data = $this->userService->search($user);
         return view('admin.UsersTable',compact('data'));
     }
+public function activeUser(int $id){
+        $this->userService->avtiveUser($id);
+        return redirect()->back();
+    }
 }
 

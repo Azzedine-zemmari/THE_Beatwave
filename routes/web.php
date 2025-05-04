@@ -49,8 +49,8 @@ Route::post('/Artist/search',[ArtistController::class,'search'])->name('ArtistSe
 Route::get('/register',[AuthController::class,'showRegistrationForm'])->name('register');
 Route::post('/register',[AuthController::class,'register'])->name('register');
 // login
-Route::get('/login',[AuthController::class,'showLoginForm'])->name('login');
-Route::post('/login',[AuthController::class,'login']);
+Route::get('/login',[AuthController::class,'showLoginForm'])->name('login')->middleware('guest');
+Route::post('/login',[AuthController::class,'login'])->middleware('guest');
 //logout
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
@@ -88,6 +88,8 @@ Route::post('/admin/deletCategorie/{id}',[CategoryController::class,'delete'])->
 Route::get('/admin/users',[UserController::class,'users'])->name('admin.users');
 // admin soft delete a user
 Route::post('/admin/ArchiveUser/{id}',[UserController::class,'deleteUser'])->name('archiveUser');
+// admin active the user after soft delted them
+Route::post('/admin/Active/{id}',[UserController::class,'activeUser'])->name('activeUser');
 // admin serach for a user
 Route::post('/admin/search',[UserController::class,'search'])->name('UserSearch');
 // show all inscription in the platform for admin

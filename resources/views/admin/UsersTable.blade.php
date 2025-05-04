@@ -46,9 +46,34 @@
                             <p class="border rounded-full py-2 text-center @if($user->deleted_at === null) text-blue-600 bg-blue-200 border-blue-300 @else text-red-600 bg-red-200 border-red-300 @endif">{{$user->deleted_at === null ? 'Active' : 'Archive'}}</p>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <button onclick="openModal('{{$user->userId}}','{{$user->Firstname}}','{{$user->type}}')">Archiver</button>   
-                            <button>Active</button>
-                        </td>
+    <div class="flex items-center space-x-3">
+        <!-- Archive Button -->
+        <button 
+            onclick="openModal('{{$user->userId}}','{{$user->Firstname}}','{{$user->type}}')"
+            class="p-1.5 bg-amber-50 text-amber-600 rounded-full hover:bg-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500 "
+            title="Archiver"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+            </svg>
+        </button>
+        
+        <!-- Active Button -->
+        <form method="POST" action="{{route('activeUser',['id'=>$user->userId])}}">
+            @csrf 
+            <button 
+                type="submit"
+                class="p-1.5 bg-green-50 text-green-600 rounded-full hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500"
+                title="Active"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </button>
+        </form>
+    </div>
+</td>
+
                     </tr>
                     @endforeach
                 </tbody>

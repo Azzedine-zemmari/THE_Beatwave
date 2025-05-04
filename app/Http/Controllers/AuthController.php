@@ -57,7 +57,7 @@ class AuthController extends Controller
                 case '1':
                     return redirect()->route('showAllEvent');
                 default:
-                    return redirect()->route('Home');
+                    return redirect('/');
             }
         }
         else{

@@ -68,4 +68,8 @@ class UserRepository implements UserRepositoryInterface{
         ->orWhere('LastName','like',"%$name%")
         ->paginate(5);
     }
+    public function activeUser(int $id){
+        $user = User::withTrashed()->findOrFail($id);
+        $user->restore();
+    }
 }

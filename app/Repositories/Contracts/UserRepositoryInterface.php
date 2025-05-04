@@ -14,4 +14,5 @@ interface UserRepositoryInterface{
     public function dropUser(int $id);
     public function allUsers();
     public function UserSearch(string $name);
+    public function activeUser(int $id);
 }

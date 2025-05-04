@@ -21,4 +21,7 @@ class UserService{
     public function search(string $name){
         return $this->userRepository->UserSearch($name);
     }
+    public function avtiveUser(int $id){
+        return $this->userRepository->activeUser($id);
+    }
 }

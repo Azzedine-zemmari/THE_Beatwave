@@ -108,7 +108,15 @@
                     </div>
                 </div>
                 @else
-                <a href="{{Auth::user()->role->type == 'artist' ? '/artist/Invitation' : '/'}}" class="bg-gradient-to-r from-[#43CBFF] to-[#9708CC] p-2 rounded-lg">{{Auth::user()->role->type}} Dashboard</a>
+                <a 
+                href="@if(Auth::user()->role->type == 'artist') /artist/Invitation
+                @elseif(Auth::user()->role->type == 'organizer') /organisateur/Events
+                @elseif(Auth::user()->role->type == 'admin') /admin/Dashboard
+                @else / 
+                @endif" 
+                class="bg-gradient-to-r from-[#43CBFF] to-[#9708CC] p-2 rounded-lg">
+                    {{ Auth::user()->role->type }} Dashboard
+                </a>                
                 @endif
             </div>
         </section>
