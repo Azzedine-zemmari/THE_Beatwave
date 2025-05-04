@@ -72,6 +72,6 @@ class AuthController extends Controller
         // regenerate the csrf token
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 }
