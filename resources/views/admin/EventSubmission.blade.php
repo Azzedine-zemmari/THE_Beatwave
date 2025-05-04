@@ -80,15 +80,27 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
-                                <form action="{{route('acceptEvent',$item->ID)}}" method="POST">
-                                    @csrf
-                                    <button class="text-green-600 hover:text-green-900 mr-2">Approve</button>
-                                </form>
-                                <form action="{{route('refuseEvent',$item->ID)}}" method="POST">
-                                    @csrf
-                                    <button class="text-red-600 hover:text-red-900">Reject</button>
-                                </form>
-                            </td>
+    <div class="flex items-center space-x-3">
+        <form action="{{route('acceptEvent',$item->ID)}}" method="POST">
+            @csrf
+            <button type="submit" class="text-green-600 hover:text-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 rounded-full p-1 transition-colors" aria-label="Approve event">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </button>
+        </form>
+        
+        <form action="{{route('refuseEvent',$item->ID)}}" method="POST">
+            @csrf
+            <button type="submit" class="text-red-600 hover:text-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 rounded-full p-1 transition-colors" aria-label="Reject event">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </form>
+    </div>
+</td>
+
                         </tr>
                         @endforeach
                     </tbody>
