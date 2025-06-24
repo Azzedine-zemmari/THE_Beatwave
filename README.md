@@ -59,7 +59,7 @@ Beatwave is a comprehensive web platform designed to simplify and streamline the
 
 - **Frontend:** HTML5, CSS3, JavaScript, Blade
 - **Backend:** PHP (Laravel)
-- **Database:** MySQL
+- **Database:** PgSQL
 - **Styling:** Tailwind CSS
 - **Payment Integration:** Secure transactions via PayPal
 
